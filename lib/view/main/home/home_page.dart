@@ -10,18 +10,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: semiWhite,
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
-          children: const [
-            HomeAppBar(),
-            HomeOnGoingTime(),
-            HomeCenterButton(),
-            HomeInspiration()
-          ],
-        ),
-      ),
-    );
+      children: const [
+        HomeAppBar(),
+        HomeOnGoingTime(),
+        HomeCenterButton(),
+        HomeInspiration()
+      ],
+    ));
   }
 }

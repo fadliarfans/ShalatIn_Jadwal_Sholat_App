@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jadwal_sholat_app/theme.dart';
 import 'package:jadwal_sholat_app/view/main/home/home_page.dart';
 
+import '../main/main_page.dart';
+
 class BoardingPage extends StatelessWidget {
   const BoardingPage({Key? key}) : super(key: key);
 
@@ -40,7 +42,7 @@ class BoardingPage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: ((context) => const HomePage())));
+                            builder: ((context) => const MainPage())));
                   },
                   style: ElevatedButton.styleFrom(
                       primary: green,

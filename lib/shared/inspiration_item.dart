@@ -10,7 +10,6 @@ class InspirationItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 24),
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(10), color: white),
-      height: 196,
       child: Column(
         children: [
           SizedBox(
@@ -21,17 +20,18 @@ class InspirationItem extends StatelessWidget {
               fit: BoxFit.fill,
             ),
           ),
+          const SizedBox(
+            height: 14,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SizedBox(
-                height: 30,
-                width: 30,
-                child: IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      "assets/images/icon_forward.png",
-                    )),
+              GestureDetector(
+                onTap: () {},
+                child: Image.asset(
+                  "assets/images/icon_forward.png",
+                  height: 20,
+                ),
               ),
               const SizedBox(
                 width: 6,
@@ -45,6 +45,9 @@ class InspirationItem extends StatelessWidget {
                 width: 25,
               ),
             ],
+          ),
+          const SizedBox(
+            height: 7,
           )
         ],
       ),
