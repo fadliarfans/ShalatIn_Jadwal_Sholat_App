@@ -9,13 +9,13 @@ class HomeCenterButton extends StatelessWidget {
     return Container(
       height: 114,
       width: double.infinity,
-      margin: EdgeInsets.only(left: 24, right: 24, top: 20),
+      margin: const EdgeInsets.only(left: 24, right: 24, top: 20),
       decoration:
           BoxDecoration(borderRadius: BorderRadius.circular(15), color: white),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
+          SizedBox(
             height: 94,
             width: 109,
             child: IconButton(
@@ -27,9 +27,9 @@ class HomeCenterButton extends StatelessWidget {
           Container(
             width: 1,
             color: green,
-            margin: EdgeInsets.symmetric(vertical: 7),
+            margin: const EdgeInsets.symmetric(vertical: 7),
           ),
-          Container(
+          SizedBox(
             height: 94,
             width: 109,
             child: IconButton(
