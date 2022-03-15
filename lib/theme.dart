@@ -14,5 +14,6 @@ FontWeight bold = FontWeight.w700;
 TextStyle kWhiteTextStyle = GoogleFonts.montserrat(color: white);
 TextStyle kBlackTextStyle = GoogleFonts.montserrat(color: black);
 TextStyle kGreenTextStyle = GoogleFonts.montserrat(color: green);
+TextStyle kWhite2TextStyle = GoogleFonts.workSans(color: white);
 
 double defaultMargin = 24;
