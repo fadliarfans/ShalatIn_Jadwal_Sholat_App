@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jadwal_sholat_app/theme.dart';
+import 'package:jadwal_sholat_app/view/main/home/home_page.dart';
 
 class BoardingPage extends StatelessWidget {
   const BoardingPage({Key? key}) : super(key: key);
@@ -35,7 +36,12 @@ class BoardingPage extends StatelessWidget {
               height: 52,
               margin: const EdgeInsets.only(left: 52, right: 52, bottom: 52),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const HomePage())));
+                  },
                   style: ElevatedButton.styleFrom(
                       primary: green,
                       shape: RoundedRectangleBorder(
