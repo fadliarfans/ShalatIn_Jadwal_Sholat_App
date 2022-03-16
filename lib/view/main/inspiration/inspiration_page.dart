@@ -5,8 +5,11 @@ class InspirationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Inspiration"),
+    return Container(
+      color: Colors.blue,
+      child: const Center(
+        child: Text("Inspiration"),
+      ),
     );
   }
 }

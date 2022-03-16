@@ -17,7 +17,7 @@ class InspirationItem extends StatelessWidget {
             width: double.infinity,
             child: Image.asset(
               image,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(

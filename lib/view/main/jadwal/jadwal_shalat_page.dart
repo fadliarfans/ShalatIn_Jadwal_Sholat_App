@@ -5,8 +5,11 @@ class JadwalShalatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Jadwal Shalat"),
+    return Container(
+      color: Colors.deepOrange,
+      child: const Center(
+        child: Text("Jadwal Shalat"),
+      ),
     );
   }
 }

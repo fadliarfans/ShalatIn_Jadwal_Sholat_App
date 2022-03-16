@@ -14,3 +14,7 @@ class ToJadwalShalat extends PageEvent {}
 class ToInspiration extends PageEvent {}
 
 class ToAbout extends PageEvent {}
+
+class ToRight extends PageEvent {}
+
+class ToLeft extends PageEvent {}

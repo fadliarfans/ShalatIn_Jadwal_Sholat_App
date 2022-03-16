@@ -18,5 +18,24 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<ToInspiration>((event, emit) {
       emit(InspirationPageState());
     });
+    on<ToRight>(((event, emit) {
+      if (state is HomePageState) {
+        emit(JadwalShalatPageState());
+      } else if (state is JadwalShalatPageState) {
+        emit(InspirationPageState());
+      } else if (state is InspirationPageState) {
+        emit(AboutPageState());
+      }
+    }));
+
+    on<ToLeft>((event, emit) {
+      if (state is JadwalShalatPageState) {
+        emit(HomePageState());
+      } else if (state is InspirationPageState) {
+        emit(JadwalShalatPageState());
+      } else if (state is AboutPageState) {
+        emit(InspirationPageState());
+      }
+    });
   }
 }

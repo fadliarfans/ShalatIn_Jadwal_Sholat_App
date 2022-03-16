@@ -22,9 +22,11 @@ class HomeOnGoingTime extends StatelessWidget {
             height: 166,
             margin: const EdgeInsets.only(left: 24, right: 24, top: 16),
             padding: const EdgeInsets.only(left: 22),
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/home_1.png"))),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: const DecorationImage(
+                    image: AssetImage("assets/images/home_1.png"),
+                    fit: BoxFit.cover)),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
