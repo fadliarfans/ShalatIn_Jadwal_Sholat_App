@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:intl/intl.dart';
+import 'package:jadwal_sholat_app/data/jadwal_model.dart';
+import 'package:jadwal_sholat_app/data/jadwal_response.dart';
 
 part 'jadwal_event.dart';
 part 'jadwal_state.dart';
@@ -46,15 +50,28 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       return await Geolocator.getCurrentPosition();
     }
 
+    Future<JadwalResponse> getJadwal(
+        double latitude, double longitude, double elevation) async {
+      final now = DateTime.now();
+      final formatter = DateFormat('yyyy-MM-dd');
+      String formattedDate = formatter.format(now);
+      final response = await Dio().get(
+          "https://api.pray.zone/v2/times/day.json?longitude=$longitude&latitude=$latitude&elevation=$elevation&date=$formattedDate");
+
+      if (response.statusCode == 200) {
+        final jadwal = JadwalResponse.fromJson(response.data);
+        return jadwal;
+      } else {
+        return JadwalResponse(code: 0, result: null, status: "Error");
+      }
+    }
+
     on<GetJadwal>((event, emit) async {
       try {
         emit(JadwalLoading());
-        var position = await _determinePosition();
+        final position = await _determinePosition();
         if (kDebugMode) {
           print(position.toString());
-          print(position.altitude);
-          print(position.longitude);
-          print(position.latitude);
         }
         List<Placemark> placemarks = await placemarkFromCoordinates(
           position.latitude,
@@ -63,8 +80,17 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
         if (kDebugMode) {
           print(placemarks[0]);
         }
-        emit(JadwalSucces());
+        final jadwal = await getJadwal(
+            position.latitude, position.longitude, position.altitude);
+        if (jadwal.result != null) {
+          emit(JadwalSucces(jadwal.result!));
+        } else {
+          emit(const JadwalError("Something Error Happened"));
+        }
       } catch (e) {
+        if (kDebugMode) {
+          print(e.toString());
+        }
         emit(JadwalError(e.toString()));
       }
     });

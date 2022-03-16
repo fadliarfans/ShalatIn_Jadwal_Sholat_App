@@ -24,7 +24,7 @@ class TimesModel {
     imsak = json['Imsak'];
     sunrise = json['Sunrise'];
     fajr = json['Fajr'];
-    dhuhr = json['dhuhr'];
+    dhuhr = json['Dhuhr'];
     asr = json['Asr'];
     sunset = json['Sunset'];
     maghrib = json['Maghrib'];

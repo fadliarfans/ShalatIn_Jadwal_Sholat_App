@@ -14,9 +14,9 @@ class JadwalModel {
   JadwalModel.fromJson(Map<String, dynamic> json) {
     if (json['datetime'] != null) {
       listDateTime = <DateTimeModel>[];
-      json['datetime'].foreach((v) {
+      for (var v in (json['datetime'] as List<dynamic>)) {
         listDateTime?.add(DateTimeModel.fromJson(v));
-      });
+      }
     }
     if (json['location'] != null) {
       location = LocationModel.fromJson(json['location']);

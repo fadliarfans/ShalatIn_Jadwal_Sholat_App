@@ -5,6 +5,9 @@ class JadwalResponse {
   String? status;
   JadwalModel? result;
 
+  JadwalResponse(
+      {required this.code, required this.result, required this.status});
+
   JadwalResponse.fromJson(Map<String, dynamic> json) {
     code = json['code'] ?? 0;
     status = json['status'] ?? "Error";

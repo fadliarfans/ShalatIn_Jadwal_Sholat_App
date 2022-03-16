@@ -9,7 +9,10 @@ abstract class JadwalState extends Equatable {
 
 class JadwalInitial extends JadwalState {}
 
-class JadwalSucces extends JadwalState {}
+class JadwalSucces extends JadwalState {
+  final JadwalModel jadwal;
+  const JadwalSucces(this.jadwal);
+}
 
 class JadwalError extends JadwalState {
   final String error;
