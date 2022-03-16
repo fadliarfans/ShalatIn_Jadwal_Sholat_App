@@ -29,7 +29,7 @@ class HomeInspiration extends StatelessWidget {
           ),
           const InspirationItem(image: "assets/images/inspiration_3.png"),
           const SizedBox(
-            height: 30,
+            height: 140,
           ),
         ],
       ),
