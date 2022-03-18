@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:jadwal_sholat_app/theme.dart';
 
-class JadwalShalatItem extends StatelessWidget {
-  const JadwalShalatItem(
-      {Key? key, required this.title, required this.time, required this.isTrue})
+import '../../../data/shalat_model.dart';
+
+class JadwalShalatItem extends StatefulWidget {
+  const JadwalShalatItem({Key? key, required this.shalat, required this.time})
       : super(key: key);
-  final String title;
+  final Shalat shalat;
   final String time;
-  final bool isTrue;
+
+  @override
+  State<JadwalShalatItem> createState() => _JadwalShalatItemState();
+}
+
+class _JadwalShalatItemState extends State<JadwalShalatItem> {
+  var isOn = false;
+
+  turnOffOrOn() {
+    setState(() {
+      isOn = !isOn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -17,7 +31,7 @@ class JadwalShalatItem extends StatelessWidget {
           flex: 1,
           child: Center(
             child: Text(
-              title,
+              widget.shalat.name,
               style: kBlackTextStyle.copyWith(fontSize: 16, fontWeight: medium),
             ),
           ),
@@ -26,7 +40,7 @@ class JadwalShalatItem extends StatelessWidget {
           flex: 1,
           child: Center(
             child: Text(
-              time,
+              widget.time,
               style:
                   kBlack2TextStyle.copyWith(fontSize: 19, fontWeight: semiBold),
             ),
@@ -36,8 +50,10 @@ class JadwalShalatItem extends StatelessWidget {
             flex: 1,
             child: Center(
                 child: Switch(
-              value: isTrue,
-              onChanged: (value) {},
+              value: isOn,
+              onChanged: (value) {
+                turnOffOrOn();
+              },
               activeColor: green,
             )))
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jadwal_sholat_app/data/shalat_model.dart';
 import 'package:jadwal_sholat_app/theme.dart';
 import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_shalat_item.dart';
 
@@ -54,41 +55,36 @@ class JadwalSholatCenterContainer extends StatelessWidget {
             height: 30,
           ),
           JadwalShalatItem(
-            title: "Subuh",
+            shalat: Shalat.Subuh,
             time: times?.fajr ?? "",
-            isTrue: false,
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
-            title: "Dzuhur",
+            shalat: Shalat.Dzuhur,
             time: times?.dhuhr ?? "",
-            isTrue: true,
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
-            title: "Ashar",
+            shalat: Shalat.Ashar,
             time: times?.asr ?? "",
-            isTrue: false,
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
-            title: "Maghrib",
+            shalat: Shalat.Maghrib,
             time: times?.maghrib ?? "",
-            isTrue: false,
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
-            title: "Isya",
+            shalat: Shalat.Isya,
             time: times?.isha ?? "",
-            isTrue: false,
           ),
           const SizedBox(
             height: 30,

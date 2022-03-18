@@ -62,10 +62,9 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       } else if (counter == 4) {
         shalat = Shalat.Isya;
       }
-      final String nextHourString =
-          nextJadwalHour > 9 ? "$nextJadwalHour" : "0$nextJadwalHour";
+      final String nextHourString = nextJadwalHour.toString().padLeft(2, "0");
       final String nextMinuteString =
-          nextJadwalMinutes > 9 ? "$nextJadwalMinutes" : "0$nextJadwalMinutes";
+          nextJadwalMinutes.toString().padLeft(2, "0");
       final String time = "$nextHourString:$nextMinuteString";
       return ShalatModel(
           shalat: shalat,

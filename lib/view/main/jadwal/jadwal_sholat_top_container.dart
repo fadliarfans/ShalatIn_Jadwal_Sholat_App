@@ -47,7 +47,7 @@ class JadwalSholatTopContainer extends StatelessWidget {
                     height: 11,
                   ),
                   Text(
-                    "18:12",
+                    state.nextJadwal.time,
                     style: kWhiteTextStyle.copyWith(
                         fontSize: 36, fontWeight: bold, letterSpacing: 5),
                   ),
@@ -55,7 +55,7 @@ class JadwalSholatTopContainer extends StatelessWidget {
                     height: 6,
                   ),
                   Text(
-                    "Maghrib",
+                    state.nextJadwal.shalat.name,
                     style: kWhiteTextStyle.copyWith(
                         fontWeight: semiBold, fontSize: 19, letterSpacing: 1),
                   ),

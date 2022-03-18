@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/jadwal_bloc.dart';
@@ -19,7 +20,9 @@ class MainPage extends StatelessWidget {
     BlocProvider.of<JadwalBloc>(context).add(GetJadwal());
     return BlocListener<JadwalBloc, JadwalState>(
       listener: (context, state) {
-        print(state);
+        if (kDebugMode) {
+          print(state);
+        }
       },
       child: Scaffold(
         backgroundColor: semiWhite,
