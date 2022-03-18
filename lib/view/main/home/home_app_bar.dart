@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/jadwal_bloc.dart';
 import '../../../theme.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -18,23 +20,38 @@ class HomeAppBar extends StatelessWidget {
               height: 30,
             ),
           ),
-          Row(
-            children: [
-              Image.asset(
-                "assets/images/icon_map.png",
-                height: 16,
-              ),
-              Text(
-                " Jakarta, ",
-                style: kBlack2TextStyle.copyWith(
-                    fontSize: 13, fontWeight: semiBold),
-              ),
-              Text(
-                "Indonesia",
-                style: kBlack2TextStyle.copyWith(
-                    fontSize: 13, fontWeight: regular),
-              ),
-            ],
+          BlocBuilder<JadwalBloc, JadwalState>(
+            builder: (context, state) {
+              if (state is JadwalSucces) {
+                return Row(
+                  children: [
+                    Image.asset(
+                      "assets/images/icon_map.png",
+                      height: 16,
+                    ),
+                    Text(
+                      " ${state.location.city}, ",
+                      style: kBlack2TextStyle.copyWith(
+                          fontSize: 13, fontWeight: semiBold),
+                    ),
+                    Text(
+                      state.location.country.toString(),
+                      style: kBlack2TextStyle.copyWith(
+                          fontSize: 13, fontWeight: regular),
+                    ),
+                  ],
+                );
+              } else {
+                return Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: LinearProgressIndicator(
+                    color: green,
+                    backgroundColor: white,
+                  ),
+                ));
+              }
+            },
           ),
           Image.asset(
             "assets/images/kaaba.png",

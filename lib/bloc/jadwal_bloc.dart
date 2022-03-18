@@ -1,12 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_ipify/dart_ipify.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:geocoding/geocoding.dart';
+// import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/jadwal_response.dart';
+import 'package:jadwal_sholat_app/data/location_by_ip_model.dart';
 import 'package:jadwal_sholat_app/data/shalat_model.dart';
 import 'package:jadwal_sholat_app/extension/day_translate.dart';
 import 'package:jadwal_sholat_app/extension/month_translate.dart';
@@ -85,6 +87,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       return formattedDate;
     }
 
+    // ignore: unused_element
     Future<Position> _determinePosition() async {
       bool serviceEnabled;
       LocationPermission permission;
@@ -138,22 +141,49 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       }
     }
 
+    // ignore: unused_element
+    Future<JadwalResponse> getJadwalByIp(String ip) async {
+      final response =
+          await Dio().get("https://api.pray.zone/v2/times/today.json?ip=$ip");
+      if (response.statusCode == 200) {
+        final jadwal = JadwalResponse.fromJson(response.data);
+        return jadwal;
+      } else {
+        return JadwalResponse(code: 0, result: null, status: "Error");
+      }
+    }
+
+    Future<LocationByIpModel?> getLocationByIP(String ip) async {
+      final response = await Dio().get("http://ip-api.com/json/$ip");
+      if (response.statusCode == 200) {
+        final location = LocationByIpModel.fromJson(response.data);
+        return location;
+      } else {
+        return null;
+      }
+    }
+
     on<GetJadwal>((event, emit) async {
       try {
         emit(JadwalLoading());
-        final position = await _determinePosition();
-        if (kDebugMode) {
-          print(position.toString());
-        }
-        List<Placemark> placemarks = await placemarkFromCoordinates(
-          position.latitude,
-          position.longitude,
-        );
-        if (kDebugMode) {
-          print(placemarks[0]);
-        }
-        final jadwal = await getJadwal(
-            position.latitude, position.longitude, position.altitude);
+        // final position = await _determinePosition();
+        // if (kDebugMode) {
+        //   print(position.toString());
+        // }
+        // List<Placemark> placemarks = await placemarkFromCoordinates(
+        //   position.latitude,
+        //   position.longitude,
+        // );
+        // if (kDebugMode) {
+        //   print(placemarks[0]);
+        // }
+        // final jadwal = await getJadwal(
+        //     position.latitude, position.longitude, position.altitude);
+        final ipv4 = await Ipify.ipv4();
+        final location = await getLocationByIP(ipv4);
+        final jadwal =
+            await getJadwal(location?.lat ?? 0.0, location?.lon ?? 0.0, 0.0);
+
         if (jadwal.result != null) {
           final times = jadwal.result?.listDateTime?.first.times;
           ShalatModel nextJadwal = _getClosesTime([
@@ -163,7 +193,8 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             times?.maghrib ?? "00:00",
             times?.isha ?? "00:00"
           ]);
-          emit(JadwalSucces(jadwal.result!, _getIdDate(), nextJadwal));
+          emit(JadwalSucces(
+              jadwal.result!, _getIdDate(), nextJadwal, location!));
         } else {
           emit(const JadwalError("Something Error Happened"));
         }

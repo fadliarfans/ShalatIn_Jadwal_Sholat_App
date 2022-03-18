@@ -13,7 +13,8 @@ class JadwalSucces extends JadwalState {
   final JadwalModel jadwal;
   final String dateId;
   final ShalatModel nextJadwal;
-  const JadwalSucces(this.jadwal, this.dateId, this.nextJadwal);
+  final LocationByIpModel location;
+  const JadwalSucces(this.jadwal, this.dateId, this.nextJadwal, this.location);
 }
 
 class JadwalError extends JadwalState {
