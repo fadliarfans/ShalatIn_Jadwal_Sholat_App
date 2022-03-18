@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:jadwal_sholat_app/bloc/jadwal_bloc.dart';
 import '../../../theme.dart';
 
 class JadwalSholatTopContainer extends StatelessWidget {
-  const JadwalSholatTopContainer({Key? key}) : super(key: key);
-
+  const JadwalSholatTopContainer({required this.state, Key? key})
+      : super(key: key);
+  final JadwalSucces state;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +63,7 @@ class JadwalSholatTopContainer extends StatelessWidget {
                     height: 11,
                   ),
                   Text(
-                    "Minggu, 13 Maret 2022",
+                    state.dateId,
                     style: kWhiteTextStyle.copyWith(
                         fontSize: 13, fontWeight: regular),
                   ),

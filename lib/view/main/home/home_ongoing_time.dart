@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jadwal_sholat_app/shared/custom_circular_progress_indicator.dart';
 import 'package:jadwal_sholat_app/theme.dart';
+import 'package:jadwal_sholat_app/view/main/home/home_timer_sholat.dart';
 
 import '../../../bloc/jadwal_bloc.dart';
 
@@ -20,7 +22,7 @@ class HomeOnGoingTime extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 24),
                   child: Text(
-                    "Minggu, 13 Maret 2022",
+                    state.dateId,
                     style: kBlackTextStyle.copyWith(fontSize: 13),
                   ),
                 ),
@@ -41,7 +43,7 @@ class HomeOnGoingTime extends StatelessWidget {
                           height: 34,
                         ),
                         Text(
-                          "Maghrib",
+                          state.nextJadwal.shalat.name,
                           style: kWhiteTextStyle.copyWith(
                               fontWeight: semiBold,
                               fontSize: 19,
@@ -53,7 +55,7 @@ class HomeOnGoingTime extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "18:10",
+                              state.nextJadwal.time,
                               style: kWhiteTextStyle.copyWith(
                                   fontSize: 36,
                                   fontWeight: bold,
@@ -71,10 +73,9 @@ class HomeOnGoingTime extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Text(
-                              "00:02:00",
-                              style: kWhiteTextStyle.copyWith(
-                                  fontSize: 13, fontWeight: regular),
+                            HomeTimerShalat(
+                              jadwalHour: state.nextJadwal.hour,
+                              jadwalMinute: state.nextJadwal.minute,
                             ),
                             Text(" Menuju Waktu Sholat",
                                 style: kWhiteTextStyle.copyWith(
@@ -92,7 +93,7 @@ class HomeOnGoingTime extends StatelessWidget {
           return const SizedBox(
             height: 200,
             child: Center(
-              child: CircularProgressIndicator(),
+              child: CustomCirucularProgressIndicator(),
             ),
           );
         }

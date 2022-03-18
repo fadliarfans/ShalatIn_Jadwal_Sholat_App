@@ -11,7 +11,9 @@ class JadwalInitial extends JadwalState {}
 
 class JadwalSucces extends JadwalState {
   final JadwalModel jadwal;
-  const JadwalSucces(this.jadwal);
+  final String dateId;
+  final ShalatModel nextJadwal;
+  const JadwalSucces(this.jadwal, this.dateId, this.nextJadwal);
 }
 
 class JadwalError extends JadwalState {
