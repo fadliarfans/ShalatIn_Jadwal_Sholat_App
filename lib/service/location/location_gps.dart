@@ -53,7 +53,7 @@ class LocationGps extends ILocation {
       );
       final myLocation = MyLocation(
           alt: position.altitude,
-          city: placemarks.first.locality,
+          city: placemarks.first.subAdministrativeArea,
           country: placemarks.first.country,
           lat: position.latitude,
           long: position.longitude);

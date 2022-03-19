@@ -38,6 +38,8 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
       leftMinute = 60 + widget.jadwalMinute - minute;
     }
     leftSecond = 60 - second;
+    // WHY : I don't know why the time is over a minute, so I'll just subtract it
+    leftMinute--;
     _controller = AnimationController(
         vsync: this,
         duration: Duration(
