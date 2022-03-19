@@ -42,6 +42,11 @@ dependencies:
   dio: ^4.0.4
   intl: ^0.17.0
   dart_ipify: ^1.1.1
+  android_alarm_manager_plus: ^2.0.5
+  path_provider: ^2.0.9
+  path_provider_android: ^2.0.12
+  path_provider_ios: ^2.0.8
+  audioplayers: ^0.20.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +73,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/audio/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -10,11 +10,12 @@ abstract class JadwalState extends Equatable {
 class JadwalInitial extends JadwalState {}
 
 class JadwalSucces extends JadwalState {
-  final JadwalModel jadwal;
+  final Map<Shalat, String> jadwalFiveTimePrayer;
   final String dateId;
   final ShalatModel nextJadwal;
-  final LocationByIpModel location;
-  const JadwalSucces(this.jadwal, this.dateId, this.nextJadwal, this.location);
+  final MyLocation location;
+  const JadwalSucces(
+      this.jadwalFiveTimePrayer, this.dateId, this.nextJadwal, this.location);
 }
 
 class JadwalError extends JadwalState {

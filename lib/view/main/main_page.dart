@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jadwal_sholat_app/bloc/alarm_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/jadwal_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/page_bloc.dart';
 import 'package:jadwal_sholat_app/shared/bottom_navigation_bar.dart';
@@ -25,6 +26,12 @@ class MainPage extends StatelessWidget {
         }
       },
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            BlocProvider.of<AlarmBloc>(context).add(LaunchAlarm());
+          },
+          child: const Icon(Icons.abc),
+        ),
         backgroundColor: semiWhite,
         body: GestureDetector(
           onHorizontalDragEnd: (details) {

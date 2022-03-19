@@ -11,7 +11,6 @@ class JadwalSholatCenterContainer extends StatelessWidget {
   final JadwalSucces state;
   @override
   Widget build(BuildContext context) {
-    var times = state.jadwal.listDateTime?.first.times;
     return Container(
       margin: const EdgeInsets.only(left: 24, right: 24, top: 27),
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -56,35 +55,35 @@ class JadwalSholatCenterContainer extends StatelessWidget {
           ),
           JadwalShalatItem(
             shalat: Shalat.Subuh,
-            time: times?.fajr ?? "",
+            time: state.jadwalFiveTimePrayer[Shalat.Subuh] ?? "",
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
             shalat: Shalat.Dzuhur,
-            time: times?.dhuhr ?? "",
+            time: state.jadwalFiveTimePrayer[Shalat.Dzuhur] ?? "",
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
             shalat: Shalat.Ashar,
-            time: times?.asr ?? "",
+            time: state.jadwalFiveTimePrayer[Shalat.Ashar] ?? "",
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
             shalat: Shalat.Maghrib,
-            time: times?.maghrib ?? "",
+            time: state.jadwalFiveTimePrayer[Shalat.Maghrib] ?? "",
           ),
           const SizedBox(
             height: 20,
           ),
           JadwalShalatItem(
             shalat: Shalat.Isya,
-            time: times?.isha ?? "",
+            time: state.jadwalFiveTimePrayer[Shalat.Isya] ?? "",
           ),
           const SizedBox(
             height: 30,
