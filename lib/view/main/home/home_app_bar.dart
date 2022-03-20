@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/jadwal_bloc.dart';
+import '../../../bloc/jadwal/jadwal_bloc.dart';
 import '../../../theme.dart';
 
 class HomeAppBar extends StatelessWidget {

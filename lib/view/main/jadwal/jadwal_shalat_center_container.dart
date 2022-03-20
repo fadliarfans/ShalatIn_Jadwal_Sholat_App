@@ -3,7 +3,7 @@ import 'package:jadwal_sholat_app/data/shalat_model.dart';
 import 'package:jadwal_sholat_app/theme.dart';
 import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_shalat_item.dart';
 
-import '../../../bloc/jadwal_bloc.dart';
+import '../../../bloc/jadwal/jadwal_bloc.dart';
 
 class JadwalSholatCenterContainer extends StatelessWidget {
   const JadwalSholatCenterContainer({required this.state, Key? key})

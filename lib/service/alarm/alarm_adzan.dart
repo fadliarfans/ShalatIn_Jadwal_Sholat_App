@@ -8,18 +8,7 @@ import 'dart:developer' as developer;
 import 'package:path_provider_android/path_provider_android.dart';
 import 'package:path_provider_ios/path_provider_ios.dart';
 
-class AlarmAdzan implements IAlarm {
-  @override
-  Future<void> playAdzan() async {
-    await AndroidAlarmManager.oneShot(
-      const Duration(seconds: 5),
-      1,
-      _callback,
-      exact: true,
-      wakeup: true,
-    );
-  }
-
+class AlarmAdzan with IAlarm {
   static Future<void> _callback() async {
     developer.log('Alarm fired!');
     try {
@@ -33,7 +22,12 @@ class AlarmAdzan implements IAlarm {
   }
 
   @override
-  Future<void> playAdzanOnTime(DateTime date, int id) async {
+  Future<void> playAdzan(DateTime date, int id) async {
     await AndroidAlarmManager.oneShotAt(date, id, _callback);
+  }
+
+  @override
+  Future<void> cancelAdzan(int id) async {
+    await AndroidAlarmManager.cancel(id);
   }
 }

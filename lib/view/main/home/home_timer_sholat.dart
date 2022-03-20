@@ -13,12 +13,19 @@ class HomeTimerShalat extends StatefulWidget {
 }
 
 class _HomeTimerShalatState extends State<HomeTimerShalat>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(vsync: this);
+  }
+
+  initTimer() {
+    if (_controller.status != AnimationStatus.dismissed) {
+      _controller.stop();
+    }
     final now = DateTime.now();
     final hour = now.hour;
     final minute = now.minute;
@@ -38,7 +45,7 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
       leftMinute = 60 + widget.jadwalMinute - minute;
     }
     leftSecond = 60 - second;
-    // WHY : I don't know why the time is over a minute, so I'll just subtract it
+    // i subtract it because already become second
     leftMinute--;
     _controller = AnimationController(
         vsync: this,
@@ -49,7 +56,6 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
 
   @override
   void dispose() {
-    _controller.stop();
     _controller.dispose();
     super.dispose();
   }
@@ -62,6 +68,7 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
 
   @override
   Widget build(BuildContext context) {
+    initTimer();
     return AnimatedBuilder(
         animation: _controller,
         builder: (context, child) {

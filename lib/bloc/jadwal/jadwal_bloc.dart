@@ -1,20 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 // import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/data/shalat_model.dart';
 import 'package:jadwal_sholat_app/extension/day_translate.dart';
 import 'package:jadwal_sholat_app/extension/month_translate.dart';
-import 'package:jadwal_sholat_app/service/jadwal/jadwal_coordinate.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_manager.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
-
-import '../service/location/location_gps.dart';
-import '../service/location/location_ip.dart';
-import '../service/location/location_manager.dart';
-import '../vo/resource.dart';
+import '../../service/location/location_manager.dart';
+import '../../vo/resource.dart';
 
 part 'jadwal_event.dart';
 part 'jadwal_state.dart';
@@ -93,50 +88,28 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
     on<GetJadwal>((event, emit) async {
       try {
         emit(JadwalLoading());
-        Resource<MyLocation> resourceLocation;
-
-        // By GPS
-        LocationManager locationManager = LocationManager(LocationGps());
-        resourceLocation = await locationManager.getPostition();
-
-        if (kDebugMode) {
-          print("GPS Status : ${resourceLocation.status}");
-        }
-
-        // By IP if GPS failed
-        if (resourceLocation.status == Status.ERROR ||
-            resourceLocation.status == null) {
-          locationManager = LocationManager(LocationIp());
-          resourceLocation = await locationManager.getPostition();
-          if (kDebugMode) {
-            print("IP Status : ${resourceLocation.status}");
-          }
-        }
+        Resource<MyLocation> resourceLocation =
+            await LocationManager().getPostition();
 
         if (resourceLocation.status == Status.SUCCES) {
-          final JadwalManager jadwalManager = JadwalManager(JadwalCoordinate());
           final resourceJadwal =
-              await jadwalManager.getJadwal(resourceLocation.data!);
-          if (kDebugMode) {
-            print("Jadwal Status : ${resourceJadwal.status}");
-          }
+              await JadwalManager().getJadwal(resourceLocation.data!);
+
           if (resourceJadwal.status == Status.SUCCES) {
             final jadwal = resourceJadwal.data;
-            final times = jadwal?.result?.listDateTime?.first.times;
             ShalatModel nextJadwal = _getClosesTime([
-              times?.fajr ?? "00:00",
-              times?.dhuhr ?? "00:00",
-              times?.asr ?? "00:00",
-              times?.maghrib ?? "00:00",
-              times?.isha ?? "00:00"
+              jadwal?.fajr ?? "00:00",
+              jadwal?.dhuhr ?? "00:00",
+              jadwal?.asr ?? "00:00",
+              jadwal?.maghrib ?? "00:00",
+              jadwal?.isha ?? "00:00"
             ]);
-            final listFiveTimes = jadwal?.result?.listDateTime?.first.times;
             final mapOfJadwalSholat = {
-              Shalat.Subuh: listFiveTimes?.fajr ?? "",
-              Shalat.Dzuhur: listFiveTimes?.dhuhr ?? "",
-              Shalat.Ashar: listFiveTimes?.asr ?? "",
-              Shalat.Maghrib: listFiveTimes?.maghrib ?? "",
-              Shalat.Isya: listFiveTimes?.isha ?? ""
+              Shalat.Subuh: jadwal?.fajr ?? "",
+              Shalat.Dzuhur: jadwal?.dhuhr ?? "",
+              Shalat.Ashar: jadwal?.asr ?? "",
+              Shalat.Maghrib: jadwal?.maghrib ?? "",
+              Shalat.Isya: jadwal?.isha ?? ""
             };
             final myLocation = resourceLocation.data!;
             emit(JadwalSucces(

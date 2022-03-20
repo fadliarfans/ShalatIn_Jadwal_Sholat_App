@@ -4,7 +4,7 @@ import 'package:jadwal_sholat_app/shared/custom_circular_progress_indicator.dart
 import 'package:jadwal_sholat_app/theme.dart';
 import 'package:jadwal_sholat_app/view/main/home/home_timer_sholat.dart';
 
-import '../../../bloc/jadwal_bloc.dart';
+import '../../../bloc/jadwal/jadwal_bloc.dart';
 
 class HomeOnGoingTime extends StatelessWidget {
   const HomeOnGoingTime({Key? key}) : super(key: key);

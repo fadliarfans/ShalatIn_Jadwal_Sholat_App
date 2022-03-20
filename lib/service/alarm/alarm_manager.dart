@@ -4,11 +4,11 @@ class AlarmManager {
   final IAlarm iAlarm;
   AlarmManager({required this.iAlarm});
 
-  void playAlarm() {
-    iAlarm.playAdzan();
+  void playAlarmOnTime(DateTime date, int id) {
+    iAlarm.playAdzan(date, id);
   }
 
-  void playAlarmOnTime(DateTime date, int id) {
-    iAlarm.playAdzanOnTime(date, id);
+  void cancelAdzan(int id) {
+    iAlarm.cancelAdzan(id);
   }
 }

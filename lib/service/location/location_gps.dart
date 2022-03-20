@@ -5,7 +5,7 @@ import 'package:jadwal_sholat_app/service/location/i_location.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 
-class LocationGps extends ILocation {
+class LocationGps with ILocation {
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -63,6 +63,20 @@ class LocationGps extends ILocation {
         print("Latitude  : ${myLocation.lat}");
         print("Longitude : ${myLocation.long}");
         print("Altitude  : ${myLocation.alt}");
+      }
+      try {
+        super.saveToLocal(
+            myLocation.lat ?? 0.0,
+            myLocation.alt ?? 0.0,
+            myLocation.long ?? 0.0,
+            myLocation.city ?? "",
+            myLocation.country ?? "",
+            true);
+        if (kDebugMode) {
+          print("Location GPS Save To Local");
+        }
+      } catch (e) {
+        return Resource<MyLocation>().error("Local Error");
       }
 
       return Resource<MyLocation>().success(myLocation);

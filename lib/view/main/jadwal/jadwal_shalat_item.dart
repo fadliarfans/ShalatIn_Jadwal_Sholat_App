@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jadwal_sholat_app/bloc/alarm/alarm_bloc.dart';
 import 'package:jadwal_sholat_app/theme.dart';
-
 import '../../../data/shalat_model.dart';
 
 class JadwalShalatItem extends StatefulWidget {
@@ -53,6 +54,13 @@ class _JadwalShalatItemState extends State<JadwalShalatItem> {
               value: isOn,
               onChanged: (value) {
                 turnOffOrOn();
+                if (isOn) {
+                  BlocProvider.of<AlarmBloc>(context)
+                      .add(LaunchAlarmOnTime(widget.shalat));
+                } else {
+                  BlocProvider.of<AlarmBloc>(context)
+                      .add(CancelAlarmOnTime(widget.shalat));
+                }
               },
               activeColor: green,
             )))

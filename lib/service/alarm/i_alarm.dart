@@ -1,4 +1,4 @@
-abstract class IAlarm {
-  Future<void> playAdzan();
-  Future<void> playAdzanOnTime(DateTime date, int id);
+mixin IAlarm {
+  Future<void> playAdzan(DateTime date, int id);
+  Future<void> cancelAdzan(int id);
 }
