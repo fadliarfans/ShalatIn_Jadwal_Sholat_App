@@ -8,7 +8,8 @@ class Resource<Data> {
   Resource({this.message, this.data, this.status});
 
   Resource<Data> success(Data value) {
-    return Resource<Data>(status: Status.SUCCES, data: value, message: null);
+    return Resource<Data>(
+        status: Status.SUCCES, data: value, message: "SUCCES");
   }
 
   Resource<Data> error(String error) {

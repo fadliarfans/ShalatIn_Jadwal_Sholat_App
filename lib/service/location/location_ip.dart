@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:jadwal_sholat_app/service/location/i_location.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../data/location_by_ip_model.dart';
 
@@ -29,17 +28,13 @@ class LocationIp with ILocation {
           print(location.lon);
         }
         try {
-          final prefs = await SharedPreferences.getInstance();
-          final bool isFromGPS = prefs.getBool("isFromGPS") ?? false;
-          if (isFromGPS == false) {
-            super.saveToLocal(location.lat ?? 0.0, 0.0, location.lon ?? 0.0,
-                location.city ?? "", location.country ?? "", false);
-            if (kDebugMode) {
-              print("Location IP Save To Local");
-            }
+          super.saveToLocal(location.lat ?? 0.0, 0.0, location.lon ?? 0.0,
+              location.city ?? "", location.country ?? "");
+          if (kDebugMode) {
+            print("Location IP Save To Local");
           }
         } catch (e) {
-          return Resource<MyLocation>().error("Local Error");
+          return Resource<MyLocation>().error("Save To Local Error");
         }
         return Resource<MyLocation>().success(myLocation);
       } else {

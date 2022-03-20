@@ -46,7 +46,7 @@ class JadwalCoordinate with IJadwal {
         }
         return Resource<MyJadwalModel>().success(myJadwal);
       } else {
-        return Resource<MyJadwalModel>().error("Jadwal Error");
+        return Resource<MyJadwalModel>().error("Network Jadwal Error");
       }
     } catch (e) {
       return Resource<MyJadwalModel>().error(e.toString());
