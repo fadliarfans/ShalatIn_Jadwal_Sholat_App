@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:jadwal_sholat_app/service/city/city_manager.dart';
 import 'package:jadwal_sholat_app/service/location/i_location.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
@@ -51,26 +52,20 @@ class LocationGps with ILocation {
         position.latitude,
         position.longitude,
       );
+      final cityId = await CityManager()
+          .getCityId(placemarks.first.subAdministrativeArea ?? "");
       final myLocation = MyLocation(
-          alt: position.altitude,
           city: placemarks.first.subAdministrativeArea,
           country: placemarks.first.country,
-          lat: position.latitude,
-          long: position.longitude);
+          cityId: cityId);
       if (kDebugMode) {
         print("Country   : ${myLocation.country}");
         print("City      : ${myLocation.city}");
-        print("Latitude  : ${myLocation.lat}");
-        print("Longitude : ${myLocation.long}");
-        print("Altitude  : ${myLocation.alt}");
+        print("City Id   : ${myLocation.cityId}");
       }
       try {
-        super.saveToLocal(
-            myLocation.lat ?? 0.0,
-            myLocation.alt ?? 0.0,
-            myLocation.long ?? 0.0,
-            myLocation.city ?? "",
-            myLocation.country ?? "");
+        super.saveToLocal(myLocation.city ?? "", myLocation.country ?? "",
+            myLocation.cityId ?? "");
         if (kDebugMode) {
           print("Location GPS Save To Local");
         }

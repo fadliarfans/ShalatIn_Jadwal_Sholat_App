@@ -24,3 +24,5 @@ class JadwalError extends JadwalState {
 }
 
 class JadwalLoading extends JadwalState {}
+
+class JadwalChooseCity extends JadwalLoading {}

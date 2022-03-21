@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:jadwal_sholat_app/service/location/i_location.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
-import 'package:jadwal_sholat_app/service/location/location_ip.dart';
 import 'package:jadwal_sholat_app/service/location/location_local.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 
@@ -20,17 +19,7 @@ class LocationManager {
         print("GPS Location Message : ${resourceLocation.message}");
       }
 
-      // By IP if GPS failed
-      if (resourceLocation.status == Status.ERROR ||
-          resourceLocation.status == null) {
-        location = LocationIp();
-        resourceLocation = await location.getLocation();
-        if (kDebugMode) {
-          print("IP Location Message : ${resourceLocation.message}");
-        }
-      }
-
-      // By Local if IP failed
+      // By Local if GPS Failed
       if (resourceLocation.status == Status.ERROR ||
           resourceLocation.status == null) {
         location = LocationLocal();

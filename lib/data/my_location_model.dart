@@ -1,14 +1,7 @@
 class MyLocation {
   String? city;
-  double? lat;
-  double? long;
   String? country;
-  double? alt;
+  String? cityId;
 
-  MyLocation(
-      {required this.alt,
-      required this.city,
-      required this.country,
-      required this.lat,
-      required this.long});
+  MyLocation({required this.city, required this.country, required this.cityId});
 }

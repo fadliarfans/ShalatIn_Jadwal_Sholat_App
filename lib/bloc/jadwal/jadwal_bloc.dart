@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-// import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/data/shalat_model.dart';
@@ -118,7 +117,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             emit(const JadwalError("Something Error Happened"));
           }
         } else {
-          emit(const JadwalError("Something Error Happened"));
+          emit(JadwalChooseCity());
         }
       } catch (e) {
         emit(JadwalError(e.toString()));

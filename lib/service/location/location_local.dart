@@ -8,13 +8,11 @@ class LocationLocal with ILocation {
   Future<Resource<MyLocation>> getLocation() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final lat = prefs.getDouble("lat");
-      final alt = prefs.getDouble("alt");
-      final lon = prefs.getDouble("lon");
       final city = prefs.getString("city");
       final country = prefs.getString("country");
-      final myLocation = MyLocation(
-          alt: alt, city: city, country: country, lat: lat, long: lon);
+      final cityId = prefs.getString("cityId");
+      final myLocation =
+          MyLocation(city: city, country: country, cityId: cityId);
       return Resource<MyLocation>().success(myLocation);
     } catch (e) {
       return Resource<MyLocation>().error(e.toString());

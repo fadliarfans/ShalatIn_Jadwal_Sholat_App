@@ -1,43 +1,45 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:jadwal_sholat_app/data/jadwal_response.dart';
+import 'package:jadwal_sholat_app/data/jadwal_sholat_model/jadwal_response.dart';
 import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/service/jadwal/i_jadwal.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 
-class JadwalCoordinate with IJadwal {
+class JadwalCity with IJadwal {
   @override
   Future<Resource<MyJadwalModel>> getJadwal(MyLocation myLocation) async {
     try {
       final now = DateTime.now();
       final formatter = DateFormat('yyyy-MM-dd');
       String formattedDate = formatter.format(now);
-      final longitude = myLocation.long ?? 0.0;
-      final latitude = myLocation.lat ?? 0.0;
-      final elevation = myLocation.alt ?? 0.0;
+
       final response = await Dio().get(
-          "https://api.pray.zone/v2/times/day.json?longitude=$longitude&latitude=$latitude&elevation=$elevation&date=$formattedDate");
+          "https://jadwal-shalat-api.herokuapp.com/daily?date=$formattedDate&cityId=${myLocation.cityId}");
 
       if (response.statusCode == 200) {
-        final jadwal = JadwalResponse.fromJson(response.data);
-        final times = jadwal.result?.listDateTime?.first.times;
+        if (kDebugMode) {
+          print(response.data);
+        }
+        final jadwal = JadwalModel.fromJson(response.data);
+        final times = jadwal.data?.data;
         final myJadwal = MyJadwalModel(
-            asr: times?.asr,
-            dhuhr: times?.dhuhr,
-            fajr: times?.fajr,
-            isha: times?.isha,
-            maghrib: times?.maghrib,
+            asr: times![2].time,
+            dhuhr: times[1].time,
+            fajr: times[0].time,
+            isha: times[4].time,
+            maghrib: times[3].time,
             day: now.day,
             month: now.month,
             year: now.year);
         try {
           super.saveToLocal(
-              times?.fajr ?? "",
-              times?.dhuhr ?? "",
-              times?.asr ?? "",
-              times?.maghrib ?? "",
-              times?.isha ?? "",
+              times[0].time ?? "",
+              times[1].time ?? "",
+              times[2].time ?? "",
+              times[3].time ?? "",
+              times[4].time ?? "",
               now.day,
               now.month,
               now.year);

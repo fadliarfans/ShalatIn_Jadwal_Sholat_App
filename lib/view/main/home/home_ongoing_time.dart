@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/shared/custom_circular_progress_indicator.dart';
 import 'package:jadwal_sholat_app/theme.dart';
 import 'package:jadwal_sholat_app/view/main/home/home_timer_sholat.dart';
 
@@ -90,12 +89,7 @@ class HomeOnGoingTime extends StatelessWidget {
             ),
           );
         } else {
-          return const SizedBox(
-            height: 200,
-            child: Center(
-              child: CustomCirucularProgressIndicator(),
-            ),
-          );
+          return Container();
         }
       },
     );

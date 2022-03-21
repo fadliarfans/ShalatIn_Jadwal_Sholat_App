@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
-import 'package:jadwal_sholat_app/service/jadwal/jadwal_coordinate.dart';
+import 'package:jadwal_sholat_app/service/jadwal/jadwal_city.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_local.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
@@ -12,7 +12,7 @@ class JadwalManager {
     try {
       Resource<MyJadwalModel> resourceJadwal;
 
-      resourceJadwal = await JadwalCoordinate().getJadwal(location);
+      resourceJadwal = await JadwalCity().getJadwal(location);
       if (kDebugMode) {
         print("Jadwal from API Message : ${resourceJadwal.message}");
       }

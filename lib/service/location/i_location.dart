@@ -5,15 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 mixin ILocation {
   Future<Resource<MyLocation>> getLocation();
 
-  Future<bool> saveToLocal(
-      double lat, double alt, double lon, String city, String country) async {
+  Future<bool> saveToLocal(String city, String country, String cityId) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      prefs.setDouble("lat", lat);
-      prefs.setDouble("alt", alt);
-      prefs.setDouble("lon", lon);
       prefs.setString("city", city);
       prefs.setString("country", country);
+      prefs.setString("cityId", cityId);
       return true;
     } catch (e) {
       return false;
