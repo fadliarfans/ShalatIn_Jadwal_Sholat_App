@@ -14,13 +14,13 @@ class JadwalManager {
 
       resourceJadwal = await JadwalCoordinate().getJadwal(location);
       if (kDebugMode) {
-        print("Jadwal from API Status : ${resourceJadwal.message}");
+        print("Jadwal from API Message : ${resourceJadwal.message}");
       }
 
       if (resourceJadwal.status == Status.ERROR) {
         resourceJadwal = await JadwalLocal().getJadwal(location);
         if (kDebugMode) {
-          print("Jadwal from Local Status : ${resourceJadwal.message}");
+          print("Jadwal from Local Message : ${resourceJadwal.message}");
         }
       }
 

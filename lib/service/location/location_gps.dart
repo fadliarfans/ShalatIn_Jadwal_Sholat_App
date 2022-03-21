@@ -70,13 +70,12 @@ class LocationGps with ILocation {
             myLocation.alt ?? 0.0,
             myLocation.long ?? 0.0,
             myLocation.city ?? "",
-            myLocation.country ?? "",
-            true);
+            myLocation.country ?? "");
         if (kDebugMode) {
           print("Location GPS Save To Local");
         }
       } catch (e) {
-        return Resource<MyLocation>().error("Local Error");
+        return Resource<MyLocation>().error("Save To Local Error");
       }
 
       return Resource<MyLocation>().success(myLocation);

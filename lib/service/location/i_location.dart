@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 mixin ILocation {
   Future<Resource<MyLocation>> getLocation();
 
-  Future<bool> saveToLocal(double lat, double alt, double lon, String city,
-      String country, bool isFromGPS) async {
+  Future<bool> saveToLocal(
+      double lat, double alt, double lon, String city, String country) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       prefs.setDouble("lat", lat);
@@ -14,7 +14,6 @@ mixin ILocation {
       prefs.setDouble("lon", lon);
       prefs.setString("city", city);
       prefs.setString("country", country);
-      prefs.setBool("isFromGPS", isFromGPS);
       return true;
     } catch (e) {
       return false;

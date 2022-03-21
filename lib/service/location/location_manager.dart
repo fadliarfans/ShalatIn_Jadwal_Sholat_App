@@ -17,7 +17,7 @@ class LocationManager {
       resourceLocation = await location.getLocation();
 
       if (kDebugMode) {
-        print("GPS Location Status : ${resourceLocation.status}");
+        print("GPS Location Message : ${resourceLocation.message}");
       }
 
       // By IP if GPS failed
@@ -26,7 +26,7 @@ class LocationManager {
         location = LocationIp();
         resourceLocation = await location.getLocation();
         if (kDebugMode) {
-          print("IP Location Status : ${resourceLocation.status}");
+          print("IP Location Message : ${resourceLocation.message}");
         }
       }
 
@@ -36,7 +36,7 @@ class LocationManager {
         location = LocationLocal();
         resourceLocation = await location.getLocation();
         if (kDebugMode) {
-          print("Local Location Status : ${resourceLocation.status}");
+          print("Local Location Message : ${resourceLocation.message}");
         }
       }
 

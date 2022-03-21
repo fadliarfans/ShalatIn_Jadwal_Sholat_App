@@ -28,7 +28,7 @@ class JadwalLocal with IJadwal {
           year: year);
       return Resource<MyJadwalModel>().success(myJadwal);
     } catch (e) {
-      return Resource<MyJadwalModel>().error("Jadwal Error");
+      return Resource<MyJadwalModel>().error(e.toString());
     }
   }
 }
