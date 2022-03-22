@@ -33,19 +33,6 @@ class JadwalCity with IJadwal {
             day: now.day,
             month: now.month,
             year: now.year);
-        try {
-          super.saveToLocal(
-              times[0].time ?? "",
-              times[1].time ?? "",
-              times[2].time ?? "",
-              times[3].time ?? "",
-              times[4].time ?? "",
-              now.day,
-              now.month,
-              now.year);
-        } catch (e) {
-          return Resource<MyJadwalModel>().error("Save jadwal to Local error");
-        }
         return Resource<MyJadwalModel>().success(myJadwal);
       } else {
         return Resource<MyJadwalModel>().error("Network Jadwal Error");

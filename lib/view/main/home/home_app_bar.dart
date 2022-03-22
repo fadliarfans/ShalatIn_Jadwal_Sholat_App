@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../bloc/jadwal/jadwal_bloc.dart';
+import '../../../shared/bottom_sheet_choose_city.dart';
 import '../../../theme.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -23,23 +24,32 @@ class HomeAppBar extends StatelessWidget {
           BlocBuilder<JadwalBloc, JadwalState>(
             builder: (context, state) {
               if (state is JadwalSucces) {
-                return Row(
-                  children: [
-                    Image.asset(
-                      "assets/images/icon_map.png",
-                      height: 16,
-                    ),
-                    Text(
-                      " ${state.location.city}, ",
-                      style: kBlack2TextStyle.copyWith(
-                          fontSize: 13, fontWeight: semiBold),
-                    ),
-                    Text(
-                      state.location.country.toString(),
-                      style: kBlack2TextStyle.copyWith(
-                          fontSize: 13, fontWeight: regular),
-                    ),
-                  ],
+                return GestureDetector(
+                  onTap: () {
+                    showBottomSheet(
+                        context: context,
+                        builder: (constext) {
+                          return const BottomSheetChooseCity();
+                        });
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "assets/images/icon_map.png",
+                        height: 16,
+                      ),
+                      Text(
+                        " ${state.location.city}, ",
+                        style: kBlack2TextStyle.copyWith(
+                            fontSize: 13, fontWeight: semiBold),
+                      ),
+                      Text(
+                        state.location.country.toString(),
+                        style: kBlack2TextStyle.copyWith(
+                            fontSize: 13, fontWeight: regular),
+                      ),
+                    ],
+                  ),
                 );
               } else if (state is JadwalLoading) {
                 return Expanded(
@@ -59,12 +69,12 @@ class HomeAppBar extends StatelessWidget {
                     ),
                     RichText(
                       text: TextSpan(
-                        text: '  Location',
+                        text: '  Something',
                         style: kBlack2TextStyle.copyWith(
                             fontWeight: semiBold, fontSize: 13),
                         children: <TextSpan>[
                           TextSpan(
-                              text: ' Error',
+                              text: ' Error Happened',
                               style: kBlack2TextStyle.copyWith(
                                   fontWeight: regular, fontSize: 13)),
                         ],

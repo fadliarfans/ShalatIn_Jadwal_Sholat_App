@@ -24,7 +24,7 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
 
   initTimer() {
     if (_controller.status != AnimationStatus.dismissed) {
-      _controller.stop();
+      _controller.dispose();
     }
     final now = DateTime.now();
     final hour = now.hour;

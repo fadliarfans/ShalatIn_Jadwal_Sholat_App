@@ -66,8 +66,6 @@ class LocationGps with ILocation {
           print("City      : ${myLocation.city}");
           print("City Id   : ${myLocation.cityId}");
         }
-        super.saveToLocal(myLocation.city ?? "", myLocation.country ?? "",
-            myLocation.cityId ?? "");
         if (kDebugMode) {
           print("Location GPS Save To Local");
         }

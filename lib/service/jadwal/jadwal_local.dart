@@ -9,24 +9,29 @@ class JadwalLocal with IJadwal {
   Future<Resource<MyJadwalModel>> getJadwal(MyLocation myLocation) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final fajr = prefs.getString("fajr");
-      final dhuhr = prefs.getString("dhuhr");
-      final asr = prefs.getString("asr");
-      final maghrib = prefs.getString("maghrib");
-      final isha = prefs.getString("isha");
-      final day = prefs.getInt("day");
-      final month = prefs.getInt("month");
-      final year = prefs.getInt("year");
-      final myJadwal = MyJadwalModel(
-          asr: asr,
-          dhuhr: dhuhr,
-          fajr: fajr,
-          isha: isha,
-          maghrib: maghrib,
-          day: day,
-          month: month,
-          year: year);
-      return Resource<MyJadwalModel>().success(myJadwal);
+      final city = prefs.getString("cityId");
+      if (city == myLocation.cityId) {
+        final fajr = prefs.getString("fajr");
+        final dhuhr = prefs.getString("dhuhr");
+        final asr = prefs.getString("asr");
+        final maghrib = prefs.getString("maghrib");
+        final isha = prefs.getString("isha");
+        final day = prefs.getInt("day");
+        final month = prefs.getInt("month");
+        final year = prefs.getInt("year");
+        final myJadwal = MyJadwalModel(
+            asr: asr,
+            dhuhr: dhuhr,
+            fajr: fajr,
+            isha: isha,
+            maghrib: maghrib,
+            day: day,
+            month: month,
+            year: year);
+        return Resource<MyJadwalModel>().success(myJadwal);
+      } else {
+        return Resource<MyJadwalModel>().error("Location Doesn't Match");
+      }
     } catch (e) {
       return Resource<MyJadwalModel>().error(e.toString());
     }

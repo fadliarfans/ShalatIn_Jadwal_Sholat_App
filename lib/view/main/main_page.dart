@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/page/page_bloc.dart';
 import 'package:jadwal_sholat_app/shared/bottom_navigation_bar.dart';
+import 'package:jadwal_sholat_app/shared/bottom_sheet_choose_city.dart';
 import 'package:jadwal_sholat_app/theme.dart';
 import 'package:jadwal_sholat_app/view/main/home/home_page.dart';
 import 'package:jadwal_sholat_app/view/main/inspiration/inspiration_page.dart';
@@ -18,15 +19,22 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<PageBloc>(context).add(ToHome());
     BlocProvider.of<JadwalBloc>(context).add(GetJadwal());
-    return BlocListener<JadwalBloc, JadwalState>(
-      listener: (context, state) {
-        if (kDebugMode) {
-          print(state);
-        }
-      },
-      child: Scaffold(
-        backgroundColor: semiWhite,
-        body: GestureDetector(
+    return Scaffold(
+      backgroundColor: semiWhite,
+      body: BlocListener<JadwalBloc, JadwalState>(
+        listener: (context, state) {
+          if (kDebugMode) {
+            print(state);
+          }
+          if (state is JadwalChooseCity) {
+            showBottomSheet(
+                context: context,
+                builder: (constext) {
+                  return const BottomSheetChooseCity();
+                });
+          }
+        },
+        child: GestureDetector(
           onHorizontalDragEnd: (details) {
             // Swiping in right direction.
             if ((details.primaryVelocity ?? 1) > 0) {

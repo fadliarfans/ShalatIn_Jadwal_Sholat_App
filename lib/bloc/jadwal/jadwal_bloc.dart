@@ -87,12 +87,19 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
     on<GetJadwal>((event, emit) async {
       try {
         emit(JadwalLoading());
-        Resource<MyLocation> resourceLocation =
-            await LocationManager().getPostition();
+        Resource<MyLocation>? resourceLocation;
+        if (event is GetJadwalLocationSucces) {
+          resourceLocation = Resource<MyLocation>().success(event.myLocation);
+        } else {
+          resourceLocation = await LocationManager().getPostition();
+        }
 
         if (resourceLocation.status == Status.SUCCES) {
           final resourceJadwal =
               await JadwalManager().getJadwal(resourceLocation.data!);
+
+          await LocationManager().savePosition(resourceLocation.data!.city!,
+              resourceLocation.data!.country!, resourceLocation.data!.cityId!);
 
           if (resourceJadwal.status == Status.SUCCES) {
             final jadwal = resourceJadwal.data;
@@ -117,8 +124,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             emit(const JadwalError("Something Error Happened"));
           }
         } else {
-          emit(const JadwalError("Something Error Happened"));
-          //emit(JadwalChooseCity());
+          emit(JadwalChooseCity());
         }
       } catch (e) {
         emit(JadwalError(e.toString()));
