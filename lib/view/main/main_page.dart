@@ -29,6 +29,7 @@ class MainPage extends StatelessWidget {
           if (state is JadwalChooseCity) {
             showBottomSheet(
                 context: context,
+                enableDrag: false,
                 builder: (constext) {
                   return const BottomSheetChooseCity();
                 });
