@@ -36,31 +36,24 @@ class JadwalManager {
       final year = prefs.getInt("year");
       final now = DateTime.now();
 
-      // Jika Lokasi dan tanggal berbeda dengan yang disimpan, maka harus request ke API lagi.
-      if (cityId != location.cityId ||
-          day != now.day ||
-          month != now.month ||
-          year != now.year) {
+      // Jika Lokasi dan tanggal sama dengan yang disimpan, maka data diambil dari lokal.
+      if (cityId == location.cityId &&
+          day == now.day &&
+          month == now.month &&
+          year == now.year) {
+        resourceJadwal = await JadwalLocal().getJadwal(location);
+        if (kDebugMode) {
+          print("Jadwal from Local Message : ${resourceJadwal.message}");
+        }
+      } else {
         resourceJadwal = await JadwalCity().getJadwal(location);
         if (kDebugMode) {
           print("Jadwal from API Message : ${resourceJadwal.message}");
         }
-        if (resourceJadwal.status == Status.ERROR) {
-          resourceJadwal = await JadwalLocal().getJadwal(location);
-          if (kDebugMode) {
-            print("Jadwal from Local Message : ${resourceJadwal.message}");
-          }
-        }
-
         if (resourceJadwal.status == Status.SUCCES) {
           final times = resourceJadwal.data;
           saveJadwal(times!.fajr!, times.dhuhr!, times.asr!, times.maghrib!,
               times.isha!, times.day!, times.month!, times.year!);
-        }
-      } else {
-        resourceJadwal = await JadwalLocal().getJadwal(location);
-        if (kDebugMode) {
-          print("Jadwal from Local Message : ${resourceJadwal.message}");
         }
       }
 

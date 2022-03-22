@@ -28,7 +28,7 @@ class LocationManager {
       resourceLocation = await location.getLocation();
 
       if (kDebugMode) {
-        print("GPS Location Message : ${resourceLocation.message}");
+        print("Location from GPS Message : ${resourceLocation.message}");
       }
 
       // IF Get Location from GPS Failed -> get from local
@@ -37,7 +37,7 @@ class LocationManager {
         location = LocationLocal();
         resourceLocation = await location.getLocation();
         if (kDebugMode) {
-          print("Local Location Message : ${resourceLocation.message}");
+          print("Location From Local Message : ${resourceLocation.message}");
         }
       }
 
