@@ -16,14 +16,14 @@ class JadwalErrorPage extends StatelessWidget {
         ),
         RichText(
           text: TextSpan(
-            text: 'Location',
+            text: '  Something',
             style:
-                kBlack2TextStyle.copyWith(fontWeight: semiBold, fontSize: 14),
+                kBlack2TextStyle.copyWith(fontWeight: semiBold, fontSize: 13),
             children: <TextSpan>[
               TextSpan(
-                  text: ' Error',
+                  text: ' Error Happened',
                   style: kBlack2TextStyle.copyWith(
-                      fontWeight: regular, fontSize: 14)),
+                      fontWeight: regular, fontSize: 13)),
             ],
           ),
         ),

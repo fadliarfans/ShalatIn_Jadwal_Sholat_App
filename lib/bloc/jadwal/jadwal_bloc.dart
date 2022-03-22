@@ -98,10 +98,11 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
           final resourceJadwal =
               await JadwalManager().getJadwal(resourceLocation.data!);
 
-          await LocationManager().savePosition(resourceLocation.data!.city!,
-              resourceLocation.data!.country!, resourceLocation.data!.cityId!);
-
           if (resourceJadwal.status == Status.SUCCES) {
+            await LocationManager().savePosition(
+                resourceLocation.data!.city!,
+                resourceLocation.data!.country!,
+                resourceLocation.data!.cityId!);
             final jadwal = resourceJadwal.data;
             ShalatModel nextJadwal = _getClosesTime([
               jadwal?.fajr ?? "00:00",

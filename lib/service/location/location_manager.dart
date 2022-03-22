@@ -39,10 +39,6 @@ class LocationManager {
         if (kDebugMode) {
           print("Local Location Message : ${resourceLocation.message}");
         }
-      } else {
-        // IF Get Location from GPS Succes -> Save Location
-        final data = resourceLocation.data!;
-        savePosition(data.city!, data.country!, data.cityId!);
       }
 
       if (resourceLocation.status == Status.SUCCES) {

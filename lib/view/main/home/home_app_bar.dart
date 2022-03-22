@@ -61,26 +61,35 @@ class HomeAppBar extends StatelessWidget {
                   ),
                 ));
               } else {
-                return Row(
-                  children: [
-                    Image.asset(
-                      "assets/images/icon_map.png",
-                      height: 16,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: '  Something',
-                        style: kBlack2TextStyle.copyWith(
-                            fontWeight: semiBold, fontSize: 13),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: ' Error Happened',
-                              style: kBlack2TextStyle.copyWith(
-                                  fontWeight: regular, fontSize: 13)),
-                        ],
+                return GestureDetector(
+                  onTap: () {
+                    showBottomSheet(
+                        context: context,
+                        builder: (constext) {
+                          return const BottomSheetChooseCity();
+                        });
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "assets/images/icon_map.png",
+                        height: 16,
                       ),
-                    ),
-                  ],
+                      RichText(
+                        text: TextSpan(
+                          text: '  Something',
+                          style: kBlack2TextStyle.copyWith(
+                              fontWeight: semiBold, fontSize: 13),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: ' Error Happened',
+                                style: kBlack2TextStyle.copyWith(
+                                    fontWeight: regular, fontSize: 13)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               }
             },

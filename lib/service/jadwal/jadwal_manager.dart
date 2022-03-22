@@ -50,7 +50,9 @@ class JadwalManager {
           if (kDebugMode) {
             print("Jadwal from Local Message : ${resourceJadwal.message}");
           }
-        } else {
+        }
+
+        if (resourceJadwal.status == Status.SUCCES) {
           final times = resourceJadwal.data;
           saveJadwal(times!.fajr!, times.dhuhr!, times.asr!, times.maghrib!,
               times.isha!, times.day!, times.month!, times.year!);
