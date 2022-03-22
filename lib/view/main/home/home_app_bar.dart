@@ -41,7 +41,7 @@ class HomeAppBar extends StatelessWidget {
                     ),
                   ],
                 );
-              } else {
+              } else if (state is JadwalLoading) {
                 return Expanded(
                     child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -50,6 +50,28 @@ class HomeAppBar extends StatelessWidget {
                     backgroundColor: white,
                   ),
                 ));
+              } else {
+                return Row(
+                  children: [
+                    Image.asset(
+                      "assets/images/icon_map.png",
+                      height: 16,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: '  Location',
+                        style: kBlack2TextStyle.copyWith(
+                            fontWeight: semiBold, fontSize: 13),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: ' Error',
+                              style: kBlack2TextStyle.copyWith(
+                                  fontWeight: regular, fontSize: 13)),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
               }
             },
           ),

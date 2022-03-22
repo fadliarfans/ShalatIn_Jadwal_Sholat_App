@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
 import 'package:jadwal_sholat_app/shared/custom_circular_progress_indicator.dart';
+import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_error_page.dart';
 import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_shalat_center_container.dart';
 import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_sholat_top_container.dart';
 
@@ -31,10 +32,12 @@ class JadwalShalatPage extends StatelessWidget {
               ),
             ),
           );
-        } else {
+        } else if (state is JadwalLoading) {
           return const Center(
             child: CustomCirucularProgressIndicator(),
           );
+        } else {
+          return const Center(child: JadwalErrorPage());
         }
       },
     );

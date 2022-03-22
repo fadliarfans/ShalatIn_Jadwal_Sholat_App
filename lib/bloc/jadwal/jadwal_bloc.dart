@@ -117,7 +117,8 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             emit(const JadwalError("Something Error Happened"));
           }
         } else {
-          emit(JadwalChooseCity());
+          emit(const JadwalError("Something Error Happened"));
+          //emit(JadwalChooseCity());
         }
       } catch (e) {
         emit(JadwalError(e.toString()));

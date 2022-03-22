@@ -11,9 +11,13 @@ class LocationLocal with ILocation {
       final city = prefs.getString("city");
       final country = prefs.getString("country");
       final cityId = prefs.getString("cityId");
-      final myLocation =
-          MyLocation(city: city, country: country, cityId: cityId);
-      return Resource<MyLocation>().success(myLocation);
+      if (city == null || country == null || cityId == null) {
+        return Resource<MyLocation>().error("Location local not found");
+      } else {
+        final myLocation =
+            MyLocation(city: city, country: country, cityId: cityId);
+        return Resource<MyLocation>().success(myLocation);
+      }
     } catch (e) {
       return Resource<MyLocation>().error(e.toString());
     }

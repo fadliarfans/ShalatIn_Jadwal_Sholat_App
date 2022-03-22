@@ -54,26 +54,27 @@ class LocationGps with ILocation {
       );
       final cityId = await CityManager()
           .getCityId(placemarks.first.subAdministrativeArea ?? "");
-      final myLocation = MyLocation(
-          city: placemarks.first.subAdministrativeArea,
-          country: placemarks.first.country,
-          cityId: cityId);
-      if (kDebugMode) {
-        print("Country   : ${myLocation.country}");
-        print("City      : ${myLocation.city}");
-        print("City Id   : ${myLocation.cityId}");
-      }
-      try {
+
+      if (cityId != null) {
+        final myLocation = MyLocation(
+            city: placemarks.first.subAdministrativeArea,
+            country: placemarks.first.country,
+            cityId: cityId);
+
+        if (kDebugMode) {
+          print("Country   : ${myLocation.country}");
+          print("City      : ${myLocation.city}");
+          print("City Id   : ${myLocation.cityId}");
+        }
         super.saveToLocal(myLocation.city ?? "", myLocation.country ?? "",
             myLocation.cityId ?? "");
         if (kDebugMode) {
           print("Location GPS Save To Local");
         }
-      } catch (e) {
-        return Resource<MyLocation>().error("Save To Local Error");
+        return Resource<MyLocation>().success(myLocation);
+      } else {
+        return Resource<MyLocation>().error("City Not Found");
       }
-
-      return Resource<MyLocation>().success(myLocation);
     } catch (e) {
       return Resource<MyLocation>().error(e.toString());
     }
