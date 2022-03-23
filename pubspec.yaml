@@ -37,7 +37,7 @@ dependencies:
   google_fonts: ^2.3.1
   equatable: ^2.0.3
   flutter_bloc: ^8.0.1
-  geolocator: ^8.2.0
+  geolocator: ^7.6.0
   geocoding: ^2.0.4
   dio: ^4.0.4
   intl: ^0.17.0
@@ -48,6 +48,8 @@ dependencies:
   path_provider_ios: ^2.0.8
   audioplayers: ^0.20.1
   shared_preferences: ^2.0.13
+  flutter_qiblah: ^2.0.2
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,7 @@ flutter:
     - assets/images/
     - assets/audio/
     - assets/json/
+    - assets/svg/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

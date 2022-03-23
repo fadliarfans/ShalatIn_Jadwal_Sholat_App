@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:jadwal_sholat_app/data/jadwal_sholat_model/city_response.dart';
+
+import '../../data/jadwal_sholat_response/city_response.dart';
 
 class CityManager {
   List<City>? cities;

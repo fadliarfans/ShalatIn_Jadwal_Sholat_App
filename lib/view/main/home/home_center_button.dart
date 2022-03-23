@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jadwal_sholat_app/theme.dart';
+import 'package:jadwal_sholat_app/view/qiblah/qiblah_page.dart';
 
 class HomeCenterButton extends StatelessWidget {
   const HomeCenterButton({Key? key}) : super(key: key);
@@ -33,7 +34,12 @@ class HomeCenterButton extends StatelessWidget {
             height: 94,
             width: 109,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const QiblahPage())));
+                },
                 icon: Image.asset(
                   "assets/images/kiblat.png",
                 )),

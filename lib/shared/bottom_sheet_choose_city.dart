@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
-import 'package:jadwal_sholat_app/data/jadwal_sholat_model/city_response.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/service/city/city_manager.dart';
 import 'package:jadwal_sholat_app/theme.dart';
+
+import '../data/jadwal_sholat_response/city_response.dart';
 
 class BottomSheetChooseCity extends StatefulWidget {
   const BottomSheetChooseCity({this.city, Key? key}) : super(key: key);

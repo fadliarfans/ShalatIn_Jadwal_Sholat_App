@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:jadwal_sholat_app/data/jadwal_sholat_model/jadwal_response.dart';
 import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/service/jadwal/i_jadwal.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
+
+import '../../data/jadwal_sholat_response/jadwal_response.dart';
 
 class JadwalCity with IJadwal {
   @override

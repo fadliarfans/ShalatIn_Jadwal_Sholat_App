@@ -34,7 +34,7 @@ class JadwalShalatPage extends StatelessWidget {
           );
         } else if (state is JadwalLoading) {
           return const Center(
-            child: CustomCirucularProgressIndicator(),
+            child: LoadingIndicator(),
           );
         } else {
           return const Center(child: JadwalErrorPage());
