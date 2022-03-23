@@ -52,6 +52,12 @@ class LocationGps with ILocation {
         position.latitude,
         position.longitude,
       );
+
+      if (kDebugMode) {
+        print(
+            "City In GPS : ${placemarks.first.subAdministrativeArea ?? "Not Found"}");
+      }
+
       final cityId = await CityManager()
           .getCityId(placemarks.first.subAdministrativeArea ?? "");
 
@@ -65,8 +71,6 @@ class LocationGps with ILocation {
           print("Country   : ${myLocation.country}");
           print("City      : ${myLocation.city}");
           print("City Id   : ${myLocation.cityId}");
-        }
-        if (kDebugMode) {
           print("Location GPS Save To Local");
         }
         return Resource<MyLocation>().success(myLocation);

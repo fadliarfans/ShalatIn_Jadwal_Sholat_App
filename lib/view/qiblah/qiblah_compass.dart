@@ -99,7 +99,7 @@ class QiblahCompassWidget extends StatelessWidget {
   final _needleSvg = SvgPicture.asset(
     'assets/svg/needle.svg',
     fit: BoxFit.contain,
-    height: 300,
+    height: 200,
     alignment: Alignment.center,
   );
 
@@ -113,27 +113,30 @@ class QiblahCompassWidget extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingIndicator();
         }
+        try {
+          final qiblahDirection = snapshot.data!;
 
-        final qiblahDirection = snapshot.data!;
-
-        return Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Transform.rotate(
-              angle: (qiblahDirection.direction * (pi / 180) * -1),
-              child: _compassSvg,
-            ),
-            Transform.rotate(
-              angle: (qiblahDirection.qiblah * (pi / 180) * -1),
-              alignment: Alignment.center,
-              child: _needleSvg,
-            ),
-            Positioned(
-              bottom: 8,
-              child: Text("${qiblahDirection.offset.toStringAsFixed(3)}°"),
-            )
-          ],
-        );
+          return Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Transform.rotate(
+                angle: (qiblahDirection.direction * (pi / 180) * -1),
+                child: _compassSvg,
+              ),
+              Transform.rotate(
+                angle: (qiblahDirection.qiblah * (pi / 180) * -1),
+                alignment: Alignment.center,
+                child: _needleSvg,
+              ),
+              Positioned(
+                bottom: 8,
+                child: Text("${qiblahDirection.offset.toStringAsFixed(3)}°"),
+              )
+            ],
+          );
+        } catch (e) {
+          return const LoadingIndicator();
+        }
       },
     );
   }
