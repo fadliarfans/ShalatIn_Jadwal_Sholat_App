@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/data/shalat_model.dart';
@@ -19,14 +20,19 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       final now = DateTime.now();
       final hour = now.hour;
       final minutes = now.minute;
+
       List<int> jadwalHour =
           jadwalList.map((e) => int.parse(e.substring(0, 2))).toList();
       List<int> jadwalMinutes =
           jadwalList.map((e) => int.parse(e.substring(3, 5))).toList();
+
       var nextJadwalHour = jadwalHour[0];
       var nextJadwalMinutes = jadwalMinutes[0];
+
       Shalat shalat = Shalat.Subuh;
+
       var counter = 0;
+
       for (var i = 0; i < jadwalHour.length; i++) {
         if (hour == jadwalHour[i]) {
           if (minutes < jadwalMinutes[i]) {
@@ -50,20 +56,28 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
           }
         }
       }
-      if (counter == 0) {
-        shalat = Shalat.Subuh;
-      } else if (counter == 1) {
-        shalat = Shalat.Dzuhur;
-      } else if (counter == 2) {
-        shalat = Shalat.Ashar;
-      } else if (counter == 3) {
-        shalat = Shalat.Maghrib;
-      } else if (counter == 4) {
-        shalat = Shalat.Isya;
+
+      switch (counter) {
+        case 0:
+          shalat = Shalat.Subuh;
+          break;
+        case 1:
+          shalat = Shalat.Dzuhur;
+          break;
+        case 2:
+          shalat = Shalat.Ashar;
+          break;
+        case 3:
+          shalat = Shalat.Maghrib;
+          break;
+        default:
+          shalat = Shalat.Isya;
       }
+
       final String nextHourString = nextJadwalHour.toString().padLeft(2, "0");
       final String nextMinuteString =
           nextJadwalMinutes.toString().padLeft(2, "0");
+
       final String time = "$nextHourString:$nextMinuteString";
       return ShalatModel(
           shalat: shalat,
@@ -88,9 +102,12 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       try {
         emit(JadwalLoading());
         Resource<MyLocation>? resourceLocation;
-        if (event is GetJadwalLocationSucces) {
+
+        if (event is GetJadwalLocationManual) {
+          // Get Location Manual
           resourceLocation = Resource<MyLocation>().success(event.myLocation);
         } else {
+          // Get Location Automatic
           resourceLocation = await LocationManager().getPostition();
         }
 
@@ -127,8 +144,10 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
         } else {
           emit(JadwalChooseCity());
         }
+        debugPrint(resourceLocation.message);
       } catch (e) {
-        emit(JadwalError(e.toString()));
+        debugPrint(e.toString());
+        emit(const JadwalError("Something Error Happened"));
       }
     });
   }

@@ -27,24 +27,21 @@ class LocationManager {
       ILocation location = LocationGps();
       resourceLocation = await location.getLocation();
 
-      if (kDebugMode) {
-        print("Location from GPS Message : ${resourceLocation.message}");
-      }
+      debugPrint("Location from GPS Message : ${resourceLocation.message}");
 
       // IF Get Location from GPS Failed -> get from local
       if (resourceLocation.status == Status.ERROR ||
           resourceLocation.status == null) {
         location = LocationLocal();
         resourceLocation = await location.getLocation();
-        if (kDebugMode) {
-          print("Location From Local Message : ${resourceLocation.message}");
-        }
+        debugPrint("Location From Local Message : ${resourceLocation.message}");
       }
 
       if (resourceLocation.status == Status.SUCCES) {
         return resourceLocation;
       } else {
-        return Resource<MyLocation>().error("Location Error");
+        return Resource<MyLocation>()
+            .error(resourceLocation.message ?? "Location Error");
       }
     } catch (e) {
       return Resource<MyLocation>().error(e.toString());

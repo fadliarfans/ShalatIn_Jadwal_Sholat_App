@@ -87,7 +87,7 @@ class _BottomSheetChooseCityState extends State<BottomSheetChooseCity> {
                       onChanged: (value) {
                         Navigator.pop(context);
                         BlocProvider.of<JadwalBloc>(context).add(
-                            GetJadwalLocationSucces(MyLocation(
+                            GetJadwalLocationManual(MyLocation(
                                 city: value?.cityName,
                                 country: "Indonesia",
                                 cityId: value?.cityId)));

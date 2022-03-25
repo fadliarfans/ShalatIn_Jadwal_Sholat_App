@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_city.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_local.dart';
@@ -36,22 +35,21 @@ class JadwalManager {
       final year = prefs.getInt("year");
       final now = DateTime.now();
 
-      // Jika Lokasi dan tanggal sama dengan yang disimpan, maka data diambil dari lokal.
+      // NOTE : Jika Lokasi dan tanggal sama dengan yang disimpan, maka data diambil dari lokal.
       if (cityId == location.cityId &&
           day == now.day &&
           month == now.month &&
           year == now.year) {
         resourceJadwal = await JadwalLocal().getJadwal(location);
-        if (kDebugMode) {
-          print("Jadwal from Local Message : ${resourceJadwal.message}");
+        if (resourceJadwal.status == Status.SUCCES) {
+          resourceJadwal.message = "SUCCESS ----> Get Jadwal From Local";
         }
       } else {
         resourceJadwal = await JadwalCity().getJadwal(location);
-        if (kDebugMode) {
-          print("Jadwal from API Message : ${resourceJadwal.message}");
-        }
         if (resourceJadwal.status == Status.SUCCES) {
           final times = resourceJadwal.data;
+          resourceJadwal.message =
+              "SUCCESS ----> Get Jadwal From API Based On City";
           saveJadwal(times!.fajr!, times.dhuhr!, times.asr!, times.maghrib!,
               times.isha!, times.day!, times.month!, times.year!);
         }

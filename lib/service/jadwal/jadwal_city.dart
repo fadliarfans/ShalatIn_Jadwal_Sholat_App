@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/my_location_model.dart';
@@ -20,9 +19,6 @@ class JadwalCity with IJadwal {
           "https://jadwal-shalat-api.herokuapp.com/daily?date=$formattedDate&cityId=${myLocation.cityId}");
 
       if (response.statusCode == 200) {
-        if (kDebugMode) {
-          print(response.data);
-        }
         final jadwal = JadwalModel.fromJson(response.data);
         final times = jadwal.data?.data;
         final myJadwal = MyJadwalModel(
