@@ -29,7 +29,7 @@ class JadwalLocal with IJadwal {
             month: month,
             year: year);
         return Resource<MyJadwalModel>().success(myJadwal,
-            message: "JADWAL SUCCESS ----> Get Jadwal From Local");
+            message: "JADWAL SUCCESS ----> Jadwal From Local");
       } else {
         return Resource<MyJadwalModel>()
             .error("JADWAL ERROR ----> Location Doesn't Match");

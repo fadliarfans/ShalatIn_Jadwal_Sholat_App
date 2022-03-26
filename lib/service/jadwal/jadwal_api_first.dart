@@ -18,7 +18,7 @@ class JadwalApiFirst with IJadwal {
           "https://jadwal-shalat-api.herokuapp.com/daily?date=$formattedDate&cityId=${myLocation.cityId}");
 
       if (response.statusCode == 200) {
-        final jadwal = JadwalResponseFirst.fromJson(response.data);
+        final jadwal = JadwalResponseFirstModel.fromJson(response.data);
         final times = jadwal.data?.data;
         final myJadwal = MyJadwalModel(
             asr: times![2].time,
@@ -30,14 +30,15 @@ class JadwalApiFirst with IJadwal {
             month: now.month,
             year: now.year);
         return Resource<MyJadwalModel>().success(myJadwal,
-            message: "JADWAL SUCCESS ----> Get Jadwal From API Based On City");
+            message:
+                "JADWAL SUCCESS ----> Jadwal From First API Based On City");
       } else {
         return Resource<MyJadwalModel>()
-            .error("JADWAl ERROR ----> Network Jadwal Error");
+            .error("JADWAl ERROR ----> First API ERROR LOG : Network Error");
       }
     } catch (e) {
       return Resource<MyJadwalModel>()
-          .error("JADWAL ERROR ----> ${e.toString()}");
+          .error("JADWAL ERROR ----> First API ERROR LOG : $e");
     }
   }
 }

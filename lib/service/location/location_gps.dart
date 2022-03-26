@@ -53,11 +53,6 @@ class LocationGps with ILocation {
         position.longitude,
       );
 
-      if (kDebugMode) {
-        print(
-            "LOCATION SUCCESS ----> City In GPS : ${placemarks.first.subAdministrativeArea ?? "Not Found"}");
-      }
-
       final cityId = await CityManager()
           .getCityId(placemarks.first.subAdministrativeArea ?? "");
 

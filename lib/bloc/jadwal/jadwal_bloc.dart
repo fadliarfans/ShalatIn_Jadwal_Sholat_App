@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
+import 'package:jadwal_sholat_app/service/jadwal/jadwal_api_second.dart';
 import 'package:jadwal_sholat_app/service/location/location_gps.dart';
 import 'package:jadwal_sholat_app/service/location/location_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,11 +66,20 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             year == now.year) {
           resourceJadwal = await jadwalManager.getJadwal(location);
         } else {
+          // NOTE : get from first API
           jadwalManager.setIJadwal(JadwalApiFirst());
           resourceJadwal = await jadwalManager.getJadwal(location);
           if (resourceJadwal.status == Status.SUCCES) {
             final jadwal = resourceJadwal.data;
             jadwalManager.saveJadwal(jadwal!);
+          } else {
+            // NOTE : get from Second API
+            jadwalManager.setIJadwal(JadwalApiSecond());
+            resourceJadwal = await jadwalManager.getJadwal(location);
+            if (resourceJadwal.status == Status.SUCCES) {
+              final jadwal = resourceJadwal.data;
+              jadwalManager.saveJadwal(jadwal!);
+            }
           }
         }
 

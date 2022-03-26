@@ -120,9 +120,9 @@ class Location {
   String? city;
   String? country;
   String? countryCode;
-  int? elevation;
+  double? elevation;
   double? latitude;
-  int? localOffset;
+  double? localOffset;
   double? longitude;
   String? timezone;
 }
@@ -147,7 +147,7 @@ class Settings {
 
   double? fajrAngle;
   String? highlat;
-  int? ishaAngle;
+  double? ishaAngle;
   String? juristic;
   String? school;
   String? timeformat;
