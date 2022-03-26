@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
-import 'package:jadwal_sholat_app/shared/custom_circular_progress_indicator.dart';
-import 'package:jadwal_sholat_app/view/qiblah/qiblah_compass.dart';
+
+import '../../shared/custom_circular_progress_indicator.dart';
+import 'qiblah_compass.dart';
 
 class QiblahPage extends StatefulWidget {
   const QiblahPage({Key? key}) : super(key: key);

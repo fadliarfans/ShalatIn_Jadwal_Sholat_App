@@ -1,18 +1,14 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import '../../data/jadwal_sholat_response/city_response.dart';
+import '../../data/city_model.dart';
 
 class CityManager {
   List<City>? cities;
 
   Future<List<City>> getCities() async {
     if (cities == null) {
-      if (kDebugMode) {
-        print("--> INIT CITIES");
-      }
       final local = await rootBundle.loadString('assets/json/city.json');
       final data = json.decode(local);
       cities = Cities.fromJson(data).data;

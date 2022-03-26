@@ -1,68 +1,21 @@
-import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
-import 'package:jadwal_sholat_app/service/jadwal/jadwal_city.dart';
-import 'package:jadwal_sholat_app/service/jadwal/jadwal_local.dart';
-import 'package:jadwal_sholat_app/vo/resource.dart';
-import 'package:jadwal_sholat_app/vo/status.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:jadwal_sholat_app/service/jadwal/i_jadwal.dart';
+import '../../data/my_jadwal_model.dart';
+import '../../vo/resource.dart';
 import '../../data/my_location_model.dart';
 
 class JadwalManager {
-  Future<void> saveJadwal(String fajr, String dhuhr, String asr, String maghrib,
-      String isha, int day, int month, int year) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setString("fajr", fajr);
-      prefs.setString("dhuhr", dhuhr);
-      prefs.setString("asr", asr);
-      prefs.setString("maghrib", maghrib);
-      prefs.setString("isha", isha);
-      prefs.setInt("day", day);
-      prefs.setInt("month", month);
-      prefs.setInt("year", year);
-    } catch (e) {
-      rethrow;
-    }
+  IJadwal _iJadwal;
+  JadwalManager(this._iJadwal);
+
+  setIJadwal(IJadwal iJadwal) {
+    _iJadwal = iJadwal;
   }
 
-  Future<Resource<MyJadwalModel>> getJadwal(MyLocation location) async {
-    try {
-      Resource<MyJadwalModel>? resourceJadwal;
-      final prefs = await SharedPreferences.getInstance();
-      final cityId = prefs.getString("cityId");
-      final day = prefs.getInt("day");
-      final month = prefs.getInt("month");
-      final year = prefs.getInt("year");
-      final now = DateTime.now();
+  Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel location) async {
+    return _iJadwal.getJadwal(location);
+  }
 
-      // NOTE : Jika Lokasi dan tanggal sama dengan yang disimpan, maka data diambil dari lokal.
-      if (cityId == location.cityId &&
-          day == now.day &&
-          month == now.month &&
-          year == now.year) {
-        resourceJadwal = await JadwalLocal().getJadwal(location);
-        if (resourceJadwal.status == Status.SUCCES) {
-          resourceJadwal.message = "SUCCESS ----> Get Jadwal From Local";
-        }
-      } else {
-        resourceJadwal = await JadwalCity().getJadwal(location);
-        if (resourceJadwal.status == Status.SUCCES) {
-          final times = resourceJadwal.data;
-          resourceJadwal.message =
-              "SUCCESS ----> Get Jadwal From API Based On City";
-          saveJadwal(times!.fajr!, times.dhuhr!, times.asr!, times.maghrib!,
-              times.isha!, times.day!, times.month!, times.year!);
-        }
-      }
-
-      if (resourceJadwal.status == Status.SUCCES) {
-        return resourceJadwal;
-      } else {
-        return Resource<MyJadwalModel>()
-            .error(resourceJadwal.message ?? "Jadwal Error");
-      }
-    } catch (e) {
-      return Resource<MyJadwalModel>().error(e.toString());
-    }
+  Future<void> saveJadwal(MyJadwalModel jadwal) async {
+    _iJadwal.saveJadwal(jadwal);
   }
 }

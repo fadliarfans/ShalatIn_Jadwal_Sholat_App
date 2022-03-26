@@ -1,4 +1,4 @@
-import 'package:jadwal_sholat_app/service/alarm/i_alarm.dart';
+import 'i_alarm.dart';
 
 class AlarmManager {
   final IAlarm iAlarm;

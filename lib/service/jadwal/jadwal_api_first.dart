@@ -1,15 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
-import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
-import 'package:jadwal_sholat_app/data/my_location_model.dart';
-import 'package:jadwal_sholat_app/service/jadwal/i_jadwal.dart';
-import 'package:jadwal_sholat_app/vo/resource.dart';
+import '../../data/jadwal_response_first_model.dart';
+import '../../data/my_jadwal_model.dart';
+import '../../data/my_location_model.dart';
+import 'i_jadwal.dart';
+import '../../vo/resource.dart';
 
-import '../../data/jadwal_sholat_response/jadwal_response.dart';
-
-class JadwalCity with IJadwal {
+class JadwalApiFirst with IJadwal {
   @override
-  Future<Resource<MyJadwalModel>> getJadwal(MyLocation myLocation) async {
+  Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel myLocation) async {
     try {
       final now = DateTime.now();
       final formatter = DateFormat('yyyy-MM-dd');
@@ -19,7 +18,7 @@ class JadwalCity with IJadwal {
           "https://jadwal-shalat-api.herokuapp.com/daily?date=$formattedDate&cityId=${myLocation.cityId}");
 
       if (response.statusCode == 200) {
-        final jadwal = JadwalModel.fromJson(response.data);
+        final jadwal = JadwalResponseFirst.fromJson(response.data);
         final times = jadwal.data?.data;
         final myJadwal = MyJadwalModel(
             asr: times![2].time,
@@ -30,12 +29,15 @@ class JadwalCity with IJadwal {
             day: now.day,
             month: now.month,
             year: now.year);
-        return Resource<MyJadwalModel>().success(myJadwal);
+        return Resource<MyJadwalModel>().success(myJadwal,
+            message: "JADWAL SUCCESS ----> Get Jadwal From API Based On City");
       } else {
-        return Resource<MyJadwalModel>().error("Network Jadwal Error");
+        return Resource<MyJadwalModel>()
+            .error("JADWAl ERROR ----> Network Jadwal Error");
       }
     } catch (e) {
-      return Resource<MyJadwalModel>().error(e.toString());
+      return Resource<MyJadwalModel>()
+          .error("JADWAL ERROR ----> ${e.toString()}");
     }
   }
 }

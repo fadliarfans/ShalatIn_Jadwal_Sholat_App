@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jadwal_sholat_app/theme.dart';
+import '../../theme.dart';
 
 import '../main/main_page.dart';
 

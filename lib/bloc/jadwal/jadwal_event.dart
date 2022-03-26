@@ -10,6 +10,6 @@ abstract class JadwalEvent extends Equatable {
 class GetJadwal extends JadwalEvent {}
 
 class GetJadwalLocationManual extends GetJadwal {
-  final MyLocation myLocation;
+  final MyLocationModel myLocation;
   GetJadwalLocationManual(this.myLocation);
 }

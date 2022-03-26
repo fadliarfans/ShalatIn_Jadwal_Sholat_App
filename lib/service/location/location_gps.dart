@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:jadwal_sholat_app/service/city/city_manager.dart';
-import 'package:jadwal_sholat_app/service/location/i_location.dart';
-import 'package:jadwal_sholat_app/vo/resource.dart';
-import 'package:jadwal_sholat_app/data/my_location_model.dart';
+import '../city/city_manager.dart';
+import 'i_location.dart';
+import '../../vo/resource.dart';
+import '../../data/my_location_model.dart';
 
 class LocationGps with ILocation {
   Future<Position> _determinePosition() async {
@@ -45,7 +45,7 @@ class LocationGps with ILocation {
   }
 
   @override
-  Future<Resource<MyLocation>> getLocation() async {
+  Future<Resource<MyLocationModel>> getLocation() async {
     try {
       final position = await _determinePosition();
       List<Placemark> placemarks = await placemarkFromCoordinates(
@@ -55,30 +55,33 @@ class LocationGps with ILocation {
 
       if (kDebugMode) {
         print(
-            "City In GPS : ${placemarks.first.subAdministrativeArea ?? "Not Found"}");
+            "LOCATION SUCCESS ----> City In GPS : ${placemarks.first.subAdministrativeArea ?? "Not Found"}");
       }
 
       final cityId = await CityManager()
           .getCityId(placemarks.first.subAdministrativeArea ?? "");
 
       if (cityId != null) {
-        final myLocation = MyLocation(
+        final myLocation = MyLocationModel(
             city: placemarks.first.subAdministrativeArea,
             country: placemarks.first.country,
             cityId: cityId);
 
         if (kDebugMode) {
-          print("Country   : ${myLocation.country}");
-          print("City      : ${myLocation.city}");
-          print("City Id   : ${myLocation.cityId}");
-          print("Location GPS Save To Local");
+          print("LOCATION SUCCESS ----> Country   : ${myLocation.country}");
+          print("LOCATION SUCCESS ----> City      : ${myLocation.city}");
+          print("LOCATION SUCCESS ----> City Id   : ${myLocation.cityId}");
+          print("LOCATION SUCCESS ----> Location GPS Save To Local");
         }
-        return Resource<MyLocation>().success(myLocation);
+        return Resource<MyLocationModel>().success(myLocation,
+            message: "LOCATION SUCCESS ----> Location From GPS");
       } else {
-        return Resource<MyLocation>().error("City Not Found");
+        return Resource<MyLocationModel>()
+            .error("LOCATION ERROR ---- > City Not Found");
       }
     } catch (e) {
-      return Resource<MyLocation>().error(e.toString());
+      return Resource<MyLocationModel>()
+          .error("LOCATION ERROR ----> ${e.toString()}");
     }
   }
 }

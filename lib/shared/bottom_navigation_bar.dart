@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/bloc/page/page_bloc.dart';
-import 'package:jadwal_sholat_app/shared/navigation_item.dart';
-import 'package:jadwal_sholat_app/theme.dart';
+import '../bloc/page/page_bloc.dart';
+import 'navigation_item.dart';
+import '../theme.dart';
 
 class BottomNavigtionBar extends StatelessWidget {
   const BottomNavigtionBar({required this.index, Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/bloc/page/page_bloc.dart';
-import 'package:jadwal_sholat_app/view/boarding/boarding_page.dart';
+import 'bloc/page/page_bloc.dart';
+import 'view/boarding/boarding_page.dart';
 
 import 'bloc/alarm/alarm_bloc.dart';
 import 'bloc/jadwal/jadwal_bloc.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
+
+import '../../../bloc/jadwal/jadwal_bloc.dart';
 import '../../../theme.dart';
 
 class JadwalSholatTopContainer extends StatelessWidget {

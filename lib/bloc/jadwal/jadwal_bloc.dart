@@ -2,12 +2,18 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:jadwal_sholat_app/data/my_location_model.dart';
-import 'package:jadwal_sholat_app/data/shalat_model.dart';
-import 'package:jadwal_sholat_app/extension/day_translate.dart';
-import 'package:jadwal_sholat_app/extension/month_translate.dart';
-import 'package:jadwal_sholat_app/service/jadwal/jadwal_manager.dart';
-import 'package:jadwal_sholat_app/vo/status.dart';
+import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
+import 'package:jadwal_sholat_app/service/location/location_gps.dart';
+import 'package:jadwal_sholat_app/service/location/location_local.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../data/my_location_model.dart';
+import '../../data/shalat_model.dart';
+import '../../extension/day_translate.dart';
+import '../../extension/month_translate.dart';
+import '../../service/jadwal/jadwal_api_first.dart';
+import '../../service/jadwal/jadwal_local.dart';
+import '../../service/jadwal/jadwal_manager.dart';
+import '../../vo/status.dart';
 import '../../service/location/location_manager.dart';
 import '../../vo/resource.dart';
 
@@ -16,6 +22,67 @@ part 'jadwal_state.dart';
 
 class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   JadwalBloc() : super(JadwalInitial()) {
+    Future<Resource<MyLocationModel>> getLocation() async {
+      try {
+        Resource<MyLocationModel> resourceLocation;
+        LocationManager locationManager = LocationManager(LocationGps());
+        // By GPS
+        resourceLocation = await locationManager.getLocation();
+
+        // IF Get Location from GPS Failed -> get from local
+        if (resourceLocation.status == Status.ERROR ||
+            resourceLocation.status == null) {
+          locationManager.setILocation(LocationLocal());
+          resourceLocation = await locationManager.getLocation();
+        }
+
+        if (resourceLocation.status == Status.SUCCES) {
+          return resourceLocation;
+        } else {
+          return Resource<MyLocationModel>().error(resourceLocation.message!);
+        }
+      } catch (e) {
+        return Resource<MyLocationModel>().error(e.toString());
+      }
+    }
+
+    Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel location) async {
+      try {
+        Resource<MyJadwalModel>? resourceJadwal;
+        final prefs = await SharedPreferences.getInstance();
+        final cityId = prefs.getString("cityId");
+        final day = prefs.getInt("day");
+        final month = prefs.getInt("month");
+        final year = prefs.getInt("year");
+        final now = DateTime.now();
+
+        JadwalManager jadwalManager = JadwalManager(JadwalLocal());
+
+        // NOTE : Jika Lokasi dan tanggal sama dengan yang disimpan, maka data diambil dari lokal.
+        if (cityId == location.cityId &&
+            day == now.day &&
+            month == now.month &&
+            year == now.year) {
+          resourceJadwal = await jadwalManager.getJadwal(location);
+        } else {
+          jadwalManager.setIJadwal(JadwalApiFirst());
+          resourceJadwal = await jadwalManager.getJadwal(location);
+          if (resourceJadwal.status == Status.SUCCES) {
+            final jadwal = resourceJadwal.data;
+            jadwalManager.saveJadwal(jadwal!);
+          }
+        }
+
+        if (resourceJadwal.status == Status.SUCCES) {
+          return resourceJadwal;
+        } else {
+          return Resource<MyJadwalModel>().error(resourceJadwal.message!);
+        }
+      } catch (e) {
+        return Resource<MyJadwalModel>().error(e.toString());
+      }
+    }
+
     ShalatModel _getClosesTime(List<String> jadwalList) {
       final now = DateTime.now();
       final hour = now.hour;
@@ -101,22 +168,27 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
     on<GetJadwal>((event, emit) async {
       try {
         emit(JadwalLoading());
-        Resource<MyLocation>? resourceLocation;
+        Resource<MyLocationModel>? resourceLocation;
 
         if (event is GetJadwalLocationManual) {
           // Get Location Manual
-          resourceLocation = Resource<MyLocation>().success(event.myLocation);
+          resourceLocation = Resource<MyLocationModel>().success(
+              event.myLocation,
+              message: "LOCATION SUCCESS ----> Get Location Manual");
         } else {
           // Get Location Automatic
-          resourceLocation = await LocationManager().getPostition();
+          resourceLocation = await getLocation();
         }
 
+        debugPrint(resourceLocation.message);
+
         if (resourceLocation.status == Status.SUCCES) {
-          final resourceJadwal =
-              await JadwalManager().getJadwal(resourceLocation.data!);
+          final resourceJadwal = await getJadwal(resourceLocation.data!);
+
+          debugPrint(resourceJadwal.message);
 
           if (resourceJadwal.status == Status.SUCCES) {
-            await LocationManager().savePosition(
+            await LocationManager(LocationLocal()).saveLocation(
                 resourceLocation.data!.city!,
                 resourceLocation.data!.country!,
                 resourceLocation.data!.cityId!);
@@ -144,7 +216,6 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
         } else {
           emit(JadwalChooseCity());
         }
-        debugPrint(resourceLocation.message);
       } catch (e) {
         debugPrint(e.toString());
         emit(const JadwalError("Something Error Happened"));

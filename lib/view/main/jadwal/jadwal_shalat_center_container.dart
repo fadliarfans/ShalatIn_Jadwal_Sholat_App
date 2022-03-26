@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jadwal_sholat_app/data/shalat_model.dart';
-import 'package:jadwal_sholat_app/theme.dart';
-import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_shalat_item.dart';
+import '../../../data/shalat_model.dart';
+import '../../../theme.dart';
+import 'jadwal_shalat_item.dart';
 
 import '../../../bloc/jadwal/jadwal_bloc.dart';
 

@@ -1,12 +1,12 @@
-import 'package:jadwal_sholat_app/data/my_location_model.dart';
-import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
-import 'package:jadwal_sholat_app/service/jadwal/i_jadwal.dart';
-import 'package:jadwal_sholat_app/vo/resource.dart';
+import '../../data/my_location_model.dart';
+import '../../data/my_jadwal_model.dart';
+import 'i_jadwal.dart';
+import '../../vo/resource.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JadwalLocal with IJadwal {
   @override
-  Future<Resource<MyJadwalModel>> getJadwal(MyLocation myLocation) async {
+  Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel myLocation) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final city = prefs.getString("cityId");
@@ -28,12 +28,14 @@ class JadwalLocal with IJadwal {
             day: day,
             month: month,
             year: year);
-        return Resource<MyJadwalModel>().success(myJadwal);
+        return Resource<MyJadwalModel>().success(myJadwal,
+            message: "JADWAL SUCCESS ----> Get Jadwal From Local");
       } else {
-        return Resource<MyJadwalModel>().error("Location Doesn't Match");
+        return Resource<MyJadwalModel>()
+            .error("JADWAL ERROR ----> Location Doesn't Match");
       }
     } catch (e) {
-      return Resource<MyJadwalModel>().error(e.toString());
+      return Resource<MyJadwalModel>().error("JADWAL ERROR ----> e.toString()");
     }
   }
 }

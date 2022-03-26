@@ -1,4 +1,4 @@
-import 'package:jadwal_sholat_app/vo/status.dart';
+import 'status.dart';
 
 class Resource<Data> {
   Status? status;
@@ -7,9 +7,8 @@ class Resource<Data> {
 
   Resource({this.message, this.data, this.status});
 
-  Resource<Data> success(Data value) {
-    return Resource<Data>(
-        status: Status.SUCCES, data: value, message: "SUCCES");
+  Resource<Data> success(Data value, {required String message}) {
+    return Resource<Data>(status: Status.SUCCES, data: value, message: message);
   }
 
   Resource<Data> error(String error) {

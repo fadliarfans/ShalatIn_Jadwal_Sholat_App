@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
-import 'package:jadwal_sholat_app/data/my_location_model.dart';
-import 'package:jadwal_sholat_app/service/city/city_manager.dart';
-import 'package:jadwal_sholat_app/theme.dart';
-
-import '../data/jadwal_sholat_response/city_response.dart';
+import '../bloc/jadwal/jadwal_bloc.dart';
+import '../data/city_model.dart';
+import '../data/my_location_model.dart';
+import '../service/city/city_manager.dart';
+import '../theme.dart';
 
 class BottomSheetChooseCity extends StatefulWidget {
   const BottomSheetChooseCity({this.city, Key? key}) : super(key: key);
@@ -87,7 +86,7 @@ class _BottomSheetChooseCityState extends State<BottomSheetChooseCity> {
                       onChanged: (value) {
                         Navigator.pop(context);
                         BlocProvider.of<JadwalBloc>(context).add(
-                            GetJadwalLocationManual(MyLocation(
+                            GetJadwalLocationManual(MyLocationModel(
                                 city: value?.cityName,
                                 country: "Indonesia",
                                 cityId: value?.cityId)));

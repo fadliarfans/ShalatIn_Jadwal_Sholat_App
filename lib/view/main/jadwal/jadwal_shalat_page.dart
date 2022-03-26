@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
-import 'package:jadwal_sholat_app/shared/custom_circular_progress_indicator.dart';
-import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_error_page.dart';
-import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_shalat_center_container.dart';
-import 'package:jadwal_sholat_app/view/main/jadwal/jadwal_sholat_top_container.dart';
+import '../../../bloc/jadwal/jadwal_bloc.dart';
+import '../../../shared/custom_circular_progress_indicator.dart';
+import 'jadwal_error_page.dart';
+import 'jadwal_shalat_center_container.dart';
+import 'jadwal_sholat_top_container.dart';
 
 class JadwalShalatPage extends StatelessWidget {
   const JadwalShalatPage({Key? key}) : super(key: key);

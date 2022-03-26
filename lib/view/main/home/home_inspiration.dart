@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jadwal_sholat_app/shared/inspiration_item.dart';
-import 'package:jadwal_sholat_app/theme.dart';
+import '../../../shared/inspiration_item.dart';
+import '../../../theme.dart';
 
 class HomeInspiration extends StatelessWidget {
   const HomeInspiration({Key? key}) : super(key: key);

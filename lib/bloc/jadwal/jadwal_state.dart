@@ -13,7 +13,7 @@ class JadwalSucces extends JadwalState {
   final Map<Shalat, String> jadwalFiveTimePrayer;
   final String dateId;
   final ShalatModel nextJadwal;
-  final MyLocation location;
+  final MyLocationModel location;
   const JadwalSucces(
       this.jadwalFiveTimePrayer, this.dateId, this.nextJadwal, this.location);
 }

@@ -1,10 +1,10 @@
-class JadwalModel {
+class JadwalResponseFirst {
   bool? status;
   DataRegion? data;
 
-  JadwalModel({this.status, this.data});
+  JadwalResponseFirst({this.status, this.data});
 
-  JadwalModel.fromJson(Map<String, dynamic> json) {
+  JadwalResponseFirst.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = json['data'] != null ? DataRegion.fromJson(json['data']) : null;
   }

@@ -1,13 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/bloc/jadwal/jadwal_bloc.dart';
-import 'package:jadwal_sholat_app/bloc/page/page_bloc.dart';
-import 'package:jadwal_sholat_app/shared/bottom_navigation_bar.dart';
-import 'package:jadwal_sholat_app/shared/bottom_sheet_choose_city.dart';
-import 'package:jadwal_sholat_app/theme.dart';
-import 'package:jadwal_sholat_app/view/main/home/home_page.dart';
-import 'package:jadwal_sholat_app/view/main/inspiration/inspiration_page.dart';
+import '../../bloc/jadwal/jadwal_bloc.dart';
+import '../../bloc/page/page_bloc.dart';
+import '../../shared/bottom_navigation_bar.dart';
+import '../../shared/bottom_sheet_choose_city.dart';
+import '../../theme.dart';
+import 'home/home_page.dart';
+import 'inspiration/inspiration_page.dart';
 
 import 'about/about_page.dart';
 import 'jadwal/jadwal_shalat_page.dart';
@@ -23,9 +22,6 @@ class MainPage extends StatelessWidget {
       backgroundColor: semiWhite,
       body: BlocListener<JadwalBloc, JadwalState>(
         listener: (context, state) {
-          if (kDebugMode) {
-            print(state);
-          }
           if (state is JadwalChooseCity) {
             showBottomSheet(
                 context: context,

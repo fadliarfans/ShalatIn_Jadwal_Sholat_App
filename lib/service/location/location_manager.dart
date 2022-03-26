@@ -1,50 +1,20 @@
-import 'package:flutter/foundation.dart';
-import 'package:jadwal_sholat_app/service/location/i_location.dart';
-import 'package:jadwal_sholat_app/data/my_location_model.dart';
-import 'package:jadwal_sholat_app/service/location/location_local.dart';
-import 'package:jadwal_sholat_app/vo/resource.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../vo/status.dart';
-import 'location_gps.dart';
+import 'i_location.dart';
+import '../../data/my_location_model.dart';
+import '../../vo/resource.dart';
 
 class LocationManager {
-  Future<void> savePosition(String city, String country, String cityId) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setString("city", city);
-      prefs.setString("country", country);
-      prefs.setString("cityId", cityId);
-    } catch (e) {
-      rethrow;
-    }
+  ILocation _iLocation;
+  LocationManager(this._iLocation);
+
+  setILocation(ILocation iLocation) {
+    _iLocation = iLocation;
   }
 
-  Future<Resource<MyLocation>> getPostition() async {
-    try {
-      Resource<MyLocation> resourceLocation;
-      // By GPS
-      ILocation location = LocationGps();
-      resourceLocation = await location.getLocation();
+  Future<void> saveLocation(String city, String country, String cityId) async {
+    _iLocation.saveLocation(city, country, cityId);
+  }
 
-      debugPrint("Location from GPS Message : ${resourceLocation.message}");
-
-      // IF Get Location from GPS Failed -> get from local
-      if (resourceLocation.status == Status.ERROR ||
-          resourceLocation.status == null) {
-        location = LocationLocal();
-        resourceLocation = await location.getLocation();
-        debugPrint("Location From Local Message : ${resourceLocation.message}");
-      }
-
-      if (resourceLocation.status == Status.SUCCES) {
-        return resourceLocation;
-      } else {
-        return Resource<MyLocation>()
-            .error(resourceLocation.message ?? "Location Error");
-      }
-    } catch (e) {
-      return Resource<MyLocation>().error(e.toString());
-    }
+  Future<Resource<MyLocationModel>> getLocation() async {
+    return _iLocation.getLocation();
   }
 }

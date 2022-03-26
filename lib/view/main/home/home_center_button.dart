@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jadwal_sholat_app/theme.dart';
-import 'package:jadwal_sholat_app/view/qiblah/qiblah_page.dart';
+import '../../../theme.dart';
+import '../../qiblah/qiblah_page.dart';
 
 class HomeCenterButton extends StatelessWidget {
   const HomeCenterButton({Key? key}) : super(key: key);
