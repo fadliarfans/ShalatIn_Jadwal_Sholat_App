@@ -12,7 +12,7 @@ class AlarmBloc extends Bloc<AlarmEvent, AlarmState> {
     final alarmManager = AlarmManager();
 
     on<ActivateAlarm>(((event, emit) {
-      alarmManager.activateTommorowAlarm(event.shalat);
+      alarmManager.activateAlarm(event.shalat);
     }));
 
     on<CancelAlarm>(((event, emit) {

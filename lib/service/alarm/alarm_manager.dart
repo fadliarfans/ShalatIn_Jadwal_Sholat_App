@@ -7,6 +7,7 @@ import 'package:jadwal_sholat_app/data/my_location_model.dart';
 import 'package:jadwal_sholat_app/service/alarm/alarm_adzan.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_api_first.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_api_second.dart';
+import 'package:jadwal_sholat_app/service/jadwal/jadwal_local.dart';
 import 'package:jadwal_sholat_app/service/jadwal/jadwal_manager.dart';
 import 'package:jadwal_sholat_app/service/location/location_gps.dart';
 import 'package:jadwal_sholat_app/service/location/location_local.dart';
@@ -22,10 +23,10 @@ class AlarmManager {
   static final IAlarm iAlarm = AlarmAdzan();
   static Shalat shalatStatic = Shalat.Subuh;
 
-  activateAlarm(Shalat shalat) {
+  activateAlarm(Shalat shalat) async{
     shalatStatic = shalat;
-    activateTodayAlarm(shalat);
-    activateTommorowAlarm(shalat);
+    await activateTodayAlarm(shalat);
+    await activateTommorowAlarm(shalat);
   }
   
   static periodicTomorrowCallback() async{
@@ -38,7 +39,7 @@ class AlarmManager {
   }
 
   activateTommorowAlarm(Shalat shalat) async {
-    try { 
+    try {
       final pref = await SharedPreferences.getInstance();
       pref.setBool(shalat.name, true);
       DateTime now = DateTime.now();
@@ -54,9 +55,8 @@ class AlarmManager {
 
   activateTodayAlarm(Shalat shalat) async {
     try {
-        final times = await _getTime(shalat);
+        final times = await _getTimeLocal(shalat);
         DateTime now = DateTime.now();
-
         if (now.hour > times.hour) {
           return;
         }
@@ -66,7 +66,6 @@ class AlarmManager {
             return;
           }
         }
-
         iAlarm.playAdzan(times,
             shalat.index + 300);
     } catch (e) {
@@ -80,6 +79,31 @@ class AlarmManager {
     await AndroidAlarmManager.cancel(shalat.index + 100);
     await AndroidAlarmManager.cancel(shalat.index + 200);
     await AndroidAlarmManager.cancel(shalat.index + 300);
+  }
+
+  static Future<DateTime> _getTimeLocal(Shalat shalat) async {
+    try {
+      final locationManager = LocationManager(LocationLocal());
+      Resource<MyLocationModel> resourceLocation =
+      await locationManager.getLocation();
+
+      final jadwalManager = JadwalManager(JadwalLocal());
+      Resource<MyJadwalModel> resourceJadwal =
+      await jadwalManager.getJadwal(resourceLocation.data!);
+
+      if (resourceJadwal.status == Status.SUCCES) {
+        final times = resourceJadwal.data!;
+        jadwalManager.saveJadwal(times);
+        DateTime now = DateTime.now();
+        final hour = times.getTime(shalat).hour;
+        final minute = times.getTime(shalat).minute;
+        return DateTime(now.year, now.month, now.day, hour, minute);
+      } else {
+        throw Exception("Failed Get Jadwal");
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   static Future<DateTime> _getTime(Shalat shalat) async {
