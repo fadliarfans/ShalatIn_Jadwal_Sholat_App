@@ -6,12 +6,12 @@ import '../../vo/resource.dart';
 mixin ILocation {
   Future<Resource<MyLocationModel>> getLocation();
 
-  Future<void> saveLocation(String city, String country, String cityId) async {
+  Future<void> saveLocation(MyLocationModel location) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      prefs.setString("city", city);
-      prefs.setString("country", country);
-      prefs.setString("cityId", cityId);
+      prefs.setString("city", location.city!);
+      prefs.setString("country", location.country!);
+      prefs.setString("cityId", location.cityId!);
     } catch (e) {
       rethrow;
     }

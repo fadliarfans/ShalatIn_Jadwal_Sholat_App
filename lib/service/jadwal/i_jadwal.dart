@@ -10,14 +10,14 @@ mixin IJadwal {
   Future<void> saveJadwal(MyJadwalModel jadwal) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      prefs.setString("fajr", jadwal.fajr!);
-      prefs.setString("dhuhr", jadwal.dhuhr!);
-      prefs.setString("asr", jadwal.asr!);
-      prefs.setString("maghrib", jadwal.maghrib!);
-      prefs.setString("isha", jadwal.isha!);
-      prefs.setInt("day", jadwal.day!);
-      prefs.setInt("month", jadwal.month!);
-      prefs.setInt("year", jadwal.year!);
+      prefs.setString("fajr", jadwal.fajr.timeS);
+      prefs.setString("dhuhr", jadwal.dhuhr.timeS);
+      prefs.setString("asr", jadwal.asr.timeS);
+      prefs.setString("maghrib", jadwal.maghrib.timeS);
+      prefs.setString("isha", jadwal.isha.timeS);
+      prefs.setInt("day", jadwal.day);
+      prefs.setInt("month", jadwal.month);
+      prefs.setInt("year", jadwal.year);
     } catch (e) {
       rethrow;
     }

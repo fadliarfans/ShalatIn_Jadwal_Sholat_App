@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import '../../data/jadwal_response_first_model.dart';
 import '../../data/my_jadwal_model.dart';
 import '../../data/my_location_model.dart';
+import '../../data/time_model.dart';
 import 'i_jadwal.dart';
 import '../../vo/resource.dart';
 
@@ -21,11 +22,11 @@ class JadwalApiFirst with IJadwal {
         final jadwal = JadwalResponseFirstModel.fromJson(response.data);
         final times = jadwal.data?.data;
         final myJadwal = MyJadwalModel(
-            asr: times![2].time,
-            dhuhr: times[1].time,
-            fajr: times[0].time,
-            isha: times[4].time,
-            maghrib: times[3].time,
+            asr: Time(times![2].time!),
+            dhuhr: Time(times[1].time!),
+            fajr: Time(times[0].time!),
+            isha: Time(times[4].time!),
+            maghrib: Time(times[3].time!),
             day: now.day,
             month: now.month,
             year: now.year);

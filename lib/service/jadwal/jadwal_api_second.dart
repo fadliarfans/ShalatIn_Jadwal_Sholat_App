@@ -5,6 +5,7 @@ import 'package:jadwal_sholat_app/data/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/service/jadwal/i_jadwal.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 
+import '../../data/time_model.dart';
 import 'i_jadwal.dart';
 
 class JadwalApiSecond with IJadwal {
@@ -18,11 +19,11 @@ class JadwalApiSecond with IJadwal {
         final times = jadwal.results!.datetime!.first.times!;
         final now = DateTime.now();
         final myJadwal = MyJadwalModel(
-            asr: times.asr,
-            dhuhr: times.dhuhr,
-            fajr: times.fajr,
-            isha: times.isha,
-            maghrib: times.maghrib,
+            asr: Time(times.asr!),
+            dhuhr: Time(times.dhuhr!),
+            fajr: Time(times.fajr!),
+            isha: Time(times.isha!),
+            maghrib: Time(times.maghrib!),
             day: now.day,
             month: now.month,
             year: now.year);

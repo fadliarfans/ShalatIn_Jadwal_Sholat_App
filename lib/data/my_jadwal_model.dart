@@ -1,12 +1,15 @@
+import 'package:jadwal_sholat_app/data/shalat_model.dart';
+import 'package:jadwal_sholat_app/data/time_model.dart';
+
 class MyJadwalModel {
-  String? fajr;
-  String? dhuhr;
-  String? asr;
-  String? maghrib;
-  String? isha;
-  int? day;
-  int? month;
-  int? year;
+  Time fajr;
+  Time dhuhr;
+  Time asr;
+  Time maghrib;
+  Time isha;
+  int day;
+  int month;
+  int year;
   MyJadwalModel(
       {required this.asr,
       required this.dhuhr,
@@ -16,4 +19,19 @@ class MyJadwalModel {
       required this.day,
       required this.month,
       required this.year});
+
+  Time getTime(Shalat shalat) {
+    switch (shalat) {
+      case Shalat.Subuh:
+        return fajr;
+      case Shalat.Dzuhur:
+        return dhuhr;
+      case Shalat.Ashar:
+        return asr;
+      case Shalat.Maghrib:
+        return maghrib;
+      case Shalat.Isya:
+        return isha;
+    }
+  }
 }

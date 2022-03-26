@@ -56,10 +56,10 @@ class _JadwalShalatItemState extends State<JadwalShalatItem> {
                 turnOffOrOn();
                 if (isOn) {
                   BlocProvider.of<AlarmBloc>(context)
-                      .add(LaunchAlarmOnTime(widget.shalat));
+                      .add(ActivateAlarm(widget.shalat));
                 } else {
                   BlocProvider.of<AlarmBloc>(context)
-                      .add(CancelAlarmOnTime(widget.shalat));
+                      .add(CancelAlarm(widget.shalat));
                 }
               },
               activeColor: green,

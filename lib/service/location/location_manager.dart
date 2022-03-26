@@ -10,8 +10,8 @@ class LocationManager {
     _iLocation = iLocation;
   }
 
-  Future<void> saveLocation(String city, String country, String cityId) async {
-    _iLocation.saveLocation(city, country, cityId);
+  Future<void> saveLocation(MyLocationModel location) async {
+    _iLocation.saveLocation(location);
   }
 
   Future<Resource<MyLocationModel>> getLocation() async {

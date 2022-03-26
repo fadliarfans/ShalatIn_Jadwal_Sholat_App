@@ -93,15 +93,26 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       }
     }
 
-    ShalatModel _getClosesTime(List<String> jadwalList) {
+    ShalatModel _getClosesTime(MyJadwalModel myJadwalModel) {
       final now = DateTime.now();
       final hour = now.hour;
       final minutes = now.minute;
 
-      List<int> jadwalHour =
-          jadwalList.map((e) => int.parse(e.substring(0, 2))).toList();
-      List<int> jadwalMinutes =
-          jadwalList.map((e) => int.parse(e.substring(3, 5))).toList();
+      List<int> jadwalHour = [
+        myJadwalModel.fajr.hour,
+        myJadwalModel.dhuhr.hour,
+        myJadwalModel.asr.hour,
+        myJadwalModel.maghrib.hour,
+        myJadwalModel.isha.hour,
+      ];
+
+      List<int> jadwalMinutes = [
+        myJadwalModel.fajr.minute,
+        myJadwalModel.dhuhr.minute,
+        myJadwalModel.asr.minute,
+        myJadwalModel.maghrib.minute,
+        myJadwalModel.isha.minute,
+      ];
 
       var nextJadwalHour = jadwalHour[0];
       var nextJadwalMinutes = jadwalMinutes[0];
@@ -117,9 +128,16 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             nextJadwalMinutes = jadwalMinutes[i];
             counter = i;
           } else {
-            nextJadwalHour = jadwalHour[i + 1];
-            nextJadwalMinutes = jadwalMinutes[i + 1];
-            counter = i + 1;
+            if (i == (jadwalHour.length - 1)) {
+              nextJadwalHour = jadwalHour[0];
+              nextJadwalMinutes = jadwalMinutes[0];
+              counter = 0;
+            } else {
+              print("D :${i+1}");
+              nextJadwalHour = jadwalHour[i + 1];
+              nextJadwalMinutes = jadwalMinutes[i + 1];
+              counter = i + 1;
+            }
           }
         } else if (hour > jadwalHour[i]) {
           if (i == (jadwalHour.length - 1)) {
@@ -194,28 +212,21 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
 
         if (resourceLocation.status == Status.SUCCES) {
           final resourceJadwal = await getJadwal(resourceLocation.data!);
-
           debugPrint(resourceJadwal.message);
 
           if (resourceJadwal.status == Status.SUCCES) {
-            await LocationManager(LocationLocal()).saveLocation(
-                resourceLocation.data!.city!,
-                resourceLocation.data!.country!,
-                resourceLocation.data!.cityId!);
+            await LocationManager(LocationLocal())
+                .saveLocation(resourceLocation.data!);
+
             final jadwal = resourceJadwal.data;
-            ShalatModel nextJadwal = _getClosesTime([
-              jadwal?.fajr ?? "00:00",
-              jadwal?.dhuhr ?? "00:00",
-              jadwal?.asr ?? "00:00",
-              jadwal?.maghrib ?? "00:00",
-              jadwal?.isha ?? "00:00"
-            ]);
+            ShalatModel nextJadwal = _getClosesTime(jadwal!);
+
             final mapOfJadwalSholat = {
-              Shalat.Subuh: jadwal?.fajr ?? "",
-              Shalat.Dzuhur: jadwal?.dhuhr ?? "",
-              Shalat.Ashar: jadwal?.asr ?? "",
-              Shalat.Maghrib: jadwal?.maghrib ?? "",
-              Shalat.Isya: jadwal?.isha ?? ""
+              Shalat.Subuh: jadwal.fajr.timeS,
+              Shalat.Dzuhur: jadwal.dhuhr.timeS,
+              Shalat.Ashar: jadwal.asr.timeS,
+              Shalat.Maghrib: jadwal.maghrib.timeS,
+              Shalat.Isya: jadwal.isha.timeS
             };
             final myLocation = resourceLocation.data!;
             emit(JadwalSucces(
@@ -224,10 +235,11 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             emit(const JadwalError("Something Error Happened"));
           }
         } else {
+          debugPrint("JADWAL ERROR : Choose Manual");
           emit(JadwalChooseCity());
         }
       } catch (e) {
-        debugPrint(e.toString());
+        debugPrint("JADWAL ERROR : $e");
         emit(const JadwalError("Something Error Happened"));
       }
     });

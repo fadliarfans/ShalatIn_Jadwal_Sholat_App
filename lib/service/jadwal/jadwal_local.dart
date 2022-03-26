@@ -1,5 +1,6 @@
 import '../../data/my_location_model.dart';
 import '../../data/my_jadwal_model.dart';
+import '../../data/time_model.dart';
 import 'i_jadwal.dart';
 import '../../vo/resource.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,14 +21,14 @@ class JadwalLocal with IJadwal {
         final month = prefs.getInt("month");
         final year = prefs.getInt("year");
         final myJadwal = MyJadwalModel(
-            asr: asr,
-            dhuhr: dhuhr,
-            fajr: fajr,
-            isha: isha,
-            maghrib: maghrib,
-            day: day,
-            month: month,
-            year: year);
+            asr: Time(asr!),
+            dhuhr: Time(dhuhr!),
+            fajr: Time(fajr!),
+            isha: Time(isha!),
+            maghrib: Time(maghrib!),
+            day: day!,
+            month: month!,
+            year: year!);
         return Resource<MyJadwalModel>().success(myJadwal,
             message: "JADWAL SUCCESS ----> Jadwal From Local");
       } else {
