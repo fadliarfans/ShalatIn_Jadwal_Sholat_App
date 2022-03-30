@@ -133,7 +133,6 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
               nextJadwalMinutes = jadwalMinutes[0];
               counter = 0;
             } else {
-              print("D :${i+1}");
               nextJadwalHour = jadwalHour[i + 1];
               nextJadwalMinutes = jadwalMinutes[i + 1];
               counter = i + 1;
@@ -228,6 +227,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
               Shalat.Maghrib: jadwal.maghrib.timeS,
               Shalat.Isya: jadwal.isha.timeS
             };
+
             final myLocation = resourceLocation.data!;
             emit(JadwalSucces(
                 mapOfJadwalSholat, _getIdDate(), nextJadwal, myLocation));

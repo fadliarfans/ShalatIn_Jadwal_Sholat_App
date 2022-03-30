@@ -9,6 +9,10 @@ abstract class AlarmState extends Equatable {
 
 class AlarmInitial extends AlarmState {}
 
-class AlarmSuccesLaunch extends AlarmState {}
+class AlarmActivatedState extends AlarmState {
+  final Map<Shalat, bool> mapOfActivatedAlarm;
+  const AlarmActivatedState(this.mapOfActivatedAlarm);
 
-class AlarmFailedLaunch extends AlarmState {}
+  @override
+  List<Object> get props => [mapOfActivatedAlarm];
+}

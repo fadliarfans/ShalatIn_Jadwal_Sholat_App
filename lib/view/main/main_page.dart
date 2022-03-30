@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/alarm/alarm_bloc.dart';
 import '../../bloc/jadwal/jadwal_bloc.dart';
 import '../../bloc/page/page_bloc.dart';
 import '../../shared/bottom_navigation_bar.dart';
@@ -18,6 +19,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<PageBloc>(context).add(ToHome());
     BlocProvider.of<JadwalBloc>(context).add(GetJadwal());
+    BlocProvider.of<AlarmBloc>(context).add(GetAlarm());
     return Scaffold(
       backgroundColor: semiWhite,
       body: BlocListener<JadwalBloc, JadwalState>(

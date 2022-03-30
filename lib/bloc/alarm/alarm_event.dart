@@ -7,6 +7,8 @@ abstract class AlarmEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class GetAlarm extends AlarmEvent {}
+
 class ActivateAlarm extends AlarmEvent {
   final Shalat shalat;
   const ActivateAlarm(this.shalat);

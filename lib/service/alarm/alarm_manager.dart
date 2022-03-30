@@ -15,7 +15,6 @@ import 'package:jadwal_sholat_app/service/location/location_manager.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../data/shalat_model.dart';
 import 'i_alarm.dart';
 
@@ -23,19 +22,20 @@ class AlarmManager {
   static final IAlarm iAlarm = AlarmAdzan();
   static Shalat shalatStatic = Shalat.Subuh;
 
-  activateAlarm(Shalat shalat) async{
+  activateAlarm(Shalat shalat) async {
     shalatStatic = shalat;
+
     await activateTodayAlarm(shalat);
     await activateTommorowAlarm(shalat);
   }
-  
-  static periodicTomorrowCallback() async{
+
+  static periodicTomorrowCallback() async {
     iAlarm.playAdzan(await _getTime(shalatStatic), shalatStatic.index + 300);
   }
-  
-  static tomorrowOneShotAtCallback(){
-      AndroidAlarmManager.periodic(
-          const Duration(hours: 24), shalatStatic.index + 200, periodicTomorrowCallback);
+
+  static tomorrowOneShotAtCallback() {
+    AndroidAlarmManager.periodic(const Duration(hours: 24),
+        shalatStatic.index + 200, periodicTomorrowCallback);
   }
 
   activateTommorowAlarm(Shalat shalat) async {
@@ -47,7 +47,8 @@ class AlarmManager {
           DateTime(now.year, now.month, now.day, 1, Random().nextInt(60),
                   Random().nextInt(60))
               .add(const Duration(days: 1)),
-          shalat.index + 100,tomorrowOneShotAtCallback);
+          shalat.index + 100,
+          tomorrowOneShotAtCallback);
     } catch (e) {
       debugPrint("ERROR ----> $e");
     }
@@ -55,20 +56,23 @@ class AlarmManager {
 
   activateTodayAlarm(Shalat shalat) async {
     try {
-        final times = await _getTimeLocal(shalat);
-        DateTime now = DateTime.now();
-        if (now.hour > times.hour) {
+      final times = await _getTimeLocal(shalat);
+      DateTime now = DateTime.now();
+
+      if (now.hour > times.hour) {
+        return;
+      }
+
+      if (now.hour == times.hour) {
+        if (now.minute > times.minute) {
           return;
         }
+      }
 
-        if (now.hour == times.hour) {
-          if (now.minute > times.minute) {
-            return;
-          }
-        }
-        iAlarm.playAdzan(times,
-            shalat.index + 300);
+      print("Activate alarm today");
+      iAlarm.playAdzan(times, shalat.index + 300);
     } catch (e) {
+      print(e.toString());
       rethrow;
     }
   }
@@ -85,11 +89,11 @@ class AlarmManager {
     try {
       final locationManager = LocationManager(LocationLocal());
       Resource<MyLocationModel> resourceLocation =
-      await locationManager.getLocation();
+          await locationManager.getLocation();
 
       final jadwalManager = JadwalManager(JadwalLocal());
       Resource<MyJadwalModel> resourceJadwal =
-      await jadwalManager.getJadwal(resourceLocation.data!);
+          await jadwalManager.getJadwal(resourceLocation.data!);
 
       if (resourceJadwal.status == Status.SUCCES) {
         final times = resourceJadwal.data!;
@@ -97,11 +101,13 @@ class AlarmManager {
         DateTime now = DateTime.now();
         final hour = times.getTime(shalat).hour;
         final minute = times.getTime(shalat).minute;
+        print("${times.getTime(shalat).hour}:${times.getTime(shalat).minute}");
         return DateTime(now.year, now.month, now.day, hour, minute);
       } else {
         throw Exception("Failed Get Jadwal");
       }
     } catch (e) {
+      print(e.toString());
       rethrow;
     }
   }
@@ -134,6 +140,7 @@ class AlarmManager {
         DateTime now = DateTime.now();
         final hour = times.getTime(shalat).hour;
         final minute = times.getTime(shalat).minute;
+        print("${times.getTime(shalat).hour}:${times.getTime(shalat).minute}");
         return DateTime(now.year, now.month, now.day, hour, minute);
       } else {
         throw Exception("Failed Get Jadwal");

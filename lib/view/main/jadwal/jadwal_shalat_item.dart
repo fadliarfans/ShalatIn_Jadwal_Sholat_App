@@ -15,14 +15,6 @@ class JadwalShalatItem extends StatefulWidget {
 }
 
 class _JadwalShalatItemState extends State<JadwalShalatItem> {
-  var isOn = false;
-
-  turnOffOrOn() {
-    setState(() {
-      isOn = !isOn;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -49,20 +41,28 @@ class _JadwalShalatItemState extends State<JadwalShalatItem> {
         ),
         Expanded(
             flex: 1,
-            child: Center(
-                child: Switch(
-              value: isOn,
-              onChanged: (value) {
-                turnOffOrOn();
-                if (isOn) {
-                  BlocProvider.of<AlarmBloc>(context)
-                      .add(ActivateAlarm(widget.shalat));
+            child: Center(child: BlocBuilder<AlarmBloc, AlarmState>(
+              builder: (context, state) {
+                if (state is AlarmActivatedState) {
+                  final isOn =
+                      state.mapOfActivatedAlarm[widget.shalat] ?? false;
+                  return Switch(
+                    value: isOn,
+                    onChanged: (value) {
+                      if (!isOn) {
+                        BlocProvider.of<AlarmBloc>(context)
+                            .add(ActivateAlarm(widget.shalat));
+                      } else {
+                        BlocProvider.of<AlarmBloc>(context)
+                            .add(CancelAlarm(widget.shalat));
+                      }
+                    },
+                    activeColor: green,
+                  );
                 } else {
-                  BlocProvider.of<AlarmBloc>(context)
-                      .add(CancelAlarm(widget.shalat));
+                  return const CircularProgressIndicator();
                 }
               },
-              activeColor: green,
             )))
       ],
     );
