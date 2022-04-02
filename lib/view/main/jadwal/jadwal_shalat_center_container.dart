@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../data/shalat_model.dart';
+import '../../../data/models/shalat_model.dart';
 import '../../../theme.dart';
 import 'jadwal_shalat_item.dart';
 

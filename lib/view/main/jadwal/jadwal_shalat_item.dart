@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../bloc/alarm/alarm_bloc.dart';
 import '../../../theme.dart';
-import '../../../data/shalat_model.dart';
+import '../../../data/models/shalat_model.dart';
 
 class JadwalShalatItem extends StatefulWidget {
   const JadwalShalatItem({Key? key, required this.shalat, required this.time})

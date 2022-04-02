@@ -2,9 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../service/alarm/alarm_manager.dart';
-import '../../data/shalat_model.dart';
+import '../../data/models/shalat_model.dart';
 
 part 'alarm_event.dart';
+
 part 'alarm_state.dart';
 
 class AlarmBloc extends Bloc<AlarmEvent, AlarmState> {
@@ -34,12 +35,12 @@ class AlarmBloc extends Bloc<AlarmEvent, AlarmState> {
     }));
 
     on<ActivateAlarm>(((event, emit) async {
-      await alarmManager.activateAlarm(event.shalat);
+      //await alarmManager.activateAlarm(event.shalat);
       emit(AlarmActivatedState(await _getActivedJadwal()));
     }));
 
     on<CancelAlarm>(((event, emit) async {
-      await alarmManager.cancelAlarm(event.shalat);
+      //await alarmManager.cancelAlarm(event.shalat);
       emit(AlarmActivatedState(await _getActivedJadwal()));
     }));
   }

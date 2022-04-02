@@ -1,5 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:jadwal_sholat_app/data/shalat_model.dart';
+import 'package:jadwal_sholat_app/data/models/shalat_model.dart';
 import 'package:jadwal_sholat_app/service/notification/notification_init.dart';
 import 'package:jadwal_sholat_app/service/notification/notification_scheduled.dart';
 

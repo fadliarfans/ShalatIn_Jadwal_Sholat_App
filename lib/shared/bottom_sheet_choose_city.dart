@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/jadwal/jadwal_bloc.dart';
-import '../data/city_model.dart';
-import '../data/my_location_model.dart';
+import '../data/models/city_model.dart';
+import '../data/models/my_location_model.dart';
 import '../service/city/city_manager.dart';
 import '../theme.dart';
 

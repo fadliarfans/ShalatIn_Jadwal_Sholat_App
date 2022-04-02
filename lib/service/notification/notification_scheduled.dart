@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 
-import '../../data/shalat_model.dart';
+import '../../data/models/shalat_model.dart';
 
 class NotificationScheduled {
   static tz.TZDateTime _time(int hour, int minute) {

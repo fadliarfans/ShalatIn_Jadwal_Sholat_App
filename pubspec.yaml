@@ -51,10 +51,15 @@ dependencies:
   flutter_qiblah: ^2.0.2
   flutter_svg: ^1.0.3
   flutter_local_notifications: ^9.4.0
+  get_it: ^7.2.0
+  injectable: ^1.5.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  injectable_generator:
+  build_runner:
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

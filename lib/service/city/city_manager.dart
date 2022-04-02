@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
-import '../../data/city_model.dart';
+import '../../data/models/city_model.dart';
 
 class CityManager {
   List<City>? cities;
