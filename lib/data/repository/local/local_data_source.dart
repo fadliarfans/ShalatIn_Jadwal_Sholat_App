@@ -1,11 +1,11 @@
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:jadwal_sholat_app/data/repository/local/shared_preference/jadwal_dao.dart';
-import 'package:jadwal_sholat_app/data/repository/local/shared_preference/location_dao.dart';
+import 'package:jadwal_sholat_app/data/repository/local/jadwal_dao.dart';
+import 'package:jadwal_sholat_app/data/repository/local/location_dao.dart';
 import 'package:jadwal_sholat_app/vo/resource.dart';
 
 import '../../models/my_jadwal_model.dart';
 import '../../models/my_location_model.dart';
+import '../../models/shalat_model.dart';
 
 @Injectable()
 class LocalDataSource {
@@ -28,7 +28,8 @@ class LocalDataSource {
     try {
       final myLocation = await _locationDao.getLocation();
       return Resource<MyLocationModel>().success(myLocation,
-          message: "LOCATION SUCCESS ----> Location From Local");
+          message:
+              "LOCATION SUCCESS ----> Location From Local = ${myLocation.city}");
     } catch (e) {
       return Resource<MyLocationModel>().error("LOCATION ERROR ----> $e");
     }
@@ -51,6 +52,27 @@ class LocalDataSource {
           .success(myJadwal, message: "JADWAL SUCCESS ----> Jadwal from Local");
     } catch (e) {
       return Resource<MyJadwalModel>().error("JADWAL ERROR ----> $e");
+    }
+  }
+
+  Future<Resource<bool>> saveActivatedJadwal(Shalat shalat, bool value) async {
+    try {
+      await _jadwalDao.saveActivatedJadwal(shalat, value);
+      return Resource<bool>().success(true,
+          message: "JADWAL ACTIVATED SUCCESS ----> Save Success");
+    } catch (e) {
+      return Resource<bool>().error("JADWAL ACTIVATED ERROR ----> $e");
+    }
+  }
+
+  Future<Resource<Map<Shalat, bool>>> getActivatedJadwal() async {
+    try {
+      final myActivatedJadwal = await _jadwalDao.getActivatedJadwal();
+      return Resource<Map<Shalat, bool>>().success(myActivatedJadwal,
+          message: "JADWAL ACTIVATED SUCCESS ----> Get All Activated Jadwal");
+    } catch (e) {
+      return Resource<Map<Shalat, bool>>()
+          .error("JADWAL ACTIVATED ERROR ----> $e");
     }
   }
 }

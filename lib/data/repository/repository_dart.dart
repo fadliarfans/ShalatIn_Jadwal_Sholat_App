@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/data/models/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/models/my_location_model.dart';
+import 'package:jadwal_sholat_app/data/models/shalat_model.dart';
 import 'package:jadwal_sholat_app/data/repository/data_source.dart';
 import 'package:jadwal_sholat_app/data/repository/local/local_data_source.dart';
 import 'package:jadwal_sholat_app/data/repository/remote/remote_data_source.dart';
@@ -23,10 +24,11 @@ class Repository implements DataSource {
 
   @override
   Future<Resource<MyLocationModel>> getLocation() async {
-    Resource<MyLocationModel> myLocation = await _localDataSource.getLocation();
+    Resource<MyLocationModel> myLocation =
+        await _remoteDataSource.getLocation();
 
     if (myLocation.status == Status.ERROR) {
-      myLocation = await _remoteDataSource.getLocation();
+      myLocation = await _localDataSource.getLocation();
     }
 
     return myLocation;
@@ -52,5 +54,19 @@ class Repository implements DataSource {
     }
 
     return myJadwal;
+  }
+
+  @override
+  Future<Resource<Map<Shalat, bool>>> getActivatedJadwal() async {
+    Resource<Map<Shalat, bool>> myActivatedJadwal =
+        await _localDataSource.getActivatedJadwal();
+    return myActivatedJadwal;
+  }
+
+  @override
+  Future<Resource<bool>> saveActivatedJadwal(Shalat shalat, bool value) async {
+    Resource<bool> result =
+        await _localDataSource.saveActivatedJadwal(shalat, value);
+    return result;
   }
 }

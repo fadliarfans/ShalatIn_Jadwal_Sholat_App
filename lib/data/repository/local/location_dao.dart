@@ -1,25 +1,21 @@
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../vo/resource.dart';
-import '../../../models/my_jadwal_model.dart';
-import '../../../models/my_location_model.dart';
-import 'cache.dart';
+import '../../../injection.dart';
+import '../../../vo/resource.dart';
+import '../../models/my_location_model.dart';
 
 @Injectable()
 class LocationDao {
-  final Cache _cache;
-
-  LocationDao(this._cache);
-
   Future<void> saveLocation(MyLocationModel location) async {
-    final prefs = _cache.pref;
+    final prefs = await locator<SharedPreferences>();
     prefs.setString("city", location.city!);
     prefs.setString("country", location.country!);
     prefs.setString("cityId", location.cityId!);
   }
 
   Future<MyLocationModel> getLocation() async {
-    final prefs = _cache.pref;
+    final prefs = await locator<SharedPreferences>();
     final city = prefs.getString("city");
     final country = prefs.getString("country");
     final cityId = prefs.getString("cityId");

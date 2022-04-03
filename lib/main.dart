@@ -1,7 +1,6 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/data/repository/repository_dart.dart';
 import 'package:jadwal_sholat_app/service/notification/notification_manager.dart';
 import 'bloc/page/page_bloc.dart';
 import 'injection.dart';
@@ -42,7 +41,7 @@ class _MyAppState extends State<MyApp> {
           create: (context) => locator<JadwalBloc>(),
         ),
         BlocProvider(
-          create: (context) => AlarmBloc(),
+          create: (context) => locator<AlarmBloc>(),
         ),
       ],
       child: const MaterialApp(

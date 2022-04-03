@@ -18,7 +18,7 @@ class CityManager {
     }
   }
 
-  Future<String?> getCityId(String city) async {
+  Future<City?> getCityByPlaceMark(String city) async {
     if (cities == null) {
       await getCities();
     }
@@ -27,7 +27,7 @@ class CityManager {
       if (city
           .toLowerCase()
           .contains(cities![i].cityName?.toLowerCase() ?? "")) {
-        return cities![i].cityId;
+        return cities![i];
       }
     }
     return null;

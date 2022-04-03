@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:geocoding/geocoding.dart';
@@ -20,13 +21,17 @@ class ApiService {
       position.latitude,
       position.longitude,
     );
-    final cityId = await CityManager()
-        .getCityId(placemarks.first.subAdministrativeArea ?? "");
-    final myLocation = MyLocationModel(
-        city: placemarks.first.subAdministrativeArea,
-        country: placemarks.first.country,
-        cityId: cityId);
-    return myLocation;
+    final city = await CityManager()
+        .getCityByPlaceMark(placemarks.first.subAdministrativeArea ?? "");
+    if (city != null) {
+      final myLocation = MyLocationModel(
+          city: city.cityName,
+          country: placemarks.first.country,
+          cityId: city.cityId);
+      return myLocation;
+    } else {
+      throw Exception("City Not Found in Our Database");
+    }
   }
 
   Future<Position> _determinePosition() async {

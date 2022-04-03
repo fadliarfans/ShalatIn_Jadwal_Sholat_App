@@ -29,13 +29,13 @@ class RemoteDataSource {
             month: now.month,
             year: now.year);
         return Resource<MyJadwalModel>().success(myJadwal,
-            message: "LOCATION SUCCESS ----> Location From GPS");
+            message: "JADWAL SUCCESS ----> Get Using API");
       } else {
         return Resource<MyJadwalModel>()
-            .error("LOCATION ERROR ----> ${response.statusMessage} ");
+            .error("JADWAL ERROR ----> ${response.statusMessage} ");
       }
     } catch (e) {
-      return Resource<MyJadwalModel>().error("LOCATION ERROR ----> $e}");
+      return Resource<MyJadwalModel>().error("JADWAL ERROR ----> $e");
     }
   }
 
@@ -43,9 +43,9 @@ class RemoteDataSource {
     try {
       final myLocation = await _apiService.getLocation();
       return Resource<MyLocationModel>().success(myLocation,
-          message: "LOCATION SUCCESS ----> Location From GPS");
+          message: "LOCATION SUCCESS ----> Location From GPS = ${myLocation.city}");
     } catch (e) {
-      return Resource<MyLocationModel>().error("LOCATION ERROR ----> $e}");
+      return Resource<MyLocationModel>().error("LOCATION ERROR ----> $e");
     }
   }
 }
