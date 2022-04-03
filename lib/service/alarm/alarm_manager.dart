@@ -1,16 +1,11 @@
-import 'dart:math';
+
 
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
-import 'package:jadwal_sholat_app/data/repository/local/local_data_source.dart';
 import 'package:jadwal_sholat_app/data/repository/repository_dart.dart';
 import 'package:jadwal_sholat_app/service/alarm/alarm_adzan.dart';
-import 'package:jadwal_sholat_app/vo/resource.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../data/models/my_jadwal_model.dart';
-import '../../data/models/my_location_model.dart';
 import '../../data/models/shalat_model.dart';
 
 @Injectable()
@@ -30,7 +25,7 @@ class AlarmManager {
     //await activateTommorowAlarm(shalat);
   }
 
-  Future<Map<Shalat,bool>> getActivatedJadwal()async {
+  Future<Map<Shalat, bool>> getActivatedJadwal() async {
     try {
       final resource = await _repository.getActivatedJadwal();
       if (resource.status == Status.SUCCES) {
@@ -97,6 +92,7 @@ class AlarmManager {
           return;
         }
       }
+
       _alarmAdzan.playAdzan(times, shalat.index + 300);
       debugPrint(
           "ALARM MANAGER activateTodayAlarm SUCCESS -----> Alarm Succes Activated : Alarm ${shalat.name} Will Fired At ${times.hour}:${times.minute}");
@@ -119,8 +115,7 @@ class AlarmManager {
         DateTime now = DateTime.now();
         final hour = times.getTime(shalat).hour;
         final minute = times.getTime(shalat).minute;
-        debugPrint(
-            "ALARM MANAGER getTimeLocal SUCCESS -----> Get Today Times");
+        debugPrint("ALARM MANAGER getTimeLocal SUCCESS -----> Get Today Times");
         return DateTime(now.year, now.month, now.day, hour, minute);
       } else {
         throw Exception(

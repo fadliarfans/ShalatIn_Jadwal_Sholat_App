@@ -1,7 +1,7 @@
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jadwal_sholat_app/service/notification/notification_manager.dart';
+import 'package:jadwal_sholat_app/cubit/niat/niat_cubit.dart';
 import 'bloc/page/page_bloc.dart';
 import 'injection.dart';
 import 'view/boarding/boarding_page.dart';
@@ -25,7 +25,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    NotificationManager();
     super.initState();
     AndroidAlarmManager.initialize();
   }
@@ -42,6 +41,9 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => locator<AlarmBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => NiatCubit(),
         ),
       ],
       child: const MaterialApp(

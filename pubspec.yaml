@@ -50,9 +50,9 @@ dependencies:
   shared_preferences: ^2.0.13
   flutter_qiblah: ^2.0.2
   flutter_svg: ^1.0.3
-  flutter_local_notifications: ^9.4.0
   get_it: ^7.2.0
   injectable: ^1.5.3
+  awesome_notifications: ^0.6.21
 
 dev_dependencies:
   flutter_test:

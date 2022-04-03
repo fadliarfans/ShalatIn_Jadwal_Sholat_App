@@ -10,12 +10,12 @@ import '../../models/time_model.dart';
 @Injectable()
 class JadwalDao {
   Future<void> saveActivatedJadwal(Shalat shalat, bool value) async {
-    final prefs = await locator<SharedPreferences>();
+    final prefs =  locator<SharedPreferences>();
     prefs.setBool("${shalat.name} Activated", value);
   }
 
   Future<Map<Shalat, bool>> getActivatedJadwal() async {
-    final prefs = await locator<SharedPreferences>();
+    final prefs =  locator<SharedPreferences>();
     final subuh = prefs.getBool("${Shalat.Subuh.name} Activated") ?? false;
     final dzuhur = prefs.getBool("${Shalat.Dzuhur.name} Activated") ?? false;
     final ashar = prefs.getBool("${Shalat.Ashar.name} Activated") ?? false;
@@ -31,7 +31,7 @@ class JadwalDao {
   }
 
   Future<void> saveJadwal(MyJadwalModel jadwal) async {
-    final prefs = await locator<SharedPreferences>();
+    final prefs =  locator<SharedPreferences>();
     prefs.setString(Shalat.Subuh.name, jadwal.fajr.timeS);
     prefs.setString(Shalat.Dzuhur.name, jadwal.dhuhr.timeS);
     prefs.setString(Shalat.Ashar.name, jadwal.asr.timeS);
@@ -43,7 +43,7 @@ class JadwalDao {
   }
 
   Future<MyJadwalModel> getJadwal(MyLocationModel myLocation) async {
-    final prefs = await locator<SharedPreferences>();
+    final prefs =  locator<SharedPreferences>();
     final city = prefs.getString("cityId");
     if (city == myLocation.cityId) {
       final fajr = prefs.getString(Shalat.Subuh.name);
