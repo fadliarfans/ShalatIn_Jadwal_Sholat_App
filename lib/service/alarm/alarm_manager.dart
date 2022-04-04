@@ -1,10 +1,9 @@
-
-
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/data/repository/repository_dart.dart';
 import 'package:jadwal_sholat_app/service/alarm/alarm_adzan.dart';
+import 'package:jadwal_sholat_app/service/notification/notification_manager.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
 import '../../data/models/shalat_model.dart';
 
@@ -12,10 +11,11 @@ import '../../data/models/shalat_model.dart';
 class AlarmManager {
   final AlarmAdzan _alarmAdzan;
   final Repository _repository;
+  final NotificationManager _notificationManager;
 
   Map<Shalat, bool> myActivatedJadwal = {};
 
-  AlarmManager(this._repository, this._alarmAdzan) {
+  AlarmManager(this._repository, this._alarmAdzan, this._notificationManager) {
     getActivatedJadwal();
   }
 
@@ -94,6 +94,8 @@ class AlarmManager {
       }
 
       _alarmAdzan.playAdzan(times, shalat.index + 300);
+      _notificationManager.setZonedScheduleNotification(
+          times.hour, times.minute);
       debugPrint(
           "ALARM MANAGER activateTodayAlarm SUCCESS -----> Alarm Succes Activated : Alarm ${shalat.name} Will Fired At ${times.hour}:${times.minute}");
     } catch (e) {

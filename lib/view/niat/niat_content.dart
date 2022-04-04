@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jadwal_sholat_app/data/models/shalat_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jadwal_sholat_app/cubit/niat/niat_cubit.dart';
 import 'package:jadwal_sholat_app/view/niat/niat_content_item.dart';
 import 'package:jadwal_sholat_app/view/niat/niat_map.dart';
 
@@ -8,12 +9,20 @@ class NiatContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = niatMap[Shalat.Subuh]
-            ?.map((e) => NiatContentItem(niatModel: e))
-            .toList() ??
-        [];
-    return Column(
-      children: [...list],
+    return BlocBuilder<NiatCubit, NiatState>(
+      builder: (context, state) {
+        if (state is NiatChoosed) {
+          final list = niatMap[state.shalat]
+                  ?.map((e) => NiatContentItem(niatModel: e))
+                  .toList() ??
+              [];
+          return Column(
+            children: [...list],
+          );
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
     );
   }
 }

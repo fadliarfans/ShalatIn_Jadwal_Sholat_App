@@ -52,7 +52,8 @@ dependencies:
   flutter_svg: ^1.0.3
   get_it: ^7.2.0
   injectable: ^1.5.3
-  awesome_notifications: ^0.6.21
+  flutter_local_notifications: ^9.4.0
+  flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:

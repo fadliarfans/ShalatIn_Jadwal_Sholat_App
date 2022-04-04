@@ -2,6 +2,7 @@ import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/cubit/niat/niat_cubit.dart';
+import 'package:jadwal_sholat_app/service/notification/configure_local_timezone.dart';
 import 'bloc/page/page_bloc.dart';
 import 'injection.dart';
 import 'view/boarding/boarding_page.dart';
@@ -12,6 +13,7 @@ import 'bloc/jadwal/jadwal_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
+  await configureLocalTimeZone();
   runApp(const MyApp());
 }
 
