@@ -8,6 +8,7 @@ class HomeTimerShalat extends StatefulWidget {
       : super(key: key);
   final int jadwalHour;
   final int jadwalMinute;
+
   @override
   State<HomeTimerShalat> createState() => _HomeTimerShalatState();
 }
@@ -20,6 +21,12 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this);
+    // after complete, reset timer
+    // _controller.addStatusListener((status) {
+    //   if(status == AnimationStatus.completed){
+    //     BlocProvider.of<JadwalBloc>(context).add(RefreshJadwal());
+    //   }
+    // });
   }
 
   initTimer() {
@@ -50,7 +57,9 @@ class _HomeTimerShalatState extends State<HomeTimerShalat>
     _controller = AnimationController(
         vsync: this,
         duration: Duration(
-            hours: leftHour, minutes: leftMinute, seconds: leftSecond));
+            hours: leftHour > 0 ? leftHour : 0,
+            minutes: leftMinute > 0 ? leftMinute : 0,
+            seconds: leftSecond > 0 ? leftSecond : 0));
     _controller.forward();
   }
 

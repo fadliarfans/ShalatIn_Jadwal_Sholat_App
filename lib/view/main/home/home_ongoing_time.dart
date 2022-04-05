@@ -10,6 +10,7 @@ class HomeOnGoingTime extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<JadwalBloc>(context).add(RefreshJadwal());
     return BlocBuilder<JadwalBloc, JadwalState>(
       builder: (context, state) {
         if (state is JadwalSucces) {

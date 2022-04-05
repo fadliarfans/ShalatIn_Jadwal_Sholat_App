@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/models/my_jadwal_model.dart';
@@ -19,6 +20,11 @@ part 'jadwal_state.dart';
 @Injectable()
 class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   final Repository _repository;
+
+  Map<Shalat, String>? mapOfJadwalSholat;
+  MyLocationModel? myLocation;
+  ShalatModel? nextJadwal;
+  MyJadwalModel? jadwal;
 
   JadwalBloc(this._repository) : super(JadwalInitial()) {
     Future<Resource<MyLocationModel>> getLocation() async {
@@ -152,6 +158,14 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       return formattedDate;
     }
 
+    on<RefreshJadwal>((event, emit) {
+      if (mapOfJadwalSholat != null && myLocation != null && jadwal != null) {
+        nextJadwal = _getClosesTime(jadwal!);
+        emit(JadwalSucces(
+            mapOfJadwalSholat!, _getIdDate(), nextJadwal!, myLocation!));
+      }
+    });
+
     on<GetJadwal>((event, emit) async {
       try {
         emit(JadwalLoading());
@@ -176,20 +190,25 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
           if (resourceJadwal.status == Status.SUCCES) {
             await _repository.saveLocation(resourceLocation.data!);
 
-            final jadwal = resourceJadwal.data;
-            ShalatModel nextJadwal = _getClosesTime(jadwal!);
+            jadwal = resourceJadwal.data!;
 
-            final mapOfJadwalSholat = {
-              Shalat.Subuh: jadwal.fajr.timeS,
-              Shalat.Dzuhur: jadwal.dhuhr.timeS,
-              Shalat.Ashar: jadwal.asr.timeS,
-              Shalat.Maghrib: jadwal.maghrib.timeS,
-              Shalat.Isya: jadwal.isha.timeS
+            // initiate next jadwal
+            nextJadwal = _getClosesTime(jadwal!);
+
+            // initiate all jadwal
+            mapOfJadwalSholat = {
+              Shalat.Subuh: jadwal!.fajr.timeS,
+              Shalat.Dzuhur: jadwal!.dhuhr.timeS,
+              Shalat.Ashar: jadwal!.asr.timeS,
+              Shalat.Maghrib: jadwal!.maghrib.timeS,
+              Shalat.Isya: jadwal!.isha.timeS
             };
 
-            final myLocation = resourceLocation.data!;
+            // initiate location
+            myLocation = resourceLocation.data!;
+
             emit(JadwalSucces(
-                mapOfJadwalSholat, _getIdDate(), nextJadwal, myLocation));
+                mapOfJadwalSholat!, _getIdDate(), nextJadwal!, myLocation!));
           } else {
             emit(const JadwalError("Something Error Happened"));
           }

@@ -13,3 +13,5 @@ class GetJadwalLocationManual extends GetJadwal {
   final MyLocationModel myLocation;
   GetJadwalLocationManual(this.myLocation);
 }
+
+class RefreshJadwal extends JadwalEvent{}

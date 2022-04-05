@@ -21,8 +21,8 @@ import 'data/repository/repository_dart.dart' as _i13;
 import 'di/app_module.dart' as _i17;
 import 'service/alarm/alarm_adzan.dart' as _i3;
 import 'service/alarm/alarm_manager.dart' as _i14;
-import 'service/notification/notification.service.dart' as _i9;
-import 'service/notification/notification_manager.dart'
+import 'service/alarm/notification/notification.service.dart' as _i9;
+import 'service/alarm/notification/notification_manager.dart'
     as _i8; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars

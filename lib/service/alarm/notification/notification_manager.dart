@@ -3,6 +3,8 @@ import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/injection.dart';
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../../data/models/shalat_model.dart';
+
 @Injectable()
 class NotificationManager {
   _time(hour, minute) {
@@ -12,16 +14,21 @@ class NotificationManager {
     return nextTime;
   }
 
-  Future<void> setZonedScheduleNotification(int hour, int minute) async {
+  Future<void> cancelNotification(int id)async{
+    await locator<FlutterLocalNotificationsPlugin>().cancel(id);
+  }
+
+  Future<void> setZonedScheduleNotification(
+      int hour, int minute, Shalat shalat) async {
     await locator<FlutterLocalNotificationsPlugin>().zonedSchedule(
-        0,
-        'scheduled title',
-        'scheduled body',
+        shalat.index + 400,
+        "${hour.toString().padLeft(2, "0")}:${minute.toString().padLeft(2, "0")}",
+        "Ayo Shalat ${shalat.name}, udah masuk waktunya nih !",
         _time(hour, minute),
-        const NotificationDetails(
+        NotificationDetails(
             android: AndroidNotificationDetails(
-                'your channel id', 'your channel name',
-                channelDescription: 'your channel description')),
+                '${shalat.name} ${400}', shalat.name,
+                channelDescription: 'Shalat ${shalat.name} Notification')),
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime);

@@ -16,6 +16,8 @@ class JadwalSucces extends JadwalState {
   final MyLocationModel location;
   const JadwalSucces(
       this.jadwalFiveTimePrayer, this.dateId, this.nextJadwal, this.location);
+  @override
+  List<Object> get props => [nextJadwal.time, dateId,jadwalFiveTimePrayer,location];
 }
 
 class JadwalError extends JadwalState {
