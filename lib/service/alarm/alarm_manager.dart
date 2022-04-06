@@ -6,6 +6,7 @@ import 'package:jadwal_sholat_app/service/alarm/alarm_adzan.dart';
 import 'package:jadwal_sholat_app/service/alarm/notification/notification_manager.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
 import '../../data/models/shalat_model.dart';
+import 'alarm_tommorow.dart';
 
 @Injectable()
 class AlarmManager {
@@ -23,7 +24,7 @@ class AlarmManager {
     _repository.saveActivatedJadwal(shalat, true);
 
     await activateTodayAlarm(shalat);
-    await activateTommorowAlarm(shalat);
+    await AlarmTommorow().activateTommorowAlarm(shalat);
   }
 
   Future<Map<Shalat, bool>> getActivatedJadwal() async {
@@ -47,36 +48,13 @@ class AlarmManager {
       await AndroidAlarmManager.cancel(shalat.index + 100);
       await AndroidAlarmManager.cancel(shalat.index + 200);
       await AndroidAlarmManager.cancel(shalat.index + 300);
+      await _notificationManager.cancelNotification(shalat.index + 200);
+      await AndroidAlarmManager.cancel(999 + 200);
       await _notificationManager.cancelNotification(shalat.index + 400);
       debugPrint(
           "ALARM MANAGER cancelAlarm SUCCESS -----> Alarm ${shalat.name} Canceled");
     } catch (e) {
       throw Exception("ALARM MANAGER cancelAlarm ERROR -----> $e");
-    }
-  }
-
-  activateTommorowAlarm(Shalat shalat) async {
-    try {
-      DateTime now = DateTime.now();
-      await AndroidAlarmManager.oneShotAt(
-          DateTime(
-            now.year, now.month, now.day, 1,
-            //  Random().nextInt(60),
-            //         Random().nextInt(60)
-          ).add(const Duration(days: 1)),
-          shalat.index + 100, () {
-        debugPrint("Tommorow shot");
-        AndroidAlarmManager.periodic(
-            const Duration(hours: 24), shalat.index + 200, () async {
-          final times = await _getTimeLocal(shalat);
-          debugPrint("Tommorow Next shot");
-          //iAlarm.playAdzan(await _getTime(shalatStatic), shalatStatic.index + 300);
-          _notificationManager.setZonedScheduleNotification(
-              times.hour, times.minute, shalat);
-        });
-      });
-    } catch (e) {
-      debugPrint("ERROR ----> $e");
     }
   }
 
