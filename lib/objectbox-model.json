@@ -1,0 +1,79 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "2:7888341556822457650",
+      "lastPropertyId": "9:618685313964281150",
+      "name": "MyJadwalEntity",
+      "properties": [
+        {
+          "id": "1:3708165041091587090",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6067497767938558431",
+          "name": "fajr",
+          "type": 9
+        },
+        {
+          "id": "3:5002707604680362596",
+          "name": "dhuhr",
+          "type": 9
+        },
+        {
+          "id": "4:754985194805823234",
+          "name": "asr",
+          "type": 9
+        },
+        {
+          "id": "5:811314705086216647",
+          "name": "maghrib",
+          "type": 9
+        },
+        {
+          "id": "6:3807032674351776247",
+          "name": "isha",
+          "type": 9
+        },
+        {
+          "id": "7:3536834669417076785",
+          "name": "day",
+          "type": 6
+        },
+        {
+          "id": "8:6544713804747066858",
+          "name": "month",
+          "type": 6
+        },
+        {
+          "id": "9:618685313964281150",
+          "name": "year",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:7888341556822457650",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    8662189499658663189
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    6091845605010511242,
+    4032107880462764156,
+    6004911956594929236,
+    6295669353477327685
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

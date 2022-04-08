@@ -1,21 +1,21 @@
 import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/injection.dart';
+import 'package:jadwal_sholat_app/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/my_jadwal_model.dart';
 import '../../models/my_location_model.dart';
 import '../../models/shalat_model.dart';
-import '../../models/time_model.dart';
 
 @Injectable()
 class JadwalDao {
   Future<void> saveActivatedJadwal(Shalat shalat, bool value) async {
-    final prefs =  locator<SharedPreferences>();
+    final prefs = locator<SharedPreferences>();
     prefs.setBool("${shalat.name} Activated", value);
   }
 
   Future<Map<Shalat, bool>> getActivatedJadwal() async {
-    final prefs =  locator<SharedPreferences>();
+    final prefs = locator<SharedPreferences>();
     final subuh = prefs.getBool("${Shalat.Subuh.name} Activated") ?? false;
     final dzuhur = prefs.getBool("${Shalat.Dzuhur.name} Activated") ?? false;
     final ashar = prefs.getBool("${Shalat.Ashar.name} Activated") ?? false;
@@ -30,40 +30,21 @@ class JadwalDao {
     };
   }
 
-  Future<void> saveJadwal(MyJadwalModel jadwal) async {
-    final prefs =  locator<SharedPreferences>();
-    prefs.setString(Shalat.Subuh.name, jadwal.fajr.timeS);
-    prefs.setString(Shalat.Dzuhur.name, jadwal.dhuhr.timeS);
-    prefs.setString(Shalat.Ashar.name, jadwal.asr.timeS);
-    prefs.setString(Shalat.Maghrib.name, jadwal.maghrib.timeS);
-    prefs.setString(Shalat.Isya.name, jadwal.isha.timeS);
-    prefs.setInt("day", jadwal.day);
-    prefs.setInt("month", jadwal.month);
-    prefs.setInt("year", jadwal.year);
+  Future<void> saveJadwal(List<MyJadwalModel> jadwal) async {
+    final jadwalBox = objectbox.store.box<MyJadwalModel>();
+    jadwalBox.removeAll();
+    for (int i = 0; i < jadwal.length; i++) {
+      jadwalBox.put(jadwal[i]);
+    }
   }
 
-  Future<MyJadwalModel> getJadwal(MyLocationModel myLocation) async {
-    final prefs =  locator<SharedPreferences>();
+  Future<List<MyJadwalModel>> getJadwal(MyLocationModel myLocation) async {
+    final prefs = locator<SharedPreferences>();
     final city = prefs.getString("cityId");
     if (city == myLocation.cityId) {
-      final fajr = prefs.getString(Shalat.Subuh.name);
-      final dhuhr = prefs.getString(Shalat.Dzuhur.name);
-      final asr = prefs.getString(Shalat.Ashar.name);
-      final maghrib = prefs.getString(Shalat.Maghrib.name);
-      final isha = prefs.getString(Shalat.Isya.name);
-      final day = prefs.getInt("day");
-      final month = prefs.getInt("month");
-      final year = prefs.getInt("year");
-      final myJadwal = MyJadwalModel(
-          asr: Time(asr!),
-          dhuhr: Time(dhuhr!),
-          fajr: Time(fajr!),
-          isha: Time(isha!),
-          maghrib: Time(maghrib!),
-          day: day!,
-          month: month!,
-          year: year!);
-      return myJadwal;
+      final jadwalBox = objectbox.store.box<MyJadwalModel>();
+      final myJadwalList = jadwalBox.getAll();
+      return myJadwalList;
     } else {
       throw Exception("City Different !");
     }

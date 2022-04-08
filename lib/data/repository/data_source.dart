@@ -5,13 +5,13 @@ import '../models/my_jadwal_model.dart';
 import '../models/shalat_model.dart';
 
 abstract class DataSource {
-  Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel location);
+  Future<Resource<List<MyJadwalModel>>> getJadwal(MyLocationModel location);
 
   Future<Resource<MyLocationModel>> getLocation();
 
   Future<Resource<Map<Shalat, bool>>> getActivatedJadwal();
 
-  Future<Resource<bool>> saveJadwal(MyJadwalModel myJadwal);
+  Future<Resource<bool>> saveJadwal(List<MyJadwalModel> myJadwal);
 
   Future<Resource<bool>> saveLocation(MyLocationModel location);
 

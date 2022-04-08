@@ -1,5 +1,3 @@
-
-
 import 'package:jadwal_sholat_app/data/models/shalat_model.dart';
 import 'package:jadwal_sholat_app/data/models/time_model.dart';
 
@@ -35,5 +33,10 @@ class MyJadwalModel {
       case Shalat.Isya:
         return isha;
     }
+  }
+
+  @override
+  String toString() {
+    return "date : $day-$month-$year fajr : ${fajr.timeS}, dhuhr : ${dhuhr.timeS}, ashar : ${asr.timeS}, maghrib : ${maghrib.timeS}, isya : ${isha.timeS} \n";
   }
 }

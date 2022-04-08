@@ -4,16 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/cubit/niat/niat_cubit.dart';
 import 'package:jadwal_sholat_app/service/alarm/notification/configure_local_timezone.dart';
 import 'bloc/page/page_bloc.dart';
+import 'data/repository/local/database/object_box.dart';
 import 'injection.dart';
 import 'view/boarding/boarding_page.dart';
 
 import 'bloc/alarm/alarm_bloc.dart';
 import 'bloc/jadwal/jadwal_bloc.dart';
 
+late ObjectBox objectbox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   await configureLocalTimeZone();
+  objectbox = await ObjectBox.create();
   runApp(const MyApp());
 }
 

@@ -1,1237 +1,2074 @@
-{
-    "status": true,
-    "data": [
-      {
-        "cityId": "1",
-        "cityName": "Ambarawa"
-      },
-      {
-        "cityId": "2",
-        "cityName": "Ambon"
-      },
-      {
-        "cityId": "3",
-        "cityName": "Amlapura"
-      },
-      {
-        "cityId": "4",
-        "cityName": "Amuntai"
-      },
-      {
-        "cityId": "5",
-        "cityName": "Argamakmur"
-      },
-      {
-        "cityId": "6",
-        "cityName": "Atambua"
-      },
-      {
-        "cityId": "7",
-        "cityName": "Babo"
-      },
-      {
-        "cityId": "8",
-        "cityName": "Bagan Siapiapi"
-      },
-      {
-        "cityId": "9",
-        "cityName": "Bajawa"
-      },
-      {
-        "cityId": "10",
-        "cityName": "Balige"
-      },
-      {
-        "cityId": "11",
-        "cityName": "Balik Papan"
-      },
-      {
-        "cityId": "12",
-        "cityName": "Banda Aceh"
-      },
-      {
-        "cityId": "13",
-        "cityName": "Bandarlampung"
-      },
-      {
-        "cityId": "14",
-        "cityName": "Bandung"
-      },
-      {
-        "cityId": "15",
-        "cityName": "Bangkalan"
-      },
-      {
-        "cityId": "16",
-        "cityName": "Bangkinang"
-      },
-      {
-        "cityId": "17",
-        "cityName": "Bangko"
-      },
-      {
-        "cityId": "18",
-        "cityName": "Bangli"
-      },
-      {
-        "cityId": "19",
-        "cityName": "Banjar"
-      },
-      {
-        "cityId": "20",
-        "cityName": "Banjar Baru"
-      },
-      {
-        "cityId": "21",
-        "cityName": "Banjarmasin"
-      },
-      {
-        "cityId": "22",
-        "cityName": "Banjarnegara"
-      },
-      {
-        "cityId": "23",
-        "cityName": "Bantaeng"
-      },
-      {
-        "cityId": "24",
-        "cityName": "Banten"
-      },
-      {
-        "cityId": "25",
-        "cityName": "Bantul"
-      },
-      {
-        "cityId": "26",
-        "cityName": "Banyuwangi"
-      },
-      {
-        "cityId": "27",
-        "cityName": "Barabai"
-      },
-      {
-        "cityId": "28",
-        "cityName": "Barito"
-      },
-      {
-        "cityId": "29",
-        "cityName": "Barru"
-      },
-      {
-        "cityId": "30",
-        "cityName": "Batam"
-      },
-      {
-        "cityId": "31",
-        "cityName": "Batang"
-      },
-      {
-        "cityId": "32",
-        "cityName": "Batu"
-      },
-      {
-        "cityId": "33",
-        "cityName": "Baturaja"
-      },
-      {
-        "cityId": "34",
-        "cityName": "Batusangkar"
-      },
-      {
-        "cityId": "35",
-        "cityName": "Baubau"
-      },
-      {
-        "cityId": "36",
-        "cityName": "Bekasi"
-      },
-      {
-        "cityId": "37",
-        "cityName": "Bengkalis"
-      },
-      {
-        "cityId": "38",
-        "cityName": "Bengkulu"
-      },
-      {
-        "cityId": "39",
-        "cityName": "Benteng"
-      },
-      {
-        "cityId": "40",
-        "cityName": "Biak"
-      },
-      {
-        "cityId": "41",
-        "cityName": "Bima"
-      },
-      {
-        "cityId": "42",
-        "cityName": "Binjai"
-      },
-      {
-        "cityId": "43",
-        "cityName": "Bireuen"
-      },
-      {
-        "cityId": "44",
-        "cityName": "Bitung"
-      },
-      {
-        "cityId": "45",
-        "cityName": "Blitar"
-      },
-      {
-        "cityId": "46",
-        "cityName": "Blora"
-      },
-      {
-        "cityId": "47",
-        "cityName": "Bogor"
-      },
-      {
-        "cityId": "48",
-        "cityName": "Bojonegoro"
-      },
-      {
-        "cityId": "49",
-        "cityName": "Bondowoso"
-      },
-      {
-        "cityId": "50",
-        "cityName": "Bontang"
-      },
-      {
-        "cityId": "51",
-        "cityName": "Boyolali"
-      },
-      {
-        "cityId": "52",
-        "cityName": "Brebes"
-      },
-      {
-        "cityId": "53",
-        "cityName": "Bukit Tinggi"
-      },
-      {
-        "cityId": "54",
-        "cityName": "Bulukumba"
-      },
-      {
-        "cityId": "55",
-        "cityName": "Buntok"
-      },
-      {
-        "cityId": "56",
-        "cityName": "Cepu"
-      },
-      {
-        "cityId": "57",
-        "cityName": "Ciamis"
-      },
-      {
-        "cityId": "58",
-        "cityName": "Cianjur"
-      },
-      {
-        "cityId": "59",
-        "cityName": "Cibinong"
-      },
-      {
-        "cityId": "60",
-        "cityName": "Cilacap"
-      },
-      {
-        "cityId": "61",
-        "cityName": "Cilegon"
-      },
-      {
-        "cityId": "62",
-        "cityName": "Cimahi"
-      },
-      {
-        "cityId": "63",
-        "cityName": "Cirebon"
-      },
-      {
-        "cityId": "64",
-        "cityName": "Curup"
-      },
-      {
-        "cityId": "65",
-        "cityName": "Demak"
-      },
-      {
-        "cityId": "66",
-        "cityName": "Denpasar"
-      },
-      {
-        "cityId": "67",
-        "cityName": "Depok"
-      },
-      {
-        "cityId": "68",
-        "cityName": "Dili"
-      },
-      {
-        "cityId": "69",
-        "cityName": "Dompu"
-      },
-      {
-        "cityId": "70",
-        "cityName": "Donggala"
-      },
-      {
-        "cityId": "71",
-        "cityName": "Dumai"
-      },
-      {
-        "cityId": "72",
-        "cityName": "Ende"
-      },
-      {
-        "cityId": "73",
-        "cityName": "Enggano"
-      },
-      {
-        "cityId": "74",
-        "cityName": "Enrekang"
-      },
-      {
-        "cityId": "75",
-        "cityName": "Fakfak"
-      },
-      {
-        "cityId": "76",
-        "cityName": "Garut"
-      },
-      {
-        "cityId": "77",
-        "cityName": "Gianyar"
-      },
-      {
-        "cityId": "78",
-        "cityName": "Gombong"
-      },
-      {
-        "cityId": "79",
-        "cityName": "Gorontalo"
-      },
-      {
-        "cityId": "80",
-        "cityName": "Gresik"
-      },
-      {
-        "cityId": "81",
-        "cityName": "Gunung Sitoli"
-      },
-      {
-        "cityId": "82",
-        "cityName": "Indramayu"
-      },
-      {
-        "cityId": "83",
-        "cityName": "Jakarta"
-      },
-      {
-        "cityId": "84",
-        "cityName": "Jambi"
-      },
-      {
-        "cityId": "85",
-        "cityName": "Jayapura"
-      },
-      {
-        "cityId": "86",
-        "cityName": "Jember"
-      },
-      {
-        "cityId": "87",
-        "cityName": "Jeneponto"
-      },
-      {
-        "cityId": "88",
-        "cityName": "Jepara"
-      },
-      {
-        "cityId": "89",
-        "cityName": "Jombang"
-      },
-      {
-        "cityId": "90",
-        "cityName": "Kabanjahe"
-      },
-      {
-        "cityId": "91",
-        "cityName": "Kalabahi"
-      },
-      {
-        "cityId": "92",
-        "cityName": "Kalianda"
-      },
-      {
-        "cityId": "93",
-        "cityName": "Kandangan"
-      },
-      {
-        "cityId": "94",
-        "cityName": "Karanganyar"
-      },
-      {
-        "cityId": "95",
-        "cityName": "Karawang"
-      },
-      {
-        "cityId": "96",
-        "cityName": "Kasungan"
-      },
-      {
-        "cityId": "97",
-        "cityName": "Kayuagung"
-      },
-      {
-        "cityId": "98",
-        "cityName": "Kebumen"
-      },
-      {
-        "cityId": "99",
-        "cityName": "Kediri"
-      },
-      {
-        "cityId": "100",
-        "cityName": "Kefamenanu"
-      },
-      {
-        "cityId": "101",
-        "cityName": "Kendal"
-      },
-      {
-        "cityId": "102",
-        "cityName": "Kendari"
-      },
-      {
-        "cityId": "103",
-        "cityName": "Kertosono"
-      },
-      {
-        "cityId": "104",
-        "cityName": "Ketapang"
-      },
-      {
-        "cityId": "105",
-        "cityName": "Kisaran"
-      },
-      {
-        "cityId": "106",
-        "cityName": "Klaten"
-      },
-      {
-        "cityId": "107",
-        "cityName": "Kolaka"
-      },
-      {
-        "cityId": "108",
-        "cityName": "Kota Baru Pulau Laut"
-      },
-      {
-        "cityId": "109",
-        "cityName": "Kota Bumi"
-      },
-      {
-        "cityId": "110",
-        "cityName": "Kota Jantho"
-      },
-      {
-        "cityId": "111",
-        "cityName": "Kota Mobagu"
-      },
-      {
-        "cityId": "112",
-        "cityName": "Kuala Kapuas"
-      },
-      {
-        "cityId": "113",
-        "cityName": "Kuala Kurun"
-      },
-      {
-        "cityId": "114",
-        "cityName": "Kuala Pembuang"
-      },
-      {
-        "cityId": "115",
-        "cityName": "Kuala Tungkal"
-      },
-      {
-        "cityId": "116",
-        "cityName": "Kudus"
-      },
-      {
-        "cityId": "117",
-        "cityName": "Kuningan"
-      },
-      {
-        "cityId": "118",
-        "cityName": "Kupang"
-      },
-      {
-        "cityId": "119",
-        "cityName": "Kutacane"
-      },
-      {
-        "cityId": "120",
-        "cityName": "Kutoarjo"
-      },
-      {
-        "cityId": "121",
-        "cityName": "Labuhan"
-      },
-      {
-        "cityId": "122",
-        "cityName": "Lahat"
-      },
-      {
-        "cityId": "123",
-        "cityName": "Lamongan"
-      },
-      {
-        "cityId": "124",
-        "cityName": "Langsa"
-      },
-      {
-        "cityId": "125",
-        "cityName": "Larantuka"
-      },
-      {
-        "cityId": "126",
-        "cityName": "Lawang"
-      },
-      {
-        "cityId": "127",
-        "cityName": "Lhoseumawe"
-      },
-      {
-        "cityId": "128",
-        "cityName": "Limboto"
-      },
-      {
-        "cityId": "129",
-        "cityName": "Lubuk Basung"
-      },
-      {
-        "cityId": "130",
-        "cityName": "Lubuk Linggau"
-      },
-      {
-        "cityId": "131",
-        "cityName": "Lubuk Pakam"
-      },
-      {
-        "cityId": "132",
-        "cityName": "Lubuk Sikaping"
-      },
-      {
-        "cityId": "133",
-        "cityName": "Lumajang"
-      },
-      {
-        "cityId": "134",
-        "cityName": "Luwuk"
-      },
-      {
-        "cityId": "135",
-        "cityName": "Madiun"
-      },
-      {
-        "cityId": "136",
-        "cityName": "Magelang"
-      },
-      {
-        "cityId": "137",
-        "cityName": "Magetan"
-      },
-      {
-        "cityId": "138",
-        "cityName": "Majalengka"
-      },
-      {
-        "cityId": "139",
-        "cityName": "Majene"
-      },
-      {
-        "cityId": "140",
-        "cityName": "Makale"
-      },
-      {
-        "cityId": "141",
-        "cityName": "Makassar"
-      },
-      {
-        "cityId": "142",
-        "cityName": "Malang"
-      },
-      {
-        "cityId": "143",
-        "cityName": "Mamuju"
-      },
-      {
-        "cityId": "144",
-        "cityName": "Manna"
-      },
-      {
-        "cityId": "145",
-        "cityName": "Manokwari"
-      },
-      {
-        "cityId": "146",
-        "cityName": "Marabahan"
-      },
-      {
-        "cityId": "147",
-        "cityName": "Maros"
-      },
-      {
-        "cityId": "148",
-        "cityName": "Martapura"
-      },
-      {
-        "cityId": "149",
-        "cityName": "Masohi"
-      },
-      {
-        "cityId": "150",
-        "cityName": "Mataram"
-      },
-      {
-        "cityId": "151",
-        "cityName": "Maumere"
-      },
-      {
-        "cityId": "152",
-        "cityName": "Medan"
-      },
-      {
-        "cityId": "153",
-        "cityName": "Mempawah"
-      },
-      {
-        "cityId": "154",
-        "cityName": "Menado"
-      },
-      {
-        "cityId": "155",
-        "cityName": "Mentok"
-      },
-      {
-        "cityId": "156",
-        "cityName": "Merauke"
-      },
-      {
-        "cityId": "157",
-        "cityName": "Metro"
-      },
-      {
-        "cityId": "158",
-        "cityName": "Meulaboh"
-      },
-      {
-        "cityId": "159",
-        "cityName": "Mojokerto"
-      },
-      {
-        "cityId": "160",
-        "cityName": "Muara Bulian"
-      },
-      {
-        "cityId": "161",
-        "cityName": "Muara Bungo"
-      },
-      {
-        "cityId": "162",
-        "cityName": "Muara Enim"
-      },
-      {
-        "cityId": "163",
-        "cityName": "Muara Teweh"
-      },
-      {
-        "cityId": "164",
-        "cityName": "Muaro Sijunjung"
-      },
-      {
-        "cityId": "165",
-        "cityName": "Muntilan"
-      },
-      {
-        "cityId": "166",
-        "cityName": "Nabire"
-      },
-      {
-        "cityId": "167",
-        "cityName": "Negara"
-      },
-      {
-        "cityId": "168",
-        "cityName": "Nganjuk"
-      },
-      {
-        "cityId": "169",
-        "cityName": "Ngawi"
-      },
-      {
-        "cityId": "170",
-        "cityName": "Nunukan"
-      },
-      {
-        "cityId": "171",
-        "cityName": "Pacitan"
-      },
-      {
-        "cityId": "172",
-        "cityName": "Padang"
-      },
-      {
-        "cityId": "173",
-        "cityName": "Padang Panjang"
-      },
-      {
-        "cityId": "174",
-        "cityName": "Padang Sidempuan"
-      },
-      {
-        "cityId": "175",
-        "cityName": "Pagaralam"
-      },
-      {
-        "cityId": "176",
-        "cityName": "Painan"
-      },
-      {
-        "cityId": "177",
-        "cityName": "Palangkaraya"
-      },
-      {
-        "cityId": "178",
-        "cityName": "Palembang"
-      },
-      {
-        "cityId": "179",
-        "cityName": "Palopo"
-      },
-      {
-        "cityId": "180",
-        "cityName": "Palu"
-      },
-      {
-        "cityId": "181",
-        "cityName": "Pamekasan"
-      },
-      {
-        "cityId": "182",
-        "cityName": "Pandeglang"
-      },
-      {
-        "cityId": "183",
-        "cityName": "Pangkajene"
-      },
-      {
-        "cityId": "184",
-        "cityName": "Pangkajene Sidenreng"
-      },
-      {
-        "cityId": "185",
-        "cityName": "Pangkalanbun"
-      },
-      {
-        "cityId": "186",
-        "cityName": "Pangkalpinang"
-      },
-      {
-        "cityId": "187",
-        "cityName": "Panyabungan"
-      },
-      {
-        "cityId": "188",
-        "cityName": "Pare"
-      },
-      {
-        "cityId": "189",
-        "cityName": "Parepare"
-      },
-      {
-        "cityId": "190",
-        "cityName": "Pariaman"
-      },
-      {
-        "cityId": "191",
-        "cityName": "Pasuruan"
-      },
-      {
-        "cityId": "192",
-        "cityName": "Pati"
-      },
-      {
-        "cityId": "193",
-        "cityName": "Payakumbuh"
-      },
-      {
-        "cityId": "194",
-        "cityName": "Pekalongan"
-      },
-      {
-        "cityId": "195",
-        "cityName": "Pekan Baru"
-      },
-      {
-        "cityId": "196",
-        "cityName": "Pemalang"
-      },
-      {
-        "cityId": "197",
-        "cityName": "Pematangsiantar"
-      },
-      {
-        "cityId": "198",
-        "cityName": "Pendopo"
-      },
-      {
-        "cityId": "199",
-        "cityName": "Pinrang"
-      },
-      {
-        "cityId": "200",
-        "cityName": "Pleihari"
-      },
-      {
-        "cityId": "201",
-        "cityName": "Polewali"
-      },
-      {
-        "cityId": "202",
-        "cityName": "Pondok Gede"
-      },
-      {
-        "cityId": "203",
-        "cityName": "Ponorogo"
-      },
-      {
-        "cityId": "204",
-        "cityName": "Pontianak"
-      },
-      {
-        "cityId": "205",
-        "cityName": "Poso"
-      },
-      {
-        "cityId": "206",
-        "cityName": "Prabumulih"
-      },
-      {
-        "cityId": "207",
-        "cityName": "Praya"
-      },
-      {
-        "cityId": "208",
-        "cityName": "Probolinggo"
-      },
-      {
-        "cityId": "209",
-        "cityName": "Purbalingga"
-      },
-      {
-        "cityId": "210",
-        "cityName": "Purukcahu"
-      },
-      {
-        "cityId": "211",
-        "cityName": "Purwakarta"
-      },
-      {
-        "cityId": "212",
-        "cityName": "Purwodadigrobogan"
-      },
-      {
-        "cityId": "213",
-        "cityName": "Purwokerto"
-      },
-      {
-        "cityId": "214",
-        "cityName": "Purworejo"
-      },
-      {
-        "cityId": "215",
-        "cityName": "Putussibau"
-      },
-      {
-        "cityId": "216",
-        "cityName": "Raha"
-      },
-      {
-        "cityId": "217",
-        "cityName": "Rangkasbitung"
-      },
-      {
-        "cityId": "218",
-        "cityName": "Rantau"
-      },
-      {
-        "cityId": "219",
-        "cityName": "Rantauprapat"
-      },
-      {
-        "cityId": "220",
-        "cityName": "Rantepao"
-      },
-      {
-        "cityId": "221",
-        "cityName": "Rembang"
-      },
-      {
-        "cityId": "222",
-        "cityName": "Rengat"
-      },
-      {
-        "cityId": "223",
-        "cityName": "Ruteng"
-      },
-      {
-        "cityId": "224",
-        "cityName": "Sabang"
-      },
-      {
-        "cityId": "225",
-        "cityName": "Salatiga"
-      },
-      {
-        "cityId": "226",
-        "cityName": "Samarinda"
-      },
-      {
-        "cityId": "227",
-        "cityName": "Sampang"
-      },
-      {
-        "cityId": "228",
-        "cityName": "Sampit"
-      },
-      {
-        "cityId": "229",
-        "cityName": "Sanggau"
-      },
-      {
-        "cityId": "230",
-        "cityName": "Sawahlunto"
-      },
-      {
-        "cityId": "231",
-        "cityName": "Sekayu"
-      },
-      {
-        "cityId": "232",
-        "cityName": "Selong"
-      },
-      {
-        "cityId": "233",
-        "cityName": "Semarang"
-      },
-      {
-        "cityId": "234",
-        "cityName": "Sengkang"
-      },
-      {
-        "cityId": "235",
-        "cityName": "Serang"
-      },
-      {
-        "cityId": "236",
-        "cityName": "Serui"
-      },
-      {
-        "cityId": "237",
-        "cityName": "Sibolga"
-      },
-      {
-        "cityId": "238",
-        "cityName": "Sidikalang"
-      },
-      {
-        "cityId": "239",
-        "cityName": "Sidoarjo"
-      },
-      {
-        "cityId": "240",
-        "cityName": "Sigli"
-      },
-      {
-        "cityId": "241",
-        "cityName": "Singaparna"
-      },
-      {
-        "cityId": "242",
-        "cityName": "Singaraja"
-      },
-      {
-        "cityId": "243",
-        "cityName": "Singkawang"
-      },
-      {
-        "cityId": "244",
-        "cityName": "Sinjai"
-      },
-      {
-        "cityId": "245",
-        "cityName": "Sintang"
-      },
-      {
-        "cityId": "246",
-        "cityName": "Situbondo"
-      },
-      {
-        "cityId": "247",
-        "cityName": "Slawi"
-      },
-      {
-        "cityId": "248",
-        "cityName": "Sleman"
-      },
-      {
-        "cityId": "249",
-        "cityName": "Soasiu"
-      },
-      {
-        "cityId": "250",
-        "cityName": "Soe"
-      },
-      {
-        "cityId": "251",
-        "cityName": "Solo"
-      },
-      {
-        "cityId": "252",
-        "cityName": "Solok"
-      },
-      {
-        "cityId": "253",
-        "cityName": "Soreang"
-      },
-      {
-        "cityId": "254",
-        "cityName": "Sorong"
-      },
-      {
-        "cityId": "255",
-        "cityName": "Sragen"
-      },
-      {
-        "cityId": "256",
-        "cityName": "Stabat"
-      },
-      {
-        "cityId": "257",
-        "cityName": "Subang"
-      },
-      {
-        "cityId": "258",
-        "cityName": "Sukabumi"
-      },
-      {
-        "cityId": "259",
-        "cityName": "Sukoharjo"
-      },
-      {
-        "cityId": "260",
-        "cityName": "Sumbawa Besar"
-      },
-      {
-        "cityId": "261",
-        "cityName": "Sumedang"
-      },
-      {
-        "cityId": "262",
-        "cityName": "Sumenep"
-      },
-      {
-        "cityId": "263",
-        "cityName": "Sungai Liat"
-      },
-      {
-        "cityId": "264",
-        "cityName": "Sungai Penuh"
-      },
-      {
-        "cityId": "265",
-        "cityName": "Sungguminasa"
-      },
-      {
-        "cityId": "266",
-        "cityName": "Surabaya"
-      },
-      {
-        "cityId": "267",
-        "cityName": "Surakarta"
-      },
-      {
-        "cityId": "268",
-        "cityName": "Tabanan"
-      },
-      {
-        "cityId": "269",
-        "cityName": "Tahuna"
-      },
-      {
-        "cityId": "270",
-        "cityName": "Takalar"
-      },
-      {
-        "cityId": "271",
-        "cityName": "Takengon"
-      },
-      {
-        "cityId": "272",
-        "cityName": "Tamiang Layang"
-      },
-      {
-        "cityId": "273",
-        "cityName": "Tanah Grogot"
-      },
-      {
-        "cityId": "274",
-        "cityName": "Tangerang"
-      },
-      {
-        "cityId": "275",
-        "cityName": "Tanjung Balai"
-      },
-      {
-        "cityId": "276",
-        "cityName": "Tanjung Enim"
-      },
-      {
-        "cityId": "277",
-        "cityName": "Tanjung Pandan"
-      },
-      {
-        "cityId": "278",
-        "cityName": "Tanjung Pinang"
-      },
-      {
-        "cityId": "279",
-        "cityName": "Tanjung Redep"
-      },
-      {
-        "cityId": "280",
-        "cityName": "Tanjung Selor"
-      },
-      {
-        "cityId": "281",
-        "cityName": "Tapak Tuan"
-      },
-      {
-        "cityId": "282",
-        "cityName": "Tarakan"
-      },
-      {
-        "cityId": "283",
-        "cityName": "Tarutung"
-      },
-      {
-        "cityId": "284",
-        "cityName": "Tasikmalaya"
-      },
-      {
-        "cityId": "285",
-        "cityName": "Tebing Tinggi"
-      },
-      {
-        "cityId": "286",
-        "cityName": "Tegal"
-      },
-      {
-        "cityId": "287",
-        "cityName": "Temanggung"
-      },
-      {
-        "cityId": "288",
-        "cityName": "Tembilahan"
-      },
-      {
-        "cityId": "289",
-        "cityName": "Tenggarong"
-      },
-      {
-        "cityId": "290",
-        "cityName": "Ternate"
-      },
-      {
-        "cityId": "291",
-        "cityName": "Tolitoli"
-      },
-      {
-        "cityId": "292",
-        "cityName": "Tondano"
-      },
-      {
-        "cityId": "293",
-        "cityName": "Trenggalek"
-      },
-      {
-        "cityId": "294",
-        "cityName": "Tual"
-      },
-      {
-        "cityId": "295",
-        "cityName": "Tuban"
-      },
-      {
-        "cityId": "296",
-        "cityName": "Tulung Agung"
-      },
-      {
-        "cityId": "297",
-        "cityName": "Ujung Berung"
-      },
-      {
-        "cityId": "298",
-        "cityName": "Ungaran"
-      },
-      {
-        "cityId": "299",
-        "cityName": "Waikabubak"
-      },
-      {
-        "cityId": "300",
-        "cityName": "Waingapu"
-      },
-      {
-        "cityId": "301",
-        "cityName": "Wamena"
-      },
-      {
-        "cityId": "302",
-        "cityName": "Watampone"
-      },
-      {
-        "cityId": "303",
-        "cityName": "Watansoppeng"
-      },
-      {
-        "cityId": "304",
-        "cityName": "Wates"
-      },
-      {
-        "cityId": "305",
-        "cityName": "Wonogiri"
-      },
-      {
-        "cityId": "306",
-        "cityName": "Wonosari"
-      },
-      {
-        "cityId": "307",
-        "cityName": "Wonosobo"
-      },
-      {
-        "cityId": "308",
-        "cityName": "Yogyakarta"
-      }
-    ]
+[
+  {
+    "id": "0101",
+    "lokasi": "Kabupaten Aceh Barat"
+  },
+  {
+    "id": "0102",
+    "lokasi": "Kabupaten Aceh Barat Daya"
+  },
+  {
+    "id": "0103",
+    "lokasi": "Kabupaten Aceh Besar"
+  },
+  {
+    "id": "0104",
+    "lokasi": "Kabupaten Aceh Jaya"
+  },
+  {
+    "id": "0105",
+    "lokasi": "Kabupaten Aceh Selatan"
+  },
+  {
+    "id": "0106",
+    "lokasi": "Kabupaten Aceh Singkil"
+  },
+  {
+    "id": "0107",
+    "lokasi": "Kabupaten Aceh Tamiang"
+  },
+  {
+    "id": "0108",
+    "lokasi": "Kabupaten Aceh Tengah"
+  },
+  {
+    "id": "0109",
+    "lokasi": "Kabupaten Aceh Tenggara"
+  },
+  {
+    "id": "0110",
+    "lokasi": "Kabupaten Aceh Timur"
+  },
+  {
+    "id": "0111",
+    "lokasi": "Kabupaten Aceh Utara"
+  },
+  {
+    "id": "0112",
+    "lokasi": "Kabupaten Bener Meriah"
+  },
+  {
+    "id": "0113",
+    "lokasi": "Kabupaten Bireuen"
+  },
+  {
+    "id": "0114",
+    "lokasi": "Kabupaten Gayo Lues"
+  },
+  {
+    "id": "0115",
+    "lokasi": "Kabupaten Nagan Raya"
+  },
+  {
+    "id": "0116",
+    "lokasi": "Kabupaten Pidie"
+  },
+  {
+    "id": "0117",
+    "lokasi": "Kabupaten Pidie Jaya"
+  },
+  {
+    "id": "0118",
+    "lokasi": "Kabupaten Simeulue"
+  },
+  {
+    "id": "0119",
+    "lokasi": "Kota Banda Aceh"
+  },
+  {
+    "id": "0120",
+    "lokasi": "Kota Langsa"
+  },
+  {
+    "id": "0121",
+    "lokasi": "Kota Lhokseumawe"
+  },
+  {
+    "id": "0122",
+    "lokasi": "Kota Sabang"
+  },
+  {
+    "id": "0123",
+    "lokasi": "Kota Subulussalam"
+  },
+  {
+    "id": "0201",
+    "lokasi": "Kabupaten Asahan"
+  },
+  {
+    "id": "0202",
+    "lokasi": "Kabupaten Batubara"
+  },
+  {
+    "id": "0203",
+    "lokasi": "Kabupaten Dairi"
+  },
+  {
+    "id": "0204",
+    "lokasi": "Kabupaten Deli Serdang"
+  },
+  {
+    "id": "0205",
+    "lokasi": "Kabupaten Humbang Hasundutan"
+  },
+  {
+    "id": "0206",
+    "lokasi": "Kabupaten Karo"
+  },
+  {
+    "id": "0207",
+    "lokasi": "Kabupaten Labuhanbatu"
+  },
+  {
+    "id": "0208",
+    "lokasi": "Kabupaten Labuhanbatu Selatan"
+  },
+  {
+    "id": "0209",
+    "lokasi": "Kabupaten Labuhanbatu Utara"
+  },
+  {
+    "id": "0210",
+    "lokasi": "Kabupaten Langkat"
+  },
+  {
+    "id": "0211",
+    "lokasi": "Kabupaten Mandailing Natal"
+  },
+  {
+    "id": "0212",
+    "lokasi": "Kabupaten Nias"
+  },
+  {
+    "id": "0213",
+    "lokasi": "Kabupaten Nias Barat"
+  },
+  {
+    "id": "0214",
+    "lokasi": "Kabupaten Nias Selatan"
+  },
+  {
+    "id": "0215",
+    "lokasi": "Kabupaten Nias Utara"
+  },
+  {
+    "id": "0216",
+    "lokasi": "Kabupaten Padang Lawas"
+  },
+  {
+    "id": "0217",
+    "lokasi": "Kabupaten Padang Lawas Utara"
+  },
+  {
+    "id": "0218",
+    "lokasi": "Kabupaten Pakpak Bharat"
+  },
+  {
+    "id": "0219",
+    "lokasi": "Kabupaten Samosir"
+  },
+  {
+    "id": "0220",
+    "lokasi": "Kabupaten Serdang Bedagai"
+  },
+  {
+    "id": "0221",
+    "lokasi": "Kabupaten Simalungun"
+  },
+  {
+    "id": "0222",
+    "lokasi": "Kabupaten Tapanuli Selatan"
+  },
+  {
+    "id": "0223",
+    "lokasi": "Kabupaten Tapanuli Tengah"
+  },
+  {
+    "id": "0224",
+    "lokasi": "Kabupaten Tapanuli Utara"
+  },
+  {
+    "id": "0225",
+    "lokasi": "Kabupaten Toba Samosir"
+  },
+  {
+    "id": "0226",
+    "lokasi": "Kota Binjai"
+  },
+  {
+    "id": "0227",
+    "lokasi": "Kota Gunungsitoli"
+  },
+  {
+    "id": "0228",
+    "lokasi": "Kota Medan"
+  },
+  {
+    "id": "0229",
+    "lokasi": "Kota Padangsidempuan"
+  },
+  {
+    "id": "0230",
+    "lokasi": "Kota Pematangsiantar"
+  },
+  {
+    "id": "0231",
+    "lokasi": "Kota Sibolga"
+  },
+  {
+    "id": "0232",
+    "lokasi": "Kota Tanjungbalai"
+  },
+  {
+    "id": "0233",
+    "lokasi": "Kota Tebing Tinggi"
+  },
+  {
+    "id": "0301",
+    "lokasi": "Kabupaten Agam"
+  },
+  {
+    "id": "0302",
+    "lokasi": "Kabupaten Dharmasraya"
+  },
+  {
+    "id": "0303",
+    "lokasi": "Kabupaten Kepulauan Mentawai"
+  },
+  {
+    "id": "0304",
+    "lokasi": "Kabupaten Lima Puluh Kota"
+  },
+  {
+    "id": "0305",
+    "lokasi": "Kabupaten Padang Pariaman"
+  },
+  {
+    "id": "0306",
+    "lokasi": "Kabupaten Pasaman"
+  },
+  {
+    "id": "0307",
+    "lokasi": "Kabupaten Pasaman Barat"
+  },
+  {
+    "id": "0308",
+    "lokasi": "Kabupaten Pesisir Selatan"
+  },
+  {
+    "id": "0309",
+    "lokasi": "Kabupaten Sijunjung"
+  },
+  {
+    "id": "0310",
+    "lokasi": "Kabupaten Solok"
+  },
+  {
+    "id": "0311",
+    "lokasi": "Kabupaten Solok Selatan"
+  },
+  {
+    "id": "0312",
+    "lokasi": "Kabupaten Tanah Datar"
+  },
+  {
+    "id": "0313",
+    "lokasi": "Kota Bukittinggi"
+  },
+  {
+    "id": "0314",
+    "lokasi": "Kota Padang"
+  },
+  {
+    "id": "0315",
+    "lokasi": "Kota Padangpanjang"
+  },
+  {
+    "id": "0316",
+    "lokasi": "Kota Pariaman"
+  },
+  {
+    "id": "0317",
+    "lokasi": "Kota Payakumbuh"
+  },
+  {
+    "id": "0318",
+    "lokasi": "Kota Sawahlunto"
+  },
+  {
+    "id": "0319",
+    "lokasi": "Kota Solok"
+  },
+  {
+    "id": "0401",
+    "lokasi": "Kabupaten Bengkalis"
+  },
+  {
+    "id": "0402",
+    "lokasi": "Kabupaten Indragiri Hilir"
+  },
+  {
+    "id": "0403",
+    "lokasi": "Kabupaten Indragiri Hulu"
+  },
+  {
+    "id": "0404",
+    "lokasi": "Kabupaten Kampar"
+  },
+  {
+    "id": "0405",
+    "lokasi": "Kabupaten Kepulauan Meranti"
+  },
+  {
+    "id": "0406",
+    "lokasi": "Kabupaten Kuantan Singingi"
+  },
+  {
+    "id": "0407",
+    "lokasi": "Kabupaten Pelalawan"
+  },
+  {
+    "id": "0408",
+    "lokasi": "Kabupaten Rokan Hilir"
+  },
+  {
+    "id": "0409",
+    "lokasi": "Kabupaten Rokan Hulu"
+  },
+  {
+    "id": "0410",
+    "lokasi": "Kabupaten Siak"
+  },
+  {
+    "id": "0411",
+    "lokasi": "Kota Dumai"
+  },
+  {
+    "id": "0412",
+    "lokasi": "Kota Pekanbaru"
+  },
+  {
+    "id": "0501",
+    "lokasi": "Kabupaten Bintan"
+  },
+  {
+    "id": "0502",
+    "lokasi": "Kabupaten Karimun"
+  },
+  {
+    "id": "0503",
+    "lokasi": "Kabupaten Kepulauan Anambas"
+  },
+  {
+    "id": "0504",
+    "lokasi": "Kabupaten Lingga"
+  },
+  {
+    "id": "0505",
+    "lokasi": "Kabupaten Natuna"
+  },
+  {
+    "id": "0506",
+    "lokasi": "Kota Batam"
+  },
+  {
+    "id": "0507",
+    "lokasi": "Kota Tanjung Pinang"
+  },
+  {
+    "id": "0508",
+    "lokasi": "Pulau Tambelan Kabupaten Bintan"
+  },
+  {
+    "id": "0509",
+    "lokasi": "Pekajang Kabupaten Lingga"
+  },
+  {
+    "id": "0510",
+    "lokasi": "Pulau Serasan Kabupaten Natuna"
+  },
+  {
+    "id": "0511",
+    "lokasi": "Pulau Midai Kabupaten Natuna"
+  },
+  {
+    "id": "0512",
+    "lokasi": "Pulau Laut Kabupaten Natuna"
+  },
+  {
+    "id": "0601",
+    "lokasi": "Kabupaten Batanghari"
+  },
+  {
+    "id": "0602",
+    "lokasi": "Kabupaten Bungo"
+  },
+  {
+    "id": "0603",
+    "lokasi": "Kabupaten Kerinci"
+  },
+  {
+    "id": "0604",
+    "lokasi": "Kabupaten Merangin"
+  },
+  {
+    "id": "0605",
+    "lokasi": "Kabupaten Muaro Jambi"
+  },
+  {
+    "id": "0606",
+    "lokasi": "Kabupaten Sarolangun"
+  },
+  {
+    "id": "0607",
+    "lokasi": "Kabupaten Tanjung Jabung Barat"
+  },
+  {
+    "id": "0608",
+    "lokasi": "Kabupaten Tanjung Jabung Timur"
+  },
+  {
+    "id": "0609",
+    "lokasi": "Kabupaten Tebo"
+  },
+  {
+    "id": "0610",
+    "lokasi": "Kota Jambi"
+  },
+  {
+    "id": "0611",
+    "lokasi": "Kota Sungai Penuh"
+  },
+  {
+    "id": "0701",
+    "lokasi": "Kabupaten Bengkulu Selatan"
+  },
+  {
+    "id": "0702",
+    "lokasi": "Kabupaten Bengkulu Tengah"
+  },
+  {
+    "id": "0703",
+    "lokasi": "Kabupaten Bengkulu Utara"
+  },
+  {
+    "id": "0704",
+    "lokasi": "Kabupaten Kaur"
+  },
+  {
+    "id": "0705",
+    "lokasi": "Kabupaten Kepahiang"
+  },
+  {
+    "id": "0706",
+    "lokasi": "Kabupaten Lebong"
+  },
+  {
+    "id": "0707",
+    "lokasi": "Kabupaten Mukomuko"
+  },
+  {
+    "id": "0708",
+    "lokasi": "Kabupaten Rejang Lebong"
+  },
+  {
+    "id": "0709",
+    "lokasi": "Kabupaten Seluma"
+  },
+  {
+    "id": "0710",
+    "lokasi": "Kota Bengkulu"
+  },
+  {
+    "id": "0801",
+    "lokasi": "Kabupaten Banyuasin"
+  },
+  {
+    "id": "0802",
+    "lokasi": "Kabupaten Empat Lawang"
+  },
+  {
+    "id": "0803",
+    "lokasi": "Kabupaten Lahat"
+  },
+  {
+    "id": "0804",
+    "lokasi": "Kabupaten Muara Enim"
+  },
+  {
+    "id": "0805",
+    "lokasi": "Kabupaten Musi Banyuasin"
+  },
+  {
+    "id": "0806",
+    "lokasi": "Kabupaten Musi Rawas"
+  },
+  {
+    "id": "0807",
+    "lokasi": "Kabupaten Musi Rawas Utara"
+  },
+  {
+    "id": "0808",
+    "lokasi": "Kabupaten Ogan Ilir"
+  },
+  {
+    "id": "0809",
+    "lokasi": "Kabupaten Ogan Komering Ilir"
+  },
+  {
+    "id": "0810",
+    "lokasi": "Kabupaten Ogan Komering Ulu"
+  },
+  {
+    "id": "0811",
+    "lokasi": "Kabupaten Ogan Komering Ulu Selatan"
+  },
+  {
+    "id": "0812",
+    "lokasi": "Kabupaten Ogan Komering Ulu Timur"
+  },
+  {
+    "id": "0813",
+    "lokasi": "Kabupaten Penukal Abab Lematang Ilir"
+  },
+  {
+    "id": "0814",
+    "lokasi": "Kota Lubuklinggau"
+  },
+  {
+    "id": "0815",
+    "lokasi": "Kota Pagar Alam"
+  },
+  {
+    "id": "0816",
+    "lokasi": "Kota Palembang"
+  },
+  {
+    "id": "0817",
+    "lokasi": "Kota Prabumulih"
+  },
+  {
+    "id": "0901",
+    "lokasi": "Kabupaten Bangka"
+  },
+  {
+    "id": "0902",
+    "lokasi": "Kabupaten Bangka Barat"
+  },
+  {
+    "id": "0903",
+    "lokasi": "Kabupaten Bangka Selatan"
+  },
+  {
+    "id": "0904",
+    "lokasi": "Kabupaten Bangka Tengah"
+  },
+  {
+    "id": "0905",
+    "lokasi": "Kabupaten Belitung"
+  },
+  {
+    "id": "0906",
+    "lokasi": "Kabupaten Belitung Timur"
+  },
+  {
+    "id": "0907",
+    "lokasi": "Kota Pangkal Pinang"
+  },
+  {
+    "id": "1001",
+    "lokasi": "Kabupaten Lampung Tengah"
+  },
+  {
+    "id": "1002",
+    "lokasi": "Kabupaten Lampung Utara"
+  },
+  {
+    "id": "1003",
+    "lokasi": "Kabupaten Lampung Selatan"
+  },
+  {
+    "id": "1004",
+    "lokasi": "Kabupaten Lampung Barat"
+  },
+  {
+    "id": "1005",
+    "lokasi": "Kabupaten Lampung Timur"
+  },
+  {
+    "id": "1006",
+    "lokasi": "Kabupaten Mesuji"
+  },
+  {
+    "id": "1007",
+    "lokasi": "Kabupaten Pesawaran"
+  },
+  {
+    "id": "1008",
+    "lokasi": "Kabupaten Pesisir Barat"
+  },
+  {
+    "id": "1009",
+    "lokasi": "Kabupaten Pringsewu"
+  },
+  {
+    "id": "1010",
+    "lokasi": "Kabupaten Tulang Bawang"
+  },
+  {
+    "id": "1011",
+    "lokasi": "Kabupaten Tulang Bawang Barat"
+  },
+  {
+    "id": "1012",
+    "lokasi": "Kabupaten Tanggamus"
+  },
+  {
+    "id": "1013",
+    "lokasi": "Kabupaten Way Kanan"
+  },
+  {
+    "id": "1014",
+    "lokasi": "Kota Bandar Lampung"
+  },
+  {
+    "id": "1015",
+    "lokasi": "Kota Metro"
+  },
+  {
+    "id": "1101",
+    "lokasi": "Kabupaten Lebak"
+  },
+  {
+    "id": "1102",
+    "lokasi": "Kabupaten Pandeglang"
+  },
+  {
+    "id": "1103",
+    "lokasi": "Kabupaten Serang"
+  },
+  {
+    "id": "1104",
+    "lokasi": "Kabupaten Tangerang"
+  },
+  {
+    "id": "1105",
+    "lokasi": "Kota Cilegon"
+  },
+  {
+    "id": "1106",
+    "lokasi": "Kota Serang"
+  },
+  {
+    "id": "1107",
+    "lokasi": "Kota Tangerang"
+  },
+  {
+    "id": "1108",
+    "lokasi": "Kota Tangerang Selatan"
+  },
+  {
+    "id": "1201",
+    "lokasi": "Kabupaten Bandung"
+  },
+  {
+    "id": "1202",
+    "lokasi": "Kabupaten Bandung Barat"
+  },
+  {
+    "id": "1203",
+    "lokasi": "Kabupaten Bekasi"
+  },
+  {
+    "id": "1204",
+    "lokasi": "Kabupaten Bogor"
+  },
+  {
+    "id": "1205",
+    "lokasi": "Kabupaten Ciamis"
+  },
+  {
+    "id": "1206",
+    "lokasi": "Kabupaten Cianjur"
+  },
+  {
+    "id": "1207",
+    "lokasi": "Kabupaten Cirebon"
+  },
+  {
+    "id": "1208",
+    "lokasi": "Kabupaten Garut"
+  },
+  {
+    "id": "1209",
+    "lokasi": "Kabupaten Indramayu"
+  },
+  {
+    "id": "1210",
+    "lokasi": "Kabupaten Karawang"
+  },
+  {
+    "id": "1211",
+    "lokasi": "Kabupaten Kuningan"
+  },
+  {
+    "id": "1212",
+    "lokasi": "Kabupaten Majalengka"
+  },
+  {
+    "id": "1213",
+    "lokasi": "Kabupaten Pangandaran"
+  },
+  {
+    "id": "1214",
+    "lokasi": "Kabupaten Purwakarta"
+  },
+  {
+    "id": "1215",
+    "lokasi": "Kabupaten Subang"
+  },
+  {
+    "id": "1216",
+    "lokasi": "Kabupaten Sukabumi"
+  },
+  {
+    "id": "1217",
+    "lokasi": "Kabupaten Sumedang"
+  },
+  {
+    "id": "1218",
+    "lokasi": "Kabupaten Tasikmalaya"
+  },
+  {
+    "id": "1219",
+    "lokasi": "Kota Bandung"
+  },
+  {
+    "id": "1220",
+    "lokasi": "Kota Banjar"
+  },
+  {
+    "id": "1221",
+    "lokasi": "Kota Bekasi"
+  },
+  {
+    "id": "1222",
+    "lokasi": "Kota Bogor"
+  },
+  {
+    "id": "1223",
+    "lokasi": "Kota Cimahi"
+  },
+  {
+    "id": "1224",
+    "lokasi": "Kota Cirebon"
+  },
+  {
+    "id": "1225",
+    "lokasi": "Kota Depok"
+  },
+  {
+    "id": "1226",
+    "lokasi": "Kota Sukabumi"
+  },
+  {
+    "id": "1227",
+    "lokasi": "Kota Tasikmalaya"
+  },
+  {
+    "id": "1301",
+    "lokasi": "Kota Jakarta"
+  },
+  {
+    "id": "1302",
+    "lokasi": "Kabupaten Kepulauan Seribu"
+  },
+  {
+    "id": "1401",
+    "lokasi": "Kabupaten Banjarnegara"
+  },
+  {
+    "id": "1402",
+    "lokasi": "Kabupaten Banyumas"
+  },
+  {
+    "id": "1403",
+    "lokasi": "Kabupaten Batang"
+  },
+  {
+    "id": "1404",
+    "lokasi": "Kabupaten Blora"
+  },
+  {
+    "id": "1405",
+    "lokasi": "Kabupaten Boyolali"
+  },
+  {
+    "id": "1406",
+    "lokasi": "Kabupaten Brebes"
+  },
+  {
+    "id": "1407",
+    "lokasi": "Kabupaten Cilacap"
+  },
+  {
+    "id": "1408",
+    "lokasi": "Kabupaten Demak"
+  },
+  {
+    "id": "1409",
+    "lokasi": "Kabupaten Grobogan"
+  },
+  {
+    "id": "1410",
+    "lokasi": "Kabupaten Jepara"
+  },
+  {
+    "id": "1411",
+    "lokasi": "Kabupaten Karanganyar"
+  },
+  {
+    "id": "1412",
+    "lokasi": "Kabupaten Kebumen"
+  },
+  {
+    "id": "1413",
+    "lokasi": "Kabupaten Kendal"
+  },
+  {
+    "id": "1414",
+    "lokasi": "Kabupaten Klaten"
+  },
+  {
+    "id": "1415",
+    "lokasi": "Kabupaten Kudus"
+  },
+  {
+    "id": "1416",
+    "lokasi": "Kabupaten Magelang"
+  },
+  {
+    "id": "1417",
+    "lokasi": "Kabupaten Pati"
+  },
+  {
+    "id": "1418",
+    "lokasi": "Kabupaten Pekalongan"
+  },
+  {
+    "id": "1419",
+    "lokasi": "Kabupaten Pemalang"
+  },
+  {
+    "id": "1420",
+    "lokasi": "Kabupaten Purbalingga"
+  },
+  {
+    "id": "1421",
+    "lokasi": "Kabupaten Purworejo"
+  },
+  {
+    "id": "1422",
+    "lokasi": "Kabupaten Rembang"
+  },
+  {
+    "id": "1423",
+    "lokasi": "Kabupaten Semarang"
+  },
+  {
+    "id": "1424",
+    "lokasi": "Kabupaten Sragen"
+  },
+  {
+    "id": "1425",
+    "lokasi": "Kabupaten Sukoharjo"
+  },
+  {
+    "id": "1426",
+    "lokasi": "Kabupaten Tegal"
+  },
+  {
+    "id": "1427",
+    "lokasi": "Kabupaten Temanggung"
+  },
+  {
+    "id": "1428",
+    "lokasi": "Kabupaten Wonogiri"
+  },
+  {
+    "id": "1429",
+    "lokasi": "Kabupaten Wonosobo"
+  },
+  {
+    "id": "1430",
+    "lokasi": "Kota Magelang"
+  },
+  {
+    "id": "1431",
+    "lokasi": "Kota Pekalongan"
+  },
+  {
+    "id": "1432",
+    "lokasi": "Kota Salatiga"
+  },
+  {
+    "id": "1433",
+    "lokasi": "Kota Semarang"
+  },
+  {
+    "id": "1434",
+    "lokasi": "Kota Surakarta"
+  },
+  {
+    "id": "1435",
+    "lokasi": "Kota Tegal"
+  },
+  {
+    "id": "1501",
+    "lokasi": "Kabupaten Bantul"
+  },
+  {
+    "id": "1502",
+    "lokasi": "Kabupaten Gunungkidul"
+  },
+  {
+    "id": "1503",
+    "lokasi": "Kabupaten Kulon Progo"
+  },
+  {
+    "id": "1504",
+    "lokasi": "Kabupaten Sleman"
+  },
+  {
+    "id": "1505",
+    "lokasi": "Kota Yogyakarta"
+  },
+  {
+    "id": "1601",
+    "lokasi": "Kabupaten Bangkalan"
+  },
+  {
+    "id": "1602",
+    "lokasi": "Kabupaten Banyuwangi"
+  },
+  {
+    "id": "1603",
+    "lokasi": "Kabupaten Blitar"
+  },
+  {
+    "id": "1604",
+    "lokasi": "Kabupaten Bojonegoro"
+  },
+  {
+    "id": "1605",
+    "lokasi": "Kabupaten Bondowoso"
+  },
+  {
+    "id": "1606",
+    "lokasi": "Kabupaten Gresik"
+  },
+  {
+    "id": "1607",
+    "lokasi": "Kabupaten Jember"
+  },
+  {
+    "id": "1608",
+    "lokasi": "Kabupaten Jombang"
+  },
+  {
+    "id": "1609",
+    "lokasi": "Kabupaten Kediri"
+  },
+  {
+    "id": "1610",
+    "lokasi": "Kabupaten Lamongan"
+  },
+  {
+    "id": "1611",
+    "lokasi": "Kabupaten Lumajang"
+  },
+  {
+    "id": "1612",
+    "lokasi": "Kabupaten Madiun"
+  },
+  {
+    "id": "1613",
+    "lokasi": "Kabupaten Magetan"
+  },
+  {
+    "id": "1614",
+    "lokasi": "Kabupaten Malang"
+  },
+  {
+    "id": "1615",
+    "lokasi": "Kabupaten Mojokerto"
+  },
+  {
+    "id": "1616",
+    "lokasi": "Kabupaten Nganjuk"
+  },
+  {
+    "id": "1617",
+    "lokasi": "Kabupaten Ngawi"
+  },
+  {
+    "id": "1618",
+    "lokasi": "Kabupaten Pacitan"
+  },
+  {
+    "id": "1619",
+    "lokasi": "Kabupaten Pamekasan"
+  },
+  {
+    "id": "1620",
+    "lokasi": "Kabupaten Pasuruan"
+  },
+  {
+    "id": "1621",
+    "lokasi": "Kabupaten Ponorogo"
+  },
+  {
+    "id": "1622",
+    "lokasi": "Kabupaten Probolinggo"
+  },
+  {
+    "id": "1623",
+    "lokasi": "Kabupaten Sampang"
+  },
+  {
+    "id": "1624",
+    "lokasi": "Kabupaten Sidoarjo"
+  },
+  {
+    "id": "1625",
+    "lokasi": "Kabupaten Situbondo"
+  },
+  {
+    "id": "1626",
+    "lokasi": "Kabupaten Sumenep"
+  },
+  {
+    "id": "1627",
+    "lokasi": "Kabupaten Trenggalek"
+  },
+  {
+    "id": "1628",
+    "lokasi": "Kabupaten Tuban"
+  },
+  {
+    "id": "1629",
+    "lokasi": "Kabupaten Tulungagung"
+  },
+  {
+    "id": "1630",
+    "lokasi": "Kota Batu"
+  },
+  {
+    "id": "1631",
+    "lokasi": "Kota Blitar"
+  },
+  {
+    "id": "1632",
+    "lokasi": "Kota Kediri"
+  },
+  {
+    "id": "1633",
+    "lokasi": "Kota Madiun"
+  },
+  {
+    "id": "1634",
+    "lokasi": "Kota Malang"
+  },
+  {
+    "id": "1635",
+    "lokasi": "Kota Mojokerto"
+  },
+  {
+    "id": "1636",
+    "lokasi": "Kota Pasuruan"
+  },
+  {
+    "id": "1637",
+    "lokasi": "Kota Probolinggo"
+  },
+  {
+    "id": "1638",
+    "lokasi": "Kota Surabaya"
+  },
+  {
+    "id": "1701",
+    "lokasi": "Kabupaten Badung"
+  },
+  {
+    "id": "1702",
+    "lokasi": "Kabupaten Bangli"
+  },
+  {
+    "id": "1703",
+    "lokasi": "Kabupaten Buleleng"
+  },
+  {
+    "id": "1704",
+    "lokasi": "Kabupaten Gianyar"
+  },
+  {
+    "id": "1705",
+    "lokasi": "Kabupaten Jembrana"
+  },
+  {
+    "id": "1706",
+    "lokasi": "Kabupaten Karangasem"
+  },
+  {
+    "id": "1707",
+    "lokasi": "Kabupaten Klungkung"
+  },
+  {
+    "id": "1708",
+    "lokasi": "Kabupaten Tabanan"
+  },
+  {
+    "id": "1709",
+    "lokasi": "Kota Denpasar"
+  },
+  {
+    "id": "1801",
+    "lokasi": "Kabupaten Bima"
+  },
+  {
+    "id": "1802",
+    "lokasi": "Kabupaten Dompu"
+  },
+  {
+    "id": "1803",
+    "lokasi": "Kabupaten Lombok Barat"
+  },
+  {
+    "id": "1804",
+    "lokasi": "Kabupaten Lombok Tengah"
+  },
+  {
+    "id": "1805",
+    "lokasi": "Kabupaten Lombok Timur"
+  },
+  {
+    "id": "1806",
+    "lokasi": "Kabupaten Lombok Utara"
+  },
+  {
+    "id": "1807",
+    "lokasi": "Kabupaten Sumbawa"
+  },
+  {
+    "id": "1808",
+    "lokasi": "Kabupaten Sumbawa Barat"
+  },
+  {
+    "id": "1809",
+    "lokasi": "Kota Bima"
+  },
+  {
+    "id": "1810",
+    "lokasi": "Kota Mataram"
+  },
+  {
+    "id": "1901",
+    "lokasi": "Kabupaten Alor"
+  },
+  {
+    "id": "1902",
+    "lokasi": "Kabupaten Belu"
+  },
+  {
+    "id": "1903",
+    "lokasi": "Kabupaten Ende"
+  },
+  {
+    "id": "1904",
+    "lokasi": "Kabupaten Flores Timur"
+  },
+  {
+    "id": "1905",
+    "lokasi": "Kabupaten Kupang"
+  },
+  {
+    "id": "1906",
+    "lokasi": "Kabupaten Lembata"
+  },
+  {
+    "id": "1907",
+    "lokasi": "Kabupaten Malaka"
+  },
+  {
+    "id": "1908",
+    "lokasi": "Kabupaten Manggarai"
+  },
+  {
+    "id": "1909",
+    "lokasi": "Kabupaten Manggarai Barat"
+  },
+  {
+    "id": "1910",
+    "lokasi": "Kabupaten Manggarai Timur"
+  },
+  {
+    "id": "1911",
+    "lokasi": "Kabupaten Ngada"
+  },
+  {
+    "id": "1912",
+    "lokasi": "Kabupaten Nagekeo"
+  },
+  {
+    "id": "1913",
+    "lokasi": "Kabupaten Rote Ndao"
+  },
+  {
+    "id": "1914",
+    "lokasi": "Kabupaten Sabu Raijua"
+  },
+  {
+    "id": "1915",
+    "lokasi": "Kabupaten Sikka"
+  },
+  {
+    "id": "1916",
+    "lokasi": "Kabupaten Sumba Barat"
+  },
+  {
+    "id": "1917",
+    "lokasi": "Kabupaten Sumba Barat Daya"
+  },
+  {
+    "id": "1918",
+    "lokasi": "Kabupaten Sumba Tengah"
+  },
+  {
+    "id": "1919",
+    "lokasi": "Kabupaten Sumba Timur"
+  },
+  {
+    "id": "1920",
+    "lokasi": "Kabupaten Timor Tengah Selatan"
+  },
+  {
+    "id": "1921",
+    "lokasi": "Kabupaten Timor Tengah Utara"
+  },
+  {
+    "id": "1922",
+    "lokasi": "Kota Kupang"
+  },
+  {
+    "id": "2001",
+    "lokasi": "Kabupaten Bengkayang"
+  },
+  {
+    "id": "2002",
+    "lokasi": "Kabupaten Kapuas Hulu"
+  },
+  {
+    "id": "2003",
+    "lokasi": "Kabupaten Kayong Utara"
+  },
+  {
+    "id": "2004",
+    "lokasi": "Kabupaten Ketapang"
+  },
+  {
+    "id": "2005",
+    "lokasi": "Kabupaten Kubu Raya"
+  },
+  {
+    "id": "2006",
+    "lokasi": "Kabupaten Landak"
+  },
+  {
+    "id": "2007",
+    "lokasi": "Kabupaten Melawi"
+  },
+  {
+    "id": "2008",
+    "lokasi": "Kabupaten Mempawah"
+  },
+  {
+    "id": "2009",
+    "lokasi": "Kabupaten Sambas"
+  },
+  {
+    "id": "2010",
+    "lokasi": "Kabupaten Sanggau"
+  },
+  {
+    "id": "2011",
+    "lokasi": "Kabupaten Sekadau"
+  },
+  {
+    "id": "2012",
+    "lokasi": "Kabupaten Sintang"
+  },
+  {
+    "id": "2013",
+    "lokasi": "Kota Pontianak"
+  },
+  {
+    "id": "2014",
+    "lokasi": "Kota Singkawang"
+  },
+  {
+    "id": "2101",
+    "lokasi": "Kabupaten Balangan"
+  },
+  {
+    "id": "2102",
+    "lokasi": "Kabupaten Banjar"
+  },
+  {
+    "id": "2103",
+    "lokasi": "Kabupaten Barito Kuala"
+  },
+  {
+    "id": "2104",
+    "lokasi": "Kabupaten Hulu Sungai Selatan"
+  },
+  {
+    "id": "2105",
+    "lokasi": "Kabupaten Hulu Sungai Tengah"
+  },
+  {
+    "id": "2106",
+    "lokasi": "Kabupaten Hulu Sungai Utara"
+  },
+  {
+    "id": "2107",
+    "lokasi": "Kabupaten Kotabaru"
+  },
+  {
+    "id": "2108",
+    "lokasi": "Kabupaten Tabalong"
+  },
+  {
+    "id": "2109",
+    "lokasi": "Kabupaten Tanah Bumbu"
+  },
+  {
+    "id": "2110",
+    "lokasi": "Kabupaten Tanah Laut"
+  },
+  {
+    "id": "2111",
+    "lokasi": "Kabupaten Tapin"
+  },
+  {
+    "id": "2112",
+    "lokasi": "Kota Banjarbaru"
+  },
+  {
+    "id": "2113",
+    "lokasi": "Kota Banjarmasin"
+  },
+  {
+    "id": "2201",
+    "lokasi": "Kabupaten Barito Selatan"
+  },
+  {
+    "id": "2202",
+    "lokasi": "Kabupaten Barito Timur"
+  },
+  {
+    "id": "2203",
+    "lokasi": "Kabupaten Barito Utara"
+  },
+  {
+    "id": "2204",
+    "lokasi": "Kabupaten Gunung Mas"
+  },
+  {
+    "id": "2205",
+    "lokasi": "Kabupaten Kapuas"
+  },
+  {
+    "id": "2206",
+    "lokasi": "Kabupaten Katingan"
+  },
+  {
+    "id": "2207",
+    "lokasi": "Kabupaten Kotawaringin Barat"
+  },
+  {
+    "id": "2208",
+    "lokasi": "Kabupaten Kotawaringin Timur"
+  },
+  {
+    "id": "2209",
+    "lokasi": "Kabupaten Lamandau"
+  },
+  {
+    "id": "2210",
+    "lokasi": "Kabupaten Murung Raya"
+  },
+  {
+    "id": "2211",
+    "lokasi": "Kabupaten Pulang Pisau"
+  },
+  {
+    "id": "2212",
+    "lokasi": "Kabupaten Sukamara"
+  },
+  {
+    "id": "2213",
+    "lokasi": "Kabupaten Seruyan"
+  },
+  {
+    "id": "2214",
+    "lokasi": "Kota Palangkaraya"
+  },
+  {
+    "id": "2301",
+    "lokasi": "Kabupaten Berau"
+  },
+  {
+    "id": "2302",
+    "lokasi": "Kabupaten Kutai Barat"
+  },
+  {
+    "id": "2303",
+    "lokasi": "Kabupaten Kutai Kartanegara"
+  },
+  {
+    "id": "2304",
+    "lokasi": "Kabupaten Kutai Timur"
+  },
+  {
+    "id": "2305",
+    "lokasi": "Kabupaten Mahakam Ulu"
+  },
+  {
+    "id": "2306",
+    "lokasi": "Kabupaten Paser"
+  },
+  {
+    "id": "2307",
+    "lokasi": "Kabupaten Penajam Paser Utara"
+  },
+  {
+    "id": "2308",
+    "lokasi": "Kota Balikpapan"
+  },
+  {
+    "id": "2309",
+    "lokasi": "Kota Bontang"
+  },
+  {
+    "id": "2310",
+    "lokasi": "Kota Samarinda"
+  },
+  {
+    "id": "2401",
+    "lokasi": "Kabupaten Bulungan"
+  },
+  {
+    "id": "2402",
+    "lokasi": "Kabupaten Malinau"
+  },
+  {
+    "id": "2403",
+    "lokasi": "Kabupaten Nunukan"
+  },
+  {
+    "id": "2404",
+    "lokasi": "Kabupaten Tana Tidung"
+  },
+  {
+    "id": "2405",
+    "lokasi": "Kota Tarakan"
+  },
+  {
+    "id": "2501",
+    "lokasi": "Kabupaten Boalemo"
+  },
+  {
+    "id": "2502",
+    "lokasi": "Kabupaten Bone Bolango"
+  },
+  {
+    "id": "2503",
+    "lokasi": "Kabupaten Gorontalo"
+  },
+  {
+    "id": "2504",
+    "lokasi": "Kabupaten Gorontalo Utara"
+  },
+  {
+    "id": "2505",
+    "lokasi": "Kabupaten Pohuwato"
+  },
+  {
+    "id": "2506",
+    "lokasi": "Kota Gorontalo"
+  },
+  {
+    "id": "2601",
+    "lokasi": "Kabupaten Bantaeng"
+  },
+  {
+    "id": "2602",
+    "lokasi": "Kabupaten Barru"
+  },
+  {
+    "id": "2603",
+    "lokasi": "Kabupaten Bone"
+  },
+  {
+    "id": "2604",
+    "lokasi": "Kabupaten Bulukumba"
+  },
+  {
+    "id": "2605",
+    "lokasi": "Kabupaten Enrekang"
+  },
+  {
+    "id": "2606",
+    "lokasi": "Kabupaten Gowa"
+  },
+  {
+    "id": "2607",
+    "lokasi": "Kabupaten Jeneponto"
+  },
+  {
+    "id": "2608",
+    "lokasi": "Kabupaten Kepulauan Selayar"
+  },
+  {
+    "id": "2609",
+    "lokasi": "Kabupaten Luwu"
+  },
+  {
+    "id": "2610",
+    "lokasi": "Kabupaten Luwu Timur"
+  },
+  {
+    "id": "2611",
+    "lokasi": "Kabupaten Luwu Utara"
+  },
+  {
+    "id": "2612",
+    "lokasi": "Kabupaten Maros"
+  },
+  {
+    "id": "2613",
+    "lokasi": "Kabupaten Pangkajene Dan Kepulauan"
+  },
+  {
+    "id": "2614",
+    "lokasi": "Kabupaten Pinrang"
+  },
+  {
+    "id": "2615",
+    "lokasi": "Kabupaten Sidenreng Rappang"
+  },
+  {
+    "id": "2616",
+    "lokasi": "Kabupaten Sinjai"
+  },
+  {
+    "id": "2617",
+    "lokasi": "Kabupaten Soppeng"
+  },
+  {
+    "id": "2618",
+    "lokasi": "Kabupaten Takalar"
+  },
+  {
+    "id": "2619",
+    "lokasi": "Kabupaten Tana Toraja"
+  },
+  {
+    "id": "2620",
+    "lokasi": "Kabupaten Toraja Utara"
+  },
+  {
+    "id": "2621",
+    "lokasi": "Kabupaten Wajo"
+  },
+  {
+    "id": "2622",
+    "lokasi": "Kota Makassar"
+  },
+  {
+    "id": "2623",
+    "lokasi": "Kota Palopo"
+  },
+  {
+    "id": "2624",
+    "lokasi": "Kota Parepare"
+  },
+  {
+    "id": "2701",
+    "lokasi": "Kabupaten Bombana"
+  },
+  {
+    "id": "2702",
+    "lokasi": "Kabupaten Buton"
+  },
+  {
+    "id": "2703",
+    "lokasi": "Kabupaten Buton Selatan"
+  },
+  {
+    "id": "2704",
+    "lokasi": "Kabupaten Buton Tengah"
+  },
+  {
+    "id": "2705",
+    "lokasi": "Kabupaten Buton Utara"
+  },
+  {
+    "id": "2706",
+    "lokasi": "Kabupaten Kolaka"
+  },
+  {
+    "id": "2707",
+    "lokasi": "Kabupaten Kolaka Timur"
+  },
+  {
+    "id": "2708",
+    "lokasi": "Kabupaten Kolaka Utara"
+  },
+  {
+    "id": "2709",
+    "lokasi": "Kabupaten Konawe"
+  },
+  {
+    "id": "2710",
+    "lokasi": "Kabupaten Konawe Kepulauan"
+  },
+  {
+    "id": "2711",
+    "lokasi": "Kabupaten Konawe Selatan"
+  },
+  {
+    "id": "2712",
+    "lokasi": "Kabupaten Konawe Utara"
+  },
+  {
+    "id": "2713",
+    "lokasi": "Kabupaten Muna"
+  },
+  {
+    "id": "2714",
+    "lokasi": "Kabupaten Muna Barat"
+  },
+  {
+    "id": "2715",
+    "lokasi": "Kabupaten Wakatobi"
+  },
+  {
+    "id": "2716",
+    "lokasi": "Kota Bau-Bau"
+  },
+  {
+    "id": "2717",
+    "lokasi": "Kota Kendari"
+  },
+  {
+    "id": "2801",
+    "lokasi": "Kabupaten Banggai"
+  },
+  {
+    "id": "2802",
+    "lokasi": "Kabupaten Banggai Kepulauan"
+  },
+  {
+    "id": "2803",
+    "lokasi": "Kabupaten Banggai Laut"
+  },
+  {
+    "id": "2804",
+    "lokasi": "Kabupaten Buol"
+  },
+  {
+    "id": "2805",
+    "lokasi": "Kabupaten Donggala"
+  },
+  {
+    "id": "2806",
+    "lokasi": "Kabupaten Morowali"
+  },
+  {
+    "id": "2807",
+    "lokasi": "Kabupaten Morowali Utara"
+  },
+  {
+    "id": "2808",
+    "lokasi": "Kabupaten Parigi Moutong"
+  },
+  {
+    "id": "2809",
+    "lokasi": "Kabupaten Poso"
+  },
+  {
+    "id": "2810",
+    "lokasi": "Kabupaten Sigi"
+  },
+  {
+    "id": "2811",
+    "lokasi": "Kabupaten Tojo Una-Una"
+  },
+  {
+    "id": "2812",
+    "lokasi": "Kabupaten Toli-Toli"
+  },
+  {
+    "id": "2813",
+    "lokasi": "Kota Palu"
+  },
+  {
+    "id": "2901",
+    "lokasi": "Kabupaten Bolaang Mongondow"
+  },
+  {
+    "id": "2902",
+    "lokasi": "Kabupaten Bolaang Mongondow Selatan"
+  },
+  {
+    "id": "2903",
+    "lokasi": "Kabupaten Bolaang Mongondow Timur"
+  },
+  {
+    "id": "2904",
+    "lokasi": "Kabupaten Bolaang Mongondow Utara"
+  },
+  {
+    "id": "2905",
+    "lokasi": "Kabupaten Kepulauan Sangihe"
+  },
+  {
+    "id": "2906",
+    "lokasi": "Kabupaten Kepulauan Siau Tagulandang Biaro"
+  },
+  {
+    "id": "2907",
+    "lokasi": "Kabupaten Kepulauan Talaud"
+  },
+  {
+    "id": "2908",
+    "lokasi": "Kabupaten Minahasa"
+  },
+  {
+    "id": "2909",
+    "lokasi": "Kabupaten Minahasa Selatan"
+  },
+  {
+    "id": "2910",
+    "lokasi": "Kabupaten Minahasa Tenggara"
+  },
+  {
+    "id": "2911",
+    "lokasi": "Kabupaten Minahasa Utara"
+  },
+  {
+    "id": "2912",
+    "lokasi": "Kota Bitung"
+  },
+  {
+    "id": "2913",
+    "lokasi": "Kota Kotamobagu"
+  },
+  {
+    "id": "2914",
+    "lokasi": "Kota Manado"
+  },
+  {
+    "id": "2915",
+    "lokasi": "Kota Tomohon"
+  },
+  {
+    "id": "3001",
+    "lokasi": "Kabupaten Majene"
+  },
+  {
+    "id": "3002",
+    "lokasi": "Kabupaten Mamasa"
+  },
+  {
+    "id": "3003",
+    "lokasi": "Kabupaten Mamuju"
+  },
+  {
+    "id": "3004",
+    "lokasi": "Kabupaten Mamuju Tengah"
+  },
+  {
+    "id": "3005",
+    "lokasi": "Kabupaten Mamuju Utara"
+  },
+  {
+    "id": "3006",
+    "lokasi": "Kabupaten Polewali Mandar"
+  },
+  {
+    "id": "3101",
+    "lokasi": "Kabupaten Buru"
+  },
+  {
+    "id": "3102",
+    "lokasi": "Kabupaten Buru Selatan"
+  },
+  {
+    "id": "3103",
+    "lokasi": "Kabupaten Kepulauan Aru"
+  },
+  {
+    "id": "3104",
+    "lokasi": "Kabupaten Maluku Barat Daya"
+  },
+  {
+    "id": "3105",
+    "lokasi": "Kabupaten Maluku Tengah"
+  },
+  {
+    "id": "3106",
+    "lokasi": "Kabupaten Maluku Tenggara"
+  },
+  {
+    "id": "3107",
+    "lokasi": "Kabupaten Maluku Tenggara Barat"
+  },
+  {
+    "id": "3108",
+    "lokasi": "Kabupaten Seram Bagian Barat"
+  },
+  {
+    "id": "3109",
+    "lokasi": "Kabupaten Seram Bagian Timur"
+  },
+  {
+    "id": "3110",
+    "lokasi": "Kota Ambon"
+  },
+  {
+    "id": "3111",
+    "lokasi": "Kota Tual"
+  },
+  {
+    "id": "3201",
+    "lokasi": "Kabupaten Halmahera Barat"
+  },
+  {
+    "id": "3202",
+    "lokasi": "Kabupaten Halmahera Tengah"
+  },
+  {
+    "id": "3203",
+    "lokasi": "Kabupaten Halmahera Utara"
+  },
+  {
+    "id": "3204",
+    "lokasi": "Kabupaten Halmahera Selatan"
+  },
+  {
+    "id": "3205",
+    "lokasi": "Kabupaten Kepulauan Sula"
+  },
+  {
+    "id": "3206",
+    "lokasi": "Kabupaten Halmahera Timur"
+  },
+  {
+    "id": "3207",
+    "lokasi": "Kabupaten Pulau Morotai"
+  },
+  {
+    "id": "3208",
+    "lokasi": "Kabupaten Pulau Taliabu"
+  },
+  {
+    "id": "3209",
+    "lokasi": "Kota Ternate"
+  },
+  {
+    "id": "3210",
+    "lokasi": "Kota Tidore Kepulauan"
+  },
+  {
+    "id": "3211",
+    "lokasi": "Kota Sofifi"
+  },
+  {
+    "id": "3212",
+    "lokasi": "Kota Sofifi"
+  },
+  {
+    "id": "3301",
+    "lokasi": "Kabupaten Asmat"
+  },
+  {
+    "id": "3302",
+    "lokasi": "Kabupaten Biak Numfor"
+  },
+  {
+    "id": "3303",
+    "lokasi": "Kabupaten Boven Digoel"
+  },
+  {
+    "id": "3304",
+    "lokasi": "Kabupaten Deiyai"
+  },
+  {
+    "id": "3305",
+    "lokasi": "Kabupaten Dogiyai"
+  },
+  {
+    "id": "3306",
+    "lokasi": "Kabupaten Intan Jaya"
+  },
+  {
+    "id": "3307",
+    "lokasi": "Kabupaten Jayapura"
+  },
+  {
+    "id": "3308",
+    "lokasi": "Kabupaten Jayawijaya"
+  },
+  {
+    "id": "3309",
+    "lokasi": "Kabupaten Keerom"
+  },
+  {
+    "id": "3310",
+    "lokasi": "Kabupaten Kepulauan Yapen"
+  },
+  {
+    "id": "3311",
+    "lokasi": "Kabupaten Lanny Jaya"
+  },
+  {
+    "id": "3312",
+    "lokasi": "Kabupaten Mamberamo Raya"
+  },
+  {
+    "id": "3313",
+    "lokasi": "Kabupaten Mamberamo Tengah"
+  },
+  {
+    "id": "3314",
+    "lokasi": "Kabupaten Mappi"
+  },
+  {
+    "id": "3315",
+    "lokasi": "Kabupaten Merauke"
+  },
+  {
+    "id": "3316",
+    "lokasi": "Kabupaten Mimika"
+  },
+  {
+    "id": "3317",
+    "lokasi": "Kabupaten Nabire"
+  },
+  {
+    "id": "3318",
+    "lokasi": "Kabupaten Nduga"
+  },
+  {
+    "id": "3319",
+    "lokasi": "Kabupaten Paniai"
+  },
+  {
+    "id": "3320",
+    "lokasi": "Kabupaten Pegunungan Bintang"
+  },
+  {
+    "id": "3321",
+    "lokasi": "Kabupaten Puncak"
+  },
+  {
+    "id": "3322",
+    "lokasi": "Kabupaten Puncak Jaya"
+  },
+  {
+    "id": "3323",
+    "lokasi": "Kabupaten Sarmi"
+  },
+  {
+    "id": "3324",
+    "lokasi": "Kabupaten Supiori"
+  },
+  {
+    "id": "3325",
+    "lokasi": "Kabupaten Tolikara"
+  },
+  {
+    "id": "3326",
+    "lokasi": "Kabupaten Waropen"
+  },
+  {
+    "id": "3327",
+    "lokasi": "Kabupaten Yahukimo"
+  },
+  {
+    "id": "3328",
+    "lokasi": "Kabupaten Yalimo"
+  },
+  {
+    "id": "3329",
+    "lokasi": "Kota Jayapura"
+  },
+  {
+    "id": "3330",
+    "lokasi": "Kabupaten Yapen Waropen"
+  },
+  {
+    "id": "3401",
+    "lokasi": "Kabupaten Fakfak"
+  },
+  {
+    "id": "3402",
+    "lokasi": "Kabupaten Kaimana"
+  },
+  {
+    "id": "3403",
+    "lokasi": "Kabupaten Manokwari"
+  },
+  {
+    "id": "3404",
+    "lokasi": "Kabupaten Manokwari Selatan"
+  },
+  {
+    "id": "3405",
+    "lokasi": "Kabupaten Maybrat"
+  },
+  {
+    "id": "3406",
+    "lokasi": "Kabupaten Pegunungan Arfak"
+  },
+  {
+    "id": "3407",
+    "lokasi": "Kabupaten Raja Ampat"
+  },
+  {
+    "id": "3408",
+    "lokasi": "Kabupaten Sorong"
+  },
+  {
+    "id": "3409",
+    "lokasi": "Kabupaten Sorong Selatan"
+  },
+  {
+    "id": "3410",
+    "lokasi": "Kabupaten Tambrauw"
+  },
+  {
+    "id": "3411",
+    "lokasi": "Kabupaten Teluk Bintuni"
+  },
+  {
+    "id": "3412",
+    "lokasi": "Kabupaten Teluk Wondama"
+  },
+  {
+    "id": "3413",
+    "lokasi": "Kota Sorong"
   }
+]

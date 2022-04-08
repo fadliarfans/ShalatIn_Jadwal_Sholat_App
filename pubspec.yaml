@@ -54,12 +54,15 @@ dependencies:
   injectable: ^1.5.3
   flutter_local_notifications: ^9.4.0
   flutter_native_timezone: ^2.0.0
+  objectbox: ^1.4.1
+  objectbox_flutter_libs: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   injectable_generator:
   build_runner:
+  objectbox_generator: any
 
 
   # The "flutter_lints" package below contains a set of recommended lints to

@@ -24,7 +24,9 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   Map<Shalat, String>? mapOfJadwalSholat;
   MyLocationModel? myLocation;
   ShalatModel? nextJadwal;
-  MyJadwalModel? jadwal;
+  List<MyJadwalModel>? jadwalList;
+  MyJadwalModel? jadwalToday;
+  int nowDay = 1;
 
   JadwalBloc(this._repository) : super(JadwalInitial()) {
     Future<Resource<MyLocationModel>> getLocation() async {
@@ -44,18 +46,19 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       }
     }
 
-    Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel location) async {
+    Future<Resource<List<MyJadwalModel>>> getJadwal(
+        MyLocationModel location) async {
       try {
-        Resource<MyJadwalModel>? resourceJadwal;
+        Resource<List<MyJadwalModel>>? resourceJadwal;
 
         resourceJadwal = await _repository.getJadwal(location);
 
         if (resourceJadwal.status == Status.SUCCES) {
-          _repository.saveJadwal(resourceJadwal.data!);
+          //_repository.saveJadwal(resourceJadwal.data!);
         }
         return resourceJadwal;
       } catch (e) {
-        return Resource<MyJadwalModel>().error(e.toString());
+        return Resource<List<MyJadwalModel>>().error(e.toString());
       }
     }
 
@@ -152,15 +155,16 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
       final dayId = day.translateDayToID();
       final month = DateFormat('MMMM').format(now);
       final monthId = month.translateMonthToID();
-      final dayInThisMonth = DateFormat('dd').format(now);
       final year = DateFormat('yyyy').format(now);
-      String formattedDate = "$dayId, $dayInThisMonth $monthId $year";
+      String formattedDate = "$dayId, $nowDay $monthId $year";
       return formattedDate;
     }
 
     on<RefreshJadwal>((event, emit) {
-      if (mapOfJadwalSholat != null && myLocation != null && jadwal != null) {
-        nextJadwal = _getClosesTime(jadwal!);
+      if (mapOfJadwalSholat != null &&
+          myLocation != null &&
+          jadwalList != null) {
+        nextJadwal = _getClosesTime(jadwalToday!);
         emit(JadwalSucces(
             mapOfJadwalSholat!, _getIdDate(), nextJadwal!, myLocation!));
       }
@@ -189,19 +193,19 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
 
           if (resourceJadwal.status == Status.SUCCES) {
             await _repository.saveLocation(resourceLocation.data!);
+            nowDay = DateTime.now().day;
 
-            jadwal = resourceJadwal.data!;
+            jadwalList = resourceJadwal.data!;
+            jadwalToday = jadwalList![nowDay - 1];
 
-            // initiate next jadwal
-            nextJadwal = _getClosesTime(jadwal!);
+            nextJadwal = _getClosesTime(jadwalToday!);
 
-            // initiate all jadwal
             mapOfJadwalSholat = {
-              Shalat.Subuh: jadwal!.fajr.timeS,
-              Shalat.Dzuhur: jadwal!.dhuhr.timeS,
-              Shalat.Ashar: jadwal!.asr.timeS,
-              Shalat.Maghrib: jadwal!.maghrib.timeS,
-              Shalat.Isya: jadwal!.isha.timeS
+              Shalat.Subuh: jadwalToday!.fajr.timeS,
+              Shalat.Dzuhur: jadwalToday!.dhuhr.timeS,
+              Shalat.Ashar: jadwalToday!.asr.timeS,
+              Shalat.Maghrib: jadwalToday!.maghrib.timeS,
+              Shalat.Isya: jadwalToday!.isha.timeS
             };
 
             // initiate location

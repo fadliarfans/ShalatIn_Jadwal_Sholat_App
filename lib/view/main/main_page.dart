@@ -21,6 +21,7 @@ class MainPage extends StatelessWidget {
     BlocProvider.of<JadwalBloc>(context).add(GetJadwal());
     BlocProvider.of<AlarmBloc>(context).add(GetAlarm());
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: semiWhite,
       body: BlocListener<JadwalBloc, JadwalState>(
         listener: (context, state) {

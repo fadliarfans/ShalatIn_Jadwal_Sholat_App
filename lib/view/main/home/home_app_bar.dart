@@ -39,15 +39,15 @@ class HomeAppBar extends StatelessWidget {
                         height: 16,
                       ),
                       Text(
-                        " ${state.location.city}, ",
+                        "  ${state.location.city}",
                         style: kBlack2TextStyle.copyWith(
                             fontSize: 13, fontWeight: semiBold),
                       ),
-                      Text(
-                        state.location.country.toString(),
-                        style: kBlack2TextStyle.copyWith(
-                            fontSize: 13, fontWeight: regular),
-                      ),
+                      // Text(
+                      //   state.location.country.toString(),
+                      //   style: kBlack2TextStyle.copyWith(
+                      //       fontSize: 13, fontWeight: regular),
+                      // ),
                     ],
                   ),
                 );

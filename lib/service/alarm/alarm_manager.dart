@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -21,9 +23,6 @@ class AlarmManager {
 
   activateAlarm(Shalat shalat) async {
     _repository.saveActivatedJadwal(shalat, true);
-
-    await activateTodayAlarm(shalat);
-    await activateTommorowAlarm(shalat);
   }
 
   Future<Map<Shalat, bool>> getActivatedJadwal() async {
@@ -52,80 +51,6 @@ class AlarmManager {
           "ALARM MANAGER cancelAlarm SUCCESS -----> Alarm ${shalat.name} Canceled");
     } catch (e) {
       throw Exception("ALARM MANAGER cancelAlarm ERROR -----> $e");
-    }
-  }
-
-  activateTommorowAlarm(Shalat shalat) async {
-    try {
-      DateTime now = DateTime.now();
-      await AndroidAlarmManager.oneShotAt(
-          DateTime(
-            now.year, now.month, now.day, 1,
-            //  Random().nextInt(60),
-            //         Random().nextInt(60)
-          ).add(const Duration(days: 1)),
-          shalat.index + 100, () {
-        debugPrint("Tommorow shot");
-        AndroidAlarmManager.periodic(
-            const Duration(hours: 24), shalat.index + 200, () async {
-          final times = await _getTimeLocal(shalat);
-          debugPrint("Tommorow Next shot");
-          //iAlarm.playAdzan(await _getTime(shalatStatic), shalatStatic.index + 300);
-          _notificationManager.setZonedScheduleNotification(
-              times.hour, times.minute, shalat);
-        });
-      });
-    } catch (e) {
-      debugPrint("ERROR ----> $e");
-    }
-  }
-
-  activateTodayAlarm(Shalat shalat) async {
-    try {
-      DateTime now = DateTime.now();
-      final times = await _getTimeLocal(shalat);
-      if (now.hour > times.hour) {
-        return;
-      }
-
-      if (now.hour == times.hour) {
-        if (now.minute > times.minute) {
-          return;
-        }
-      }
-
-      //_alarmAdzan.playAdzan(times, shalat.index + 300);
-      _notificationManager.setZonedScheduleNotification(
-          times.hour, times.minute, shalat);
-      debugPrint(
-          "ALARM MANAGER activateTodayAlarm SUCCESS -----> Alarm Succes Activated : Alarm ${shalat.name} Will Fired At ${times.hour}:${times.minute}");
-    } catch (e) {
-      throw Exception("ALARM MANAGER activateTodayAlarm ERROR -----> $e");
-    }
-  }
-
-  // NOTE : GET TODAY ALARM SHALAT
-  Future<DateTime> _getTimeLocal(Shalat shalat) async {
-    try {
-      final resourceLocation = await _repository.getLocation();
-
-      final resourceJadwal =
-          await _repository.getJadwal(resourceLocation.data!);
-
-      if (resourceJadwal.status == Status.SUCCES) {
-        final times = resourceJadwal.data!;
-        _repository.saveJadwal(times);
-        DateTime now = DateTime.now();
-        final hour = times.getTime(shalat).hour;
-        final minute = times.getTime(shalat).minute;
-        debugPrint("ALARM MANAGER getTimeLocal SUCCESS -----> Get Today Times");
-        return DateTime(now.year, now.month, now.day, hour, minute);
-      } else {
-        throw Exception(
-            "ALARM MANAGER getTimeLocal ERROR -----> Failed Get Jadwal");
-      }
-    } catch (e) {
-      throw Exception("ALARM MANAGER getTimeLocal ERROR -----> $e");
     }
   }
 }

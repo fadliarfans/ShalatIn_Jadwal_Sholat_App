@@ -24,43 +24,42 @@ class Repository implements DataSource {
 
   @override
   Future<Resource<MyLocationModel>> getLocation() async {
-    Resource<MyLocationModel> myLocation =
+    Resource<MyLocationModel> resourceMyLocation =
         await _remoteDataSource.getLocation();
 
-    if (myLocation.status == Status.ERROR) {
-      myLocation = await _localDataSource.getLocation();
+    if (resourceMyLocation.status == Status.ERROR) {
+      resourceMyLocation = await _localDataSource.getLocation();
     }
 
-    return myLocation;
+    return resourceMyLocation;
   }
 
   @override
-  Future<Resource<bool>> saveJadwal(MyJadwalModel myJadwal) async {
+  Future<Resource<bool>> saveJadwal(List<MyJadwalModel> myJadwal) async {
     Resource<bool> result = await _localDataSource.saveJadwal(myJadwal);
     return result;
   }
 
   @override
-  Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel myLocation) async {
-    Resource<MyJadwalModel> myJadwal =
+  Future<Resource<List<MyJadwalModel>>> getJadwal(
+      MyLocationModel myLocation) async {
+    Resource<List<MyJadwalModel>> resourceMyJadwalList =
         await _localDataSource.getJadwal(myLocation);
-    DateTime now = DateTime.now();
-    if ((myJadwal.data?.day ?? 0) == now.day &&
-        (myJadwal.data?.month ?? 0) == now.month &&
-        (myJadwal.data?.year ?? 0) == now.year) {
-      // DO NOTHING
-    } else {
-      myJadwal = await _remoteDataSource.getJadwal(myLocation);
-    }
 
-    return myJadwal;
+    if (resourceMyJadwalList.status == Status.ERROR) {
+      resourceMyJadwalList = await _remoteDataSource.getJadwal(myLocation);
+      if (resourceMyJadwalList.status == Status.SUCCES) {
+        _localDataSource.saveJadwal(resourceMyJadwalList.data!);
+      }
+    }
+    return resourceMyJadwalList;
   }
 
   @override
   Future<Resource<Map<Shalat, bool>>> getActivatedJadwal() async {
-    Resource<Map<Shalat, bool>> myActivatedJadwal =
+    Resource<Map<Shalat, bool>> resourceMyActivatedJadwal =
         await _localDataSource.getActivatedJadwal();
-    return myActivatedJadwal;
+    return resourceMyActivatedJadwal;
   }
 
   @override

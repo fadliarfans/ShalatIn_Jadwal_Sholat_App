@@ -35,9 +35,9 @@ class LocalDataSource {
     }
   }
 
-  Future<Resource<bool>> saveJadwal(MyJadwalModel myJadwal) async {
+  Future<Resource<bool>> saveJadwal(List<MyJadwalModel> myJadwalList) async {
     try {
-      await _jadwalDao.saveJadwal(myJadwal);
+      await _jadwalDao.saveJadwal(myJadwalList);
       return Resource<bool>()
           .success(true, message: "JADWAL SUCCESS ----> Save Success");
     } catch (e) {
@@ -45,13 +45,14 @@ class LocalDataSource {
     }
   }
 
-  Future<Resource<MyJadwalModel>> getJadwal(MyLocationModel myLocation) async {
+  Future<Resource<List<MyJadwalModel>>> getJadwal(
+      MyLocationModel myLocation) async {
     try {
-      final myJadwal = await _jadwalDao.getJadwal(myLocation);
-      return Resource<MyJadwalModel>()
-          .success(myJadwal, message: "JADWAL SUCCESS ----> Jadwal from Local");
+      final myJadwalList = await _jadwalDao.getJadwal(myLocation);
+      return Resource<List<MyJadwalModel>>().success(myJadwalList,
+          message: "JADWAL SUCCESS ----> Jadwal from Local");
     } catch (e) {
-      return Resource<MyJadwalModel>().error("JADWAL ERROR ----> $e");
+      return Resource<List<MyJadwalModel>>().error("JADWAL ERROR ----> $e");
     }
   }
 

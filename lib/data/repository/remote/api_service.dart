@@ -9,8 +9,9 @@ import '../../models/my_location_model.dart';
 class ApiService {
   Future<Response<dynamic>> getJadwalFromFirstApi(
       MyLocationModel myLocation) async {
+    final now = DateTime.now();
     final response = await Dio().get(
-        "https://api.pray.zone/v2/times/today.json?city=${myLocation.city}");
+        "https://api.myquran.com/v1/sholat/jadwal/${myLocation.cityId}/${now.year}/${now.month.toString().padLeft(2, "0")}");
     return response;
   }
 
@@ -24,9 +25,9 @@ class ApiService {
         .getCityByPlaceMark(placemarks.first.subAdministrativeArea ?? "");
     if (city != null) {
       final myLocation = MyLocationModel(
-          city: city.cityName,
+          city: city.lokasi,
           country: placemarks.first.country,
-          cityId: city.cityId);
+          cityId: city.id);
       return myLocation;
     } else {
       throw Exception("City Not Found in Our Database");

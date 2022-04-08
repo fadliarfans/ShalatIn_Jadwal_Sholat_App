@@ -10,8 +10,9 @@ class CityManager {
   Future<List<City>> getCities() async {
     if (cities == null) {
       final local = await rootBundle.loadString('assets/json/city.json');
-      final data = json.decode(local);
-      cities = Cities.fromJson(data).data;
+      List<dynamic> data = json.decode(local);
+      cities = data.map((e) => City.fromJson(e)).toList();
+
       return cities ?? [];
     } else {
       return cities ?? [];
@@ -24,9 +25,7 @@ class CityManager {
     }
     final length = cities?.length ?? 0;
     for (int i = 0; i < length; i++) {
-      if (city
-          .toLowerCase()
-          .contains(cities![i].cityName?.toLowerCase() ?? "")) {
+      if (city.toLowerCase().contains(cities![i].lokasi?.toLowerCase() ?? "")) {
         return cities![i];
       }
     }
