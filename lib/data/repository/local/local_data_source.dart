@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/data/repository/local/jadwal_dao.dart';
 import 'package:jadwal_sholat_app/data/repository/local/location_dao.dart';
@@ -41,6 +42,7 @@ class LocalDataSource {
       return Resource<bool>()
           .success(true, message: "JADWAL SUCCESS ----> Save Success");
     } catch (e) {
+      debugPrint(e.toString());
       return Resource<bool>().error("JADWAL ERROR ----> $e");
     }
   }
@@ -52,6 +54,18 @@ class LocalDataSource {
       return Resource<List<MyJadwalModel>>().success(myJadwalList,
           message: "JADWAL SUCCESS ----> Jadwal from Local");
     } catch (e) {
+      debugPrint(e.toString());
+      return Resource<List<MyJadwalModel>>().error("JADWAL ERROR ----> $e");
+    }
+  }
+
+  Future<Resource<List<MyJadwalModel>>> getJadwalWithoutLocation() async {
+    try {
+      final myJadwalList = await _jadwalDao.getJadwalWithoutLocation();
+      return Resource<List<MyJadwalModel>>().success(myJadwalList,
+          message: "JADWAL SUCCESS ----> Jadwal from Local Without Location");
+    } catch (e) {
+      debugPrint(e.toString());
       return Resource<List<MyJadwalModel>>().error("JADWAL ERROR ----> $e");
     }
   }
@@ -74,6 +88,17 @@ class LocalDataSource {
     } catch (e) {
       return Resource<Map<Shalat, bool>>()
           .error("JADWAL ACTIVATED ERROR ----> $e");
+    }
+  }
+
+  Future<Resource<MyJadwalModel>> getJadwalById(int id) async {
+    try {
+      final myActivatedJadwal = await _jadwalDao.getJadwalById(id);
+      return Resource<MyJadwalModel>().success(myActivatedJadwal,
+          message: "JADWAL SUCCESS ----> Get Jadwal By Id Succes");
+    } catch (e) {
+      return Resource<MyJadwalModel>()
+          .error("JADWAL ERROR ----> Get Jadwal By Id $e");
     }
   }
 }

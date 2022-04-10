@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:jadwal_sholat_app/data/models/my_jadwal_entity.dart';
 import 'package:jadwal_sholat_app/injection.dart';
 import 'package:jadwal_sholat_app/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,10 +32,10 @@ class JadwalDao {
   }
 
   Future<void> saveJadwal(List<MyJadwalModel> jadwal) async {
-    final jadwalBox = objectbox.store.box<MyJadwalModel>();
+    final jadwalBox = objectbox.store.box<MyJadwalEntity>();
     jadwalBox.removeAll();
     for (int i = 0; i < jadwal.length; i++) {
-      jadwalBox.put(jadwal[i]);
+      jadwalBox.put(jadwal[i].toMyJadwalEntity());
     }
   }
 
@@ -42,11 +43,34 @@ class JadwalDao {
     final prefs = locator<SharedPreferences>();
     final city = prefs.getString("cityId");
     if (city == myLocation.cityId) {
-      final jadwalBox = objectbox.store.box<MyJadwalModel>();
-      final myJadwalList = jadwalBox.getAll();
+      final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+
+      List<MyJadwalModel> myJadwalList =
+          jadwalBox.getAll().map((e) => e.toMyJadwalModel()).toList();
+      if (myJadwalList.isEmpty) {
+        throw Exception("Jadwal from Local Empty !");
+      }
       return myJadwalList;
     } else {
       throw Exception("City Different !");
     }
+  }
+
+  Future<List<MyJadwalModel>> getJadwalWithoutLocation() async {
+    final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+
+    List<MyJadwalModel> myJadwalList =
+        jadwalBox.getAll().map((e) => e.toMyJadwalModel()).toList();
+    if (myJadwalList.isEmpty) {
+      throw Exception("Jadwal from Local Empty !");
+    }
+    return myJadwalList;
+  }
+
+  Future<MyJadwalModel> getJadwalById(int id) async {
+    final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+
+    MyJadwalModel myJadwalModel = jadwalBox.get(id)!.toMyJadwalModel();
+    return myJadwalModel;
   }
 }

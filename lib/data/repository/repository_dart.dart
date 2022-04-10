@@ -68,4 +68,18 @@ class Repository implements DataSource {
         await _localDataSource.saveActivatedJadwal(shalat, value);
     return result;
   }
+
+  @override
+  Future<Resource<List<MyJadwalModel>>> getJadwalLocal() async {
+    Resource<List<MyJadwalModel>> resourceMyJadwalList =
+        await _localDataSource.getJadwalWithoutLocation();
+    return resourceMyJadwalList;
+  }
+
+  @override
+  Future<Resource<MyJadwalModel>> getLocalJadwalById(int id) async {
+    Resource<MyJadwalModel> resourceMyJadwal =
+        await _localDataSource.getJadwalById(id);
+    return resourceMyJadwal;
+  }
 }

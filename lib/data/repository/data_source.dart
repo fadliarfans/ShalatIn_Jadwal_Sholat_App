@@ -9,6 +9,8 @@ abstract class DataSource {
 
   Future<Resource<MyLocationModel>> getLocation();
 
+  Future<Resource<List<MyJadwalModel>>> getJadwalLocal();
+
   Future<Resource<Map<Shalat, bool>>> getActivatedJadwal();
 
   Future<Resource<bool>> saveJadwal(List<MyJadwalModel> myJadwal);
@@ -16,4 +18,6 @@ abstract class DataSource {
   Future<Resource<bool>> saveLocation(MyLocationModel location);
 
   Future<Resource<bool>> saveActivatedJadwal(Shalat shalat, bool value);
+
+  Future<Resource<MyJadwalModel>> getLocalJadwalById(int id);
 }

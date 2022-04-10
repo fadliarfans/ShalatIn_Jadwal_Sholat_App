@@ -5,6 +5,7 @@ import 'my_jadwal_model.dart';
 
 @Entity()
 class MyJadwalEntity {
+  @Id(assignable: true)
   int id = 0;
   String fajr = "";
   String dhuhr = "";
@@ -15,7 +16,12 @@ class MyJadwalEntity {
   int month = 0;
   int year = 0;
 
-  toMyJadwalModel() {
+  MyJadwalEntity(this.fajr, this.dhuhr, this.asr, this.maghrib, this.isha,
+      this.day, this.month, this.year) {
+    id = day;
+  }
+
+  MyJadwalModel toMyJadwalModel() {
     return MyJadwalModel(
         asr: Time(asr),
         dhuhr: Time(dhuhr),

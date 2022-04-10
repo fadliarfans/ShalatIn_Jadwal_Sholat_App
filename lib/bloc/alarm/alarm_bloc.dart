@@ -20,13 +20,19 @@ class AlarmBloc extends Bloc<AlarmEvent, AlarmState> {
       }));
 
       on<ActivateAlarm>(((event, emit) async {
-        _alarmManager.activateAlarm(event.shalat);
-        emit(AlarmActivatedState(await _alarmManager.getActivatedJadwal()));
+        try {
+          await _alarmManager.activateAlarm(event.shalat);
+          emit(AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
+        } catch (e) {
+          debugPrint("ACTIVATE ALARM BLOC ERROR -----> $e");
+          await _alarmManager.cancelAlarm(event.shalat);
+          emit(AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
+        }
       }));
 
       on<CancelAlarm>(((event, emit) async {
-        _alarmManager.cancelAlarm(event.shalat);
-        emit(AlarmActivatedState(await _alarmManager.getActivatedJadwal()));
+        await _alarmManager.cancelAlarm(event.shalat);
+        emit(AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
       }));
     } catch (e) {
       debugPrint("ALARM BLOC ERROR ----> $e");

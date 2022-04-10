@@ -28,7 +28,7 @@ final _entities = <ModelEntity>[
             id: const IdUid(1, 3708165041091587090),
             name: 'id',
             type: 6,
-            flags: 1),
+            flags: 129),
         ModelProperty(
             id: const IdUid(2, 6067497767938558431),
             name: 'fajr',
@@ -143,23 +143,21 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = MyJadwalEntity()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..fajr = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 6, '')
-            ..dhuhr = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 8, '')
-            ..asr = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 10, '')
-            ..maghrib = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 12, '')
-            ..isha = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 14, '')
-            ..day = const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0)
-            ..month =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0)
-            ..year =
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0);
+          final object = MyJadwalEntity(
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, ''),
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 12, ''),
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 14, ''),
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0),
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0),
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0))
+            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
 
           return object;
         })

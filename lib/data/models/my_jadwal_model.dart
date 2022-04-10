@@ -1,3 +1,4 @@
+import 'package:jadwal_sholat_app/data/models/my_jadwal_entity.dart';
 import 'package:jadwal_sholat_app/data/models/shalat_model.dart';
 import 'package:jadwal_sholat_app/data/models/time_model.dart';
 
@@ -38,5 +39,10 @@ class MyJadwalModel {
   @override
   String toString() {
     return "date : $day-$month-$year fajr : ${fajr.timeS}, dhuhr : ${dhuhr.timeS}, ashar : ${asr.timeS}, maghrib : ${maghrib.timeS}, isya : ${isha.timeS} \n";
+  }
+
+  MyJadwalEntity toMyJadwalEntity() {
+    return MyJadwalEntity(fajr.timeS, dhuhr.timeS, asr.timeS, maghrib.timeS,
+        isha.timeS, day, month, year);
   }
 }

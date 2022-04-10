@@ -104,7 +104,7 @@ class _BottomSheetChooseCityState extends State<BottomSheetChooseCity> {
                   BoxShadow(
                     color: grey,
                     offset: const Offset(2, 2),
-                    blurRadius: 4.0,
+                    blurRadius: 2.0,
                   ),
                 ]),
             child: TextFormField(
@@ -130,8 +130,9 @@ class _BottomSheetChooseCityState extends State<BottomSheetChooseCity> {
                                 country: "Indonesia",
                                 cityId: cities[index].id ?? "Error")));
                       },
-                      leading: const Icon(
+                      leading: Icon(
                         Icons.my_location,
+                        color: green,
                       ),
                       title: Text(cities[index].lokasi ?? "Error"));
                 })),

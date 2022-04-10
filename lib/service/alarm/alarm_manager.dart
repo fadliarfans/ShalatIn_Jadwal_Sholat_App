@@ -1,31 +1,22 @@
-// ignore_for_file: unused_field
-
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/data/repository/repository_dart.dart';
-import 'package:jadwal_sholat_app/service/alarm/alarm_adzan.dart';
-import 'package:jadwal_sholat_app/service/alarm/notification/notification_manager.dart';
+import 'package:jadwal_sholat_app/service/alarm/alarm_service.dart';
 import 'package:jadwal_sholat_app/vo/status.dart';
+import '../../data/models/my_jadwal_model.dart';
 import '../../data/models/shalat_model.dart';
 
 @Injectable()
 class AlarmManager {
-  final AlarmAdzan _alarmAdzan;
   final Repository _repository;
-  final NotificationManager _notificationManager;
 
   Map<Shalat, bool> myActivatedJadwal = {};
 
-  AlarmManager(this._repository, this._alarmAdzan, this._notificationManager) {
-    getActivatedJadwal();
+  AlarmManager(this._repository) {
+    getAllActivatedJadwal();
   }
 
-  activateAlarm(Shalat shalat) async {
-    _repository.saveActivatedJadwal(shalat, true);
-  }
-
-  Future<Map<Shalat, bool>> getActivatedJadwal() async {
+  Future<Map<Shalat, bool>> getAllActivatedJadwal() async {
     try {
       final resource = await _repository.getActivatedJadwal();
       if (resource.status == Status.SUCCES) {
@@ -40,13 +31,32 @@ class AlarmManager {
     }
   }
 
+  activateAlarm(Shalat shalat) async {
+    try {
+      _repository.saveActivatedJadwal(shalat, true);
+
+      final resourceJadwal =
+          await _repository.getLocalJadwalById(DateTime.now().day);
+      MyJadwalModel? myJadwalModel = resourceJadwal.data;
+      DateTime datetime = DateTime(
+          myJadwalModel!.year,
+          myJadwalModel.month,
+          myJadwalModel.day,
+          myJadwalModel.getTime(shalat).hour,
+          myJadwalModel.getTime(shalat).minute);
+      AlarmService.setAlarm(datetime, shalat);
+      debugPrint(
+          "ALARM MANAGER activeAlarm SUCCESS -----> Alarm ${shalat.name} Activated");
+    } catch (e) {
+      throw Exception("ALARM MANAGER activateAlarm ERROR -----> $e");
+    }
+  }
+
   cancelAlarm(Shalat shalat) async {
     try {
       _repository.saveActivatedJadwal(shalat, false);
-      await AndroidAlarmManager.cancel(shalat.index + 100);
-      await AndroidAlarmManager.cancel(shalat.index + 200);
-      await AndroidAlarmManager.cancel(shalat.index + 300);
-      await _notificationManager.cancelNotification(shalat.index + 400);
+
+      AlarmService.cancelAlarm(shalat);
       debugPrint(
           "ALARM MANAGER cancelAlarm SUCCESS -----> Alarm ${shalat.name} Canceled");
     } catch (e) {
