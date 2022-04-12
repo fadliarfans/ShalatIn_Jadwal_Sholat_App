@@ -6,8 +6,7 @@ class NotificationManager {
   late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   Future<void> init() async {
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -116,11 +115,14 @@ class NotificationManager {
   }
 
   Future<void> cancelNotification(Shalat shalat) async {
-    final idNotification = shalat.index + 500;
-    await flutterLocalNotificationsPlugin.cancel(idNotification);
+    try {
+      final idNotification = shalat.index + 500;
+      await flutterLocalNotificationsPlugin.cancel(idNotification);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
-
 
 //   _time(hour, minute) {
 //     final time = tz.TZDateTime.now(tz.local);
