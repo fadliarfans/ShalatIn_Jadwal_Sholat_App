@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:jadwal_sholat_app/theme.dart';
 import 'dart:math';
 
 import '../../shared/custom_circular_progress_indicator.dart';
@@ -43,7 +44,59 @@ class _QiblahCompassState extends State<QiblahCompass> {
             switch (snapshot.data!.status) {
               case LocationPermission.always:
               case LocationPermission.whileInUse:
-                return QiblahCompassWidget();
+                return SafeArea(
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, left: 12),
+                        child: Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back,
+                                  size: 24,
+                                )),
+                            const SizedBox(
+                              width: 22,
+                            ),
+                            Text(
+                              "Arah Kiblat",
+                              style: kBlackTextStyle.copyWith(
+                                  fontSize: 19, fontWeight: semiBold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      MediaQuery.of(context).size.width < 600
+                          ? Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 20),
+                                height: 60,
+                                padding: const EdgeInsets.all(12),
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Pastikan Smartphone anda diletakan di tempat yang datar",
+                                    style:
+                                        kGreenTextStyle.copyWith(fontSize: 12),
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(),
+                      Center(child: QiblahCompassWidget()),
+                    ],
+                  ),
+                );
 
               case LocationPermission.denied:
                 return LocationErrorWidget(

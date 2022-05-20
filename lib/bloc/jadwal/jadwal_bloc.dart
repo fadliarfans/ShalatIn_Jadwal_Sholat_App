@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/models/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/repository/repository_dart.dart';
+import 'package:jadwal_sholat_app/service/alarm/alarm_manager.dart';
 import '../../data/models/my_location_model.dart';
 import '../../data/models/shalat_model.dart';
 import '../../extension/day_translate.dart';
@@ -20,6 +21,7 @@ part 'jadwal_state.dart';
 @Injectable()
 class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   final Repository _repository;
+  final AlarmManager _alarmManager;
 
   Map<Shalat, String>? mapOfJadwalSholat;
   MyLocationModel? myLocation;
@@ -28,7 +30,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   MyJadwalModel? jadwalToday;
   int nowDay = 1;
 
-  JadwalBloc(this._repository) : super(JadwalInitial()) {
+  JadwalBloc(this._repository, this._alarmManager) : super(JadwalInitial()) {
     Future<Resource<MyLocationModel>> getLocation() async {
       try {
         Resource<MyLocationModel> resourceLocation;
@@ -210,6 +212,18 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
 
             // initiate location
             myLocation = resourceLocation.data!;
+
+            // Activated Alarm
+            if (event is GetJadwalLocationManual) {
+              final activatedJadwal =
+                  await _alarmManager.getAllActivatedJadwal();
+              activatedJadwal.forEach((key, value) async {
+                if (value) {
+                  await _alarmManager.cancelAlarm(key);
+                  await _alarmManager.activateAlarm(key);
+                }
+              });
+            }
 
             emit(JadwalSucces(
                 mapOfJadwalSholat!, _getIdDate(), nextJadwal!, myLocation!));

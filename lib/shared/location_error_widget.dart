@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jadwal_sholat_app/theme.dart';
 
 class LocationErrorWidget extends StatelessWidget {
   final String? error;
@@ -10,7 +11,7 @@ class LocationErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const box = SizedBox(height: 32);
-    const errorColor = Color(0xffb00020);
+    const errorColor = green;
 
     return Center(
       child: Column(
@@ -24,15 +25,29 @@ class LocationErrorWidget extends StatelessWidget {
           box,
           Text(
             error!,
-            style:
-                const TextStyle(color: errorColor, fontWeight: FontWeight.bold),
+            style: kBlackTextStyle,
           ),
           box,
-          ElevatedButton(
-            child: const Text("Retry"),
-            onPressed: () {
-              if (callback != null) callback!();
-            },
+          Material(
+            borderRadius: BorderRadius.circular(80),
+            color: white,
+            child: InkWell(
+              onTap: () {
+                if (callback != null) callback!();
+              },
+              splashColor: green,
+              borderRadius: BorderRadius.circular(80),
+              child: Container(
+                height: 60,
+                width: 60,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: const Icon(
+                  Icons.refresh,
+                  color: green,
+                  size: 30,
+                ),
+              ),
+            ),
           )
         ],
       ),

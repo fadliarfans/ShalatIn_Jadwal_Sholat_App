@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jadwal_sholat_app/data/models/my_jadwal_entity.dart';
 import 'package:jadwal_sholat_app/injection.dart';
@@ -32,7 +33,7 @@ class JadwalDao {
   }
 
   Future<void> saveJadwal(List<MyJadwalModel> jadwal) async {
-    final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+    final jadwalBox = objectbox!.store.box<MyJadwalEntity>();
     jadwalBox.removeAll();
     for (int i = 0; i < jadwal.length; i++) {
       jadwalBox.put(jadwal[i].toMyJadwalEntity());
@@ -42,13 +43,19 @@ class JadwalDao {
   Future<List<MyJadwalModel>> getJadwal(MyLocationModel myLocation) async {
     final prefs = locator<SharedPreferences>();
     final city = prefs.getString("cityId");
+    final backgroundSYNC = prefs.getBool("Background_SYNC") ?? false;
+    debugPrint(
+        "Background SYNC at First day in this month :  ${backgroundSYNC.toString()}");
     if (city == myLocation.cityId) {
-      final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+      final jadwalBox = objectbox!.store.box<MyJadwalEntity>();
 
       List<MyJadwalModel> myJadwalList =
           jadwalBox.getAll().map((e) => e.toMyJadwalModel()).toList();
       if (myJadwalList.isEmpty) {
         throw Exception("Jadwal from Local Empty !");
+      }
+      if (myJadwalList.first.month != DateTime.now().month) {
+        throw Exception("Month Different !");
       }
       return myJadwalList;
     } else {
@@ -57,7 +64,7 @@ class JadwalDao {
   }
 
   Future<List<MyJadwalModel>> getJadwalWithoutLocation() async {
-    final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+    final jadwalBox = objectbox!.store.box<MyJadwalEntity>();
 
     List<MyJadwalModel> myJadwalList =
         jadwalBox.getAll().map((e) => e.toMyJadwalModel()).toList();
@@ -68,7 +75,7 @@ class JadwalDao {
   }
 
   Future<MyJadwalModel> getJadwalById(int id) async {
-    final jadwalBox = objectbox.store.box<MyJadwalEntity>();
+    final jadwalBox = objectbox!.store.box<MyJadwalEntity>();
 
     MyJadwalModel myJadwalModel = jadwalBox.get(id)!.toMyJadwalModel();
     return myJadwalModel;

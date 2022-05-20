@@ -1,7 +1,7 @@
 import 'package:jadwal_sholat_app/data/models/niat_model.dart';
 import 'package:jadwal_sholat_app/data/models/shalat_model.dart';
 
-Map<Shalat, List<NiatModel>> niatMap = {
+Map<Shalat, List<NiatModel>> niatData = {
   Shalat.Subuh: [
     NiatModel(
         role: "Imam",

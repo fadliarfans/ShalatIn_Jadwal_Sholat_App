@@ -13,8 +13,15 @@ part 'alarm_state.dart';
 class AlarmBloc extends Bloc<AlarmEvent, AlarmState> {
   final AlarmManager _alarmManager;
 
+  int counter = 0;
+
   AlarmBloc(this._alarmManager) : super(AlarmInitial()) {
     try {
+      if (counter < 1) {
+        _alarmManager.monthlyAlarm();
+        counter++;
+      }
+
       on<GetAlarm>(((event, emit) async {
         emit(AlarmActivatedState(_alarmManager.myActivatedJadwal));
       }));
@@ -22,11 +29,13 @@ class AlarmBloc extends Bloc<AlarmEvent, AlarmState> {
       on<ActivateAlarm>(((event, emit) async {
         try {
           await _alarmManager.activateAlarm(event.shalat);
-          emit(AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
+          emit(
+              AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
         } catch (e) {
           debugPrint("ACTIVATE ALARM BLOC ERROR -----> $e");
           await _alarmManager.cancelAlarm(event.shalat);
-          emit(AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
+          emit(
+              AlarmActivatedState(await _alarmManager.getAllActivatedJadwal()));
         }
       }));
 

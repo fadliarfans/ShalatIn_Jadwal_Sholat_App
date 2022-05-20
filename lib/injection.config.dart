@@ -41,7 +41,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       _i10.Repository(get<_i9.LocalDataSource>(), get<_i7.RemoteDataSource>()));
   gh.factory<_i11.AlarmManager>(
       () => _i11.AlarmManager(get<_i10.Repository>(), get<_i3.AlarmService>()));
-  gh.factory<_i12.JadwalBloc>(() => _i12.JadwalBloc(get<_i10.Repository>()));
+  gh.factory<_i12.JadwalBloc>(
+      () => _i12.JadwalBloc(get<_i10.Repository>(), get<_i11.AlarmManager>()));
   gh.factory<_i13.AlarmBloc>(() => _i13.AlarmBloc(get<_i11.AlarmManager>()));
   return get;
 }

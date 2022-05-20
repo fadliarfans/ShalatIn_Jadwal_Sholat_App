@@ -16,36 +16,10 @@ class InspirationItem extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 155,
+                height: 196,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(image), fit: BoxFit.fill)),
-              ),
-              const SizedBox(
-                height: 14,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      "assets/images/icon_forward.png",
-                      height: 20,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                  Text(
-                    "Bagikan",
-                    style: kBlack2TextStyle.copyWith(
-                        fontSize: 12, letterSpacing: -0.2),
-                  ),
-                  const SizedBox(
-                    width: 25,
-                  ),
-                ],
               ),
             ],
           ),

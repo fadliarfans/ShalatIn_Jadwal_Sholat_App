@@ -49,12 +49,14 @@ class AlarmManager {
             listMyJadwalModel[i].day,
             listMyJadwalModel[i].getTime(shalat).hour,
             listMyJadwalModel[i].getTime(shalat).minute);
-        int id = i * 100 + shalat.index * 10000;
-        _alarmService.setAlarm(date, shalat, id);
+        if (date.isAfter(DateTime.now())) {
+          int id = i * 100 + shalat.index * 10000;
+          _alarmService.setAlarm(date, shalat, id);
+        }
       }
 
       debugPrint(
-          "ALARM MANAGER activeAlarm SUCCESS -----> Alarm ${shalat.name} Actived");
+          "ALARM MANAGER activeAlarm SUCCESS -----> Alarm ${shalat.name} Activated");
     } catch (e) {
       throw Exception("ALARM MANAGER activateAlarm ERROR -----> $e");
     }
@@ -62,13 +64,13 @@ class AlarmManager {
 
   cancelAlarm(Shalat shalat) async {
     try {
-      _repository.saveActivatedJadwal(shalat, false);
+      await _repository.saveActivatedJadwal(shalat, false);
       final dayInMonth = getDayInMonth();
       final currDay = DateTime.now().day;
 
       for (int i = currDay - 1; i <= dayInMonth - 1; i++) {
         int id = i * 100 + shalat.index * 10000;
-        _alarmService.cancelAlarm(shalat, id);
+        await _alarmService.cancelAlarm(shalat, id);
       }
 
       debugPrint(
@@ -79,6 +81,10 @@ class AlarmManager {
   }
 
   monthlyAlarm() {
-    try {} catch (e) {}
+    try {
+      _alarmService.launchUpdateJadwalNextMonth();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }
