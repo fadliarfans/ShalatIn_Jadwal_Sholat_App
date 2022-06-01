@@ -24,12 +24,11 @@ class Repository implements DataSource {
 
   @override
   Future<Resource<MyLocationModel>> getLocation() async {
-    Resource<MyLocationModel> resourceMyLocation =
-        await _remoteDataSource.getLocation();
+    // Resource<MyLocationModel> resourceMyLocation =
+    //     await _remoteDataSource.getLocation();
 
-    if (resourceMyLocation.status == Status.ERROR) {
-      resourceMyLocation = await _localDataSource.getLocation();
-    }
+    Resource<MyLocationModel> resourceMyLocation =
+        await _localDataSource.getLocation();
 
     return resourceMyLocation;
   }

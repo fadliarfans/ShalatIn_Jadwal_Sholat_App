@@ -101,6 +101,7 @@ class AlarmService {
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackSubuh,
             allowWhileIdle: true,
             alarmClock: true,
+            exact: true,
             rescheduleOnReboot: false,
             wakeup: true);
         break;
@@ -108,6 +109,7 @@ class AlarmService {
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackDzuhur,
             allowWhileIdle: true,
             alarmClock: true,
+            exact: true,
             rescheduleOnReboot: false,
             wakeup: true);
         break;
@@ -115,6 +117,7 @@ class AlarmService {
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackAshar,
             allowWhileIdle: true,
             alarmClock: true,
+            exact: true,
             rescheduleOnReboot: false,
             wakeup: true);
         break;
@@ -122,6 +125,7 @@ class AlarmService {
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackMaghrib,
             allowWhileIdle: true,
             alarmClock: true,
+            exact: true,
             rescheduleOnReboot: false,
             wakeup: true);
         break;
@@ -129,6 +133,7 @@ class AlarmService {
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackIsya,
             allowWhileIdle: true,
             alarmClock: true,
+            exact: true,
             rescheduleOnReboot: false,
             wakeup: true);
         break;
@@ -161,7 +166,11 @@ class AlarmService {
             listMyJadwalModel[i].getTime(Shalat.Subuh).minute);
         int id = i * 100 + Shalat.Subuh.index * 10000;
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackSubuh,
-            exact: true, rescheduleOnReboot: false, wakeup: true);
+            allowWhileIdle: true,
+            alarmClock: true,
+            exact: true,
+            rescheduleOnReboot: false,
+            wakeup: true);
       }
       if (dzuhur) {
         DateTime trueDate = DateTime(
@@ -172,7 +181,11 @@ class AlarmService {
             listMyJadwalModel[i].getTime(Shalat.Dzuhur).minute);
         int id = i * 100 + Shalat.Dzuhur.index * 10000;
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackDzuhur,
-            exact: true, rescheduleOnReboot: false, wakeup: true);
+            allowWhileIdle: true,
+            alarmClock: true,
+            exact: true,
+            rescheduleOnReboot: false,
+            wakeup: true);
       }
       if (ashar) {
         DateTime trueDate = DateTime(
@@ -183,7 +196,11 @@ class AlarmService {
             listMyJadwalModel[i].getTime(Shalat.Ashar).minute);
         int id = i * 100 + Shalat.Ashar.index * 10000;
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackAshar,
-            exact: true, rescheduleOnReboot: false, wakeup: true);
+            allowWhileIdle: true,
+            alarmClock: true,
+            exact: true,
+            rescheduleOnReboot: false,
+            wakeup: true);
       }
       if (maghrib) {
         DateTime trueDate = DateTime(
@@ -194,7 +211,11 @@ class AlarmService {
             listMyJadwalModel[i].getTime(Shalat.Maghrib).minute);
         int id = i * 100 + Shalat.Maghrib.index * 10000;
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackMaghrib,
-            exact: true, rescheduleOnReboot: false, wakeup: true);
+            allowWhileIdle: true,
+            alarmClock: true,
+            exact: true,
+            rescheduleOnReboot: false,
+            wakeup: true);
       }
       if (isya) {
         DateTime trueDate = DateTime(
@@ -205,7 +226,11 @@ class AlarmService {
             listMyJadwalModel[i].getTime(Shalat.Isya).minute);
         int id = i * 100 + Shalat.Isya.index * 10000;
         await AndroidAlarmManager.oneShotAt(trueDate, id, _callbackIsya,
-            exact: true, rescheduleOnReboot: false, wakeup: true);
+            allowWhileIdle: true,
+            alarmClock: true,
+            exact: true,
+            rescheduleOnReboot: false,
+            wakeup: true);
       }
     }
   }
@@ -246,7 +271,7 @@ class AlarmService {
             [];
         developer.log("SUCCES Get Jadwal From API");
 
-        // Activate Jadwal Alarm
+        // Get Activated Jadwal
         final subuh = prefs.getBool("${Shalat.Subuh.name} Activated") ?? false;
         final dzuhur =
             prefs.getBool("${Shalat.Dzuhur.name} Activated") ?? false;
@@ -254,6 +279,8 @@ class AlarmService {
         final maghrib =
             prefs.getBool("${Shalat.Maghrib.name} Activated") ?? false;
         final isya = prefs.getBool("${Shalat.Isya.name} Activated") ?? false;
+
+        // Activate Jadwal From Background
         activateJadwalMonthlyInBackgroundSYNC(
             myJadwal, subuh, dzuhur, ashar, maghrib, isya);
         developer.log("SUCCES Activate Jadwal Alarm");

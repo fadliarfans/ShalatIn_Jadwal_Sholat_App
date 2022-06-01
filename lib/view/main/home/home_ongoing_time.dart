@@ -62,7 +62,7 @@ class HomeOnGoingTime extends StatelessWidget {
                                   letterSpacing: 5),
                             ),
                             Text(
-                              "  WIB",
+                              "   ",
                               style: kWhiteTextStyle.copyWith(
                                   fontSize: 14, fontWeight: semiBold),
                             )

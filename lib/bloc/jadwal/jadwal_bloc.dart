@@ -54,10 +54,6 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
         Resource<List<MyJadwalModel>>? resourceJadwal;
 
         resourceJadwal = await _repository.getJadwal(location);
-
-        if (resourceJadwal.status == Status.SUCCES) {
-          //_repository.saveJadwal(resourceJadwal.data!);
-        }
         return resourceJadwal;
       } catch (e) {
         return Resource<List<MyJadwalModel>>().error(e.toString());
@@ -196,10 +192,27 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
           if (resourceJadwal.status == Status.SUCCES) {
             await _repository.saveLocation(resourceLocation.data!);
             nowDay = DateTime.now().day;
+            final nowHour = DateTime.now().hour;
+            final nowMinutes = DateTime.now().minute;
 
             jadwalList = resourceJadwal.data!;
+
             jadwalToday = jadwalList![nowDay - 1];
 
+            final ishaHour = jadwalToday?.isha.hour ?? 0;
+            final ishaMinutes = jadwalToday?.isha.minute ?? 0;
+
+            if (nowDay < (jadwalList?.length ?? 0)) {
+              // JIKA SUDAH LEWAT WAKTU ISHA MAKA YANG DIGUNAKAN WAKTU SHUBUH ESOK HARI
+              if (nowHour == ishaHour) {
+                if (nowMinutes > ishaMinutes) {
+                  jadwalToday = jadwalList![nowDay + 1 - 1];
+                }
+              } else if (nowHour > ishaHour) {
+                jadwalToday = jadwalList![nowDay + 1 - 1];
+              }
+            }
+            debugPrint('JADWAL : $jadwalToday');
             nextJadwal = _getClosesTime(jadwalToday!);
 
             mapOfJadwalSholat = {
@@ -213,7 +226,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
             // initiate location
             myLocation = resourceLocation.data!;
 
-            // Activated Alarm
+            // Activated Alarm If Get New Jadwal
             if (event is GetJadwalLocationManual) {
               final activatedJadwal =
                   await _alarmManager.getAllActivatedJadwal();
