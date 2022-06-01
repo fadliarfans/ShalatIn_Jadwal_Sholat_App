@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:jadwal_sholat_app/data/models/my_jadwal_model.dart';
 import 'package:jadwal_sholat_app/data/repository/repository_dart.dart';
+import 'package:jadwal_sholat_app/service/alarm/alarm_manager.dart';
 import '../../data/models/my_location_model.dart';
 import '../../data/models/shalat_model.dart';
 import '../../extension/day_translate.dart';
@@ -20,6 +21,7 @@ part 'jadwal_state.dart';
 @Injectable()
 class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   final Repository _repository;
+  final AlarmManager _alarmManager;
 
   Map<Shalat, String>? mapOfJadwalSholat;
   MyLocationModel? myLocation;
@@ -28,7 +30,7 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
   MyJadwalModel? jadwalToday;
   int nowDay = 1;
 
-  JadwalBloc(this._repository) : super(JadwalInitial()) {
+  JadwalBloc(this._repository, this._alarmManager) : super(JadwalInitial()) {
     Future<Resource<MyLocationModel>> getLocation() async {
       try {
         Resource<MyLocationModel> resourceLocation;
@@ -52,10 +54,6 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
         Resource<List<MyJadwalModel>>? resourceJadwal;
 
         resourceJadwal = await _repository.getJadwal(location);
-
-        if (resourceJadwal.status == Status.SUCCES) {
-          //_repository.saveJadwal(resourceJadwal.data!);
-        }
         return resourceJadwal;
       } catch (e) {
         return Resource<List<MyJadwalModel>>().error(e.toString());
@@ -194,10 +192,27 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
           if (resourceJadwal.status == Status.SUCCES) {
             await _repository.saveLocation(resourceLocation.data!);
             nowDay = DateTime.now().day;
+            final nowHour = DateTime.now().hour;
+            final nowMinutes = DateTime.now().minute;
 
             jadwalList = resourceJadwal.data!;
+
             jadwalToday = jadwalList![nowDay - 1];
 
+            final ishaHour = jadwalToday?.isha.hour ?? 0;
+            final ishaMinutes = jadwalToday?.isha.minute ?? 0;
+
+            if (nowDay < (jadwalList?.length ?? 0)) {
+              // JIKA SUDAH LEWAT WAKTU ISHA MAKA YANG DIGUNAKAN WAKTU SHUBUH ESOK HARI
+              if (nowHour == ishaHour) {
+                if (nowMinutes > ishaMinutes) {
+                  jadwalToday = jadwalList![nowDay + 1 - 1];
+                }
+              } else if (nowHour > ishaHour) {
+                jadwalToday = jadwalList![nowDay + 1 - 1];
+              }
+            }
+            debugPrint('JADWAL : $jadwalToday');
             nextJadwal = _getClosesTime(jadwalToday!);
 
             mapOfJadwalSholat = {
@@ -210,6 +225,18 @@ class JadwalBloc extends Bloc<JadwalEvent, JadwalState> {
 
             // initiate location
             myLocation = resourceLocation.data!;
+
+            // Activated Alarm If Get New Jadwal
+            if (event is GetJadwalLocationManual) {
+              final activatedJadwal =
+                  await _alarmManager.getAllActivatedJadwal();
+              activatedJadwal.forEach((key, value) async {
+                if (value) {
+                  await _alarmManager.cancelAlarm(key);
+                  await _alarmManager.activateAlarm(key);
+                }
+              });
+            }
 
             emit(JadwalSucces(
                 mapOfJadwalSholat!, _getIdDate(), nextJadwal!, myLocation!));

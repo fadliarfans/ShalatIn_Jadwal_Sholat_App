@@ -130,7 +130,7 @@ class _BottomSheetChooseCityState extends State<BottomSheetChooseCity> {
                                 country: "Indonesia",
                                 cityId: cities[index].id ?? "Error")));
                       },
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.my_location,
                         color: green,
                       ),
