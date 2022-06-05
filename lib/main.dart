@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jadwal_sholat_app/cubit/niat/niat_cubit.dart';
 import 'package:jadwal_sholat_app/theme.dart';
+import 'package:jadwal_sholat_app/view/main/main_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'bloc/page/page_bloc.dart';
 import 'data/repository/local/database/object_box.dart';
 import 'injection.dart';
@@ -15,6 +17,7 @@ ObjectBox? objectbox;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AndroidAlarmManager.initialize();
   await configureDependencies();
   objectbox = await ObjectBox.create();
   runApp(const MyApp());
@@ -28,10 +31,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool? isFirstTime;
   @override
   void initState() {
     super.initState();
-    AndroidAlarmManager.initialize();
+    final prefs = locator<SharedPreferences>();
+    isFirstTime = prefs.get('isFirstTime') as bool?;
+
+    if (isFirstTime == null) {
+      prefs.setBool("isFirstTime", true);
+    }
   }
 
   @override
@@ -51,10 +60,10 @@ class _MyAppState extends State<MyApp> {
           create: (context) => NiatCubit(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         color: green,
         title: 'ShalatIn',
-        home: BoardingPage(),
+        home: isFirstTime == null ? const BoardingPage() : const MainPage(),
       ),
     );
   }

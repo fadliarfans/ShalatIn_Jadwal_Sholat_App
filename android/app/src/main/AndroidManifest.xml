@@ -10,6 +10,9 @@
   <!-- Include only if your app benefits from precise location access. -->
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
 
    <!-- Alarm Manager -->
   <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
@@ -25,6 +28,8 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"

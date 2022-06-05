@@ -30,6 +30,10 @@ class Repository implements DataSource {
     Resource<MyLocationModel> resourceMyLocation =
         await _localDataSource.getLocation();
 
+    if (resourceMyLocation.data == null) {
+      resourceMyLocation = await _remoteDataSource.getLocation();
+    }
+
     return resourceMyLocation;
   }
 

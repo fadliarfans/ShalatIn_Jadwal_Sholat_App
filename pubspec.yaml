@@ -58,7 +58,6 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   objectbox: ^1.4.1
   objectbox_flutter_libs: any
-
   flutter_native_splash: ^2.1.6
 
 dev_dependencies:
